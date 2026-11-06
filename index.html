@@ -7,8 +7,8 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="ГидроДел">
-<!-- Новая чистая иконка: Голубой щит на белом фоне -->
-<link rel="apple-touch-icon" href="data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 180'%3E%3Crect width='180' height='180' rx='40' fill='%23ffffff'/%3E%3Cg transform='translate(30,30)'%3E%3Crect width='120' height='120' rx='15' fill='%230d6efd'/%3E%3Cpolygon points='0,0 40,0 120,120 80,120' fill='%230a58ca'/%3E%3Cline x1='0' y1='30' x2='120' y2='30' stroke='%23ffffff' stroke-width='8'/%3E%3Cline x1='0' y1='60' x2='120' y2='60' stroke='%23ffffff' stroke-width='8'/%3E%3Cline x1='0' y1='90' x2='120' y2='90' stroke='%23ffffff' stroke-width='8'/%3E%3C/g%3E%3C/svg%3E">
+<!-- НОВАЯ КАРТИНКА В ФОРМАТЕ PNG (iOS понимает только PNG/JPG) -->
+<link rel="apple-touch-icon" href="https://cdn-icons-png.flaticon.com/512/2716/2716593.png">
 <script src="https://cdn.tailwindcss.com"></script>
 <script>
 tailwind.config = {
@@ -364,7 +364,6 @@ const initialShifts = [
     { id: 's-2', worker: 'Дмитрий К.', objId: 'obj-1', hours: 8, rate: 4500, date: '2026-11-04' }
 ];
 
-// НОВАЯ СТРУКТУРА ЧЕК-ЛИСТОВ (С КАТЕГОРИЯМИ)
 const defaultChecklists = {
     strobe_inject: [
         { cat: '⚡ Электроинструмент', items: [
@@ -442,12 +441,11 @@ const defaultChecklists = {
 
 let db = { objects: initialObjects, tools: initialTools, shifts: initialShifts, checklists: defaultChecklists };
 
-// Безопасная загрузка данных
 try {
     const savedObj = localStorage.getItem('hydro_objects');
     const savedTools = localStorage.getItem('hydro_tools');
     const savedShifts = localStorage.getItem('hydro_shifts');
-    const savedCl = localStorage.getItem('hydro_checklists_v3'); // НОВЫЙ КЛЮЧ ДЛЯ СБРОСА СТАРОГО СПИСКА
+    const savedCl = localStorage.getItem('hydro_checklists_v3'); 
     
     if (savedObj) {
         const parsed = JSON.parse(savedObj);
@@ -474,7 +472,7 @@ function saveData() {
         localStorage.setItem('hydro_objects', JSON.stringify(db.objects));
         localStorage.setItem('hydro_tools', JSON.stringify(db.tools));
         localStorage.setItem('hydro_shifts', JSON.stringify(db.shifts));
-        localStorage.setItem('hydro_checklists_v3', JSON.stringify(db.checklists)); // НОВЫЙ КЛЮЧ
+        localStorage.setItem('hydro_checklists_v3', JSON.stringify(db.checklists)); 
     } catch(e) { console.error('Save error', e); }
 }
 
@@ -781,7 +779,6 @@ function calculateMaterials() {
     }
 }
 
-// ОБНОВЛЕННЫЙ РЕНДЕР ЧЕК-ЛИСТА С КАТЕГОРИЯМИ
 function renderChecklist() {
     const presetSelect = document.getElementById('checklist-preset');
     if (!presetSelect) return;
