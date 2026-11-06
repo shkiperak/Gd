@@ -517,12 +517,7 @@ function switchTab(tabId) {
     if (tabId === 'workers') renderWorkers();
 }
     
-    if (tabId === 'objects') renderObjects();
-    if (tabId === 'checklists') { toggleCalcInputs(); renderChecklist(); calculateMaterials(); }
-    if (tabId === 'tools') renderTools();
-    if (tabId === 'workers') renderWorkers();
-}
-
+    
 function renderObjects() {
     const container = document.getElementById('objects-list');
     if (!container) return;
