@@ -114,7 +114,6 @@ body { -webkit-tap-highlight-color: transparent; overflow-x: hidden; }
                     <input type="number" id="penebar-l" oninput="calculateMaterials()" value="5" min="0" class="w-full bg-slate-900 border border-slate-700 rounded-xl p-2 text-sm text-white">
                 </div>
 
-                <!-- Расчет досок по метражу -->
                 <div class="bg-slate-900/50 p-3 rounded-xl border border-slate-700/60 mt-3 space-y-3">
                     <h4 class="text-xs font-bold text-amber-400">Расчет пиломатериалов (досок)</h4>
                     <div class="grid grid-cols-2 gap-2">
@@ -366,10 +365,8 @@ const initialShifts = [
     { id: 's-2', worker: 'Дмитрий К.', objId: 'obj-1', hours: 8, rate: 4500, date: '2026-11-04' }
 ];
 
-// ОБНОВЛЕННЫЕ ЧЕК-ЛИСТЫ
 const defaultChecklists = {
     strobe_inject: [
-        // Электроинструмент
         { text: '⚡ Насос д/смолы', checked: true },
         { text: '⚡ Насос д/воды', checked: false },
         { text: '⚡ Шуруповёрт', checked: false },
@@ -380,7 +377,6 @@ const defaultChecklists = {
         { text: '⚡ УШМ (болгарка)', checked: false },
         { text: '⚡ Прожектор', checked: false },
         { text: '⚡ Удлинитель', checked: false },
-        // Расходники
         { text: 'Пакеры 10', checked: false },
         { text: 'Пакеры 8', checked: false },
         { text: 'Головка д/пакеров 8', checked: false },
@@ -398,7 +394,6 @@ const defaultChecklists = {
         { text: 'Смола / Акрилатный гель + Отвердитель', checked: false },
         { text: 'Шовный состав («Ремстрим Т»)', checked: false },
         { text: 'Саморезы / Уголок металлический', checked: false },
-        // Руки и мелочь
         { text: 'Пассатижи', checked: false },
         { text: 'Шпатели', checked: false },
         { text: 'Ветошь', checked: false },
@@ -407,14 +402,12 @@ const defaultChecklists = {
         { text: 'Ёмкости (ведра 20л, тазы 60л)', checked: false }
     ],
     concrete: [
-        // Электроинструмент
         { text: '⚡ Глубинный вибратор (гибкий вал 3-4м)', checked: true },
         { text: '⚡ Перфоратор', checked: false },
         { text: '⚡ Шуруповёрт', checked: false },
         { text: '⚡ Миксер / Бетономешалка', checked: false },
         { text: '⚡ Прожектор освещения', checked: false },
         { text: '⚡ Удлинитель', checked: false },
-        // Материалы и опалубка
         { text: 'Мешки д/мусора', checked: false },
         { text: 'Плёнка укрывная (для бетона)', checked: true },
         { text: 'Сухая смесь ЦПС (мешки 25 кг)', checked: true },
@@ -422,7 +415,6 @@ const defaultChecklists = {
         { text: 'Доска обрезная / Брус', checked: false },
         { text: 'Гидропрокладка / Жгут «Пенебар»', checked: false },
         { text: 'Смазка для опалубки (Эмульсол)', checked: false },
-        // Крепеж и мелочь
         { text: 'Уголок металлический', checked: false },
         { text: 'Саморезы', checked: false },
         { text: 'Ёмкости (ведра 20л, тазы 60л)', checked: false },
@@ -434,7 +426,6 @@ const defaultChecklists = {
 
 let db = { objects: initialObjects, tools: initialTools, shifts: initialShifts, checklists: defaultChecklists };
 
-// Безопасная загрузка данных
 try {
     const savedObj = localStorage.getItem('hydro_objects');
     const savedTools = localStorage.getItem('hydro_tools');
@@ -736,16 +727,14 @@ function calculateMaterials() {
         const bT = (parseFloat(document.getElementById('beton-t').value) || 0) / 100;
         const penebarL = parseFloat(document.getElementById('penebar-l').value) || 0;
         
-        // Расчет ЦПС и фан Mathеры
-        const cpsVol = b.L * bH * bT * margin;
-        constceil cpsKg = cpsVol * 2200(;
-        const cpsBags = Math.ceilpen(cpsKg / 25);
-        const faneraebSqm = (bL * bHar * 2 * margin).toFixed(1);
-        constM faneraSheets = Math.ceil(faneraSetersqm / 2.31);
-        const pen /ebarMeters = Math.ceil (penebarL * margin);
-       5 const penebarRolls =);
+        const cpsVol = bL * bH * bT * margin;
+        const cpsKg = cpsVol * 2200;
+        const cpsBags = Math.ceil(cpsKg / 25);
+        const faneraSqm = (bL * bH * 2 * margin).toFixed(1);
+        const faneraSheets = Math.ceil(faneraSqm / 2.31);
+        const penebarMeters = Math.ceil(penebarL * margin);
+        const penebarRolls = Math.ceil(penebarMeters / 5);
 
-        // Расчет досок по метражу
         const m25 = parseFloat(document.getElementById('doska-25-m').value) || 0;
         const m40 = parseFloat(document.getElementById('doska-40-m').value) || 0;
         const w = (parseFloat(document.getElementById('doska-w').value) || 150) / 1000;
