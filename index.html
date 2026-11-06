@@ -488,8 +488,12 @@ function switchTab(tabId) {
     
     // Сброс стилей всех кнопок меню
     document.querySelectorAll('.nav-btn').forEach(el => { 
-        el.classList.remove('text-amber-400', 'border-amber-500/50', 'bg-amber-500/10', 'shadow-[0_0_10px_rgba(245,158,11,0.1)]'); 
-        el.classList.add('text-slate-400', 'border-slate-700/50', 'bg-slate-800/30'); 
+        el.classList.remove('text-amber-400');
+        el.classList.remove('border-amber-500/50');
+        el.classList.remove('bg-amber-500/10');
+        el.classList.add('text-slate-400');
+        el.classList.add('border-slate-700/50');
+        el.classList.add('bg-slate-800/30');
     });
     
     const targetTab = document.getElementById(`tab-${tabId}`);
@@ -499,8 +503,12 @@ function switchTab(tabId) {
     
     // Установка активного стиля для выбранной кнопки
     if (targetNav) { 
-        targetNav.classList.add('text-amber-400', 'border-amber-500/50', 'bg-amber-500/10', 'shadow-[0_0_10px_rgba(245,158,11,0.1)]'); 
-        targetNav.classList.remove('text-slate-400', 'border-slate-700/50', 'bg-slate-800/30'); 
+        targetNav.classList.add('text-amber-400');
+        targetNav.classList.add('border-amber-500/50');
+        targetNav.classList.add('bg-amber-500/10');
+        targetNav.classList.remove('text-slate-400');
+        targetNav.classList.remove('border-slate-700/50');
+        targetNav.classList.remove('bg-slate-800/30');
     }
     
     if (tabId === 'objects') renderObjects();
