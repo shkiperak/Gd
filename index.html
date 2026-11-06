@@ -7,8 +7,8 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="ГидроДел">
-<!-- Оригинальный логотип для иконки -->
-<link rel="apple-touch-icon" href="https://gidrodel.online/wp-content/uploads/2020/09/logo_gidrodel1.png">
+<!-- Новая квадратная иконка: Голубой щит с белыми линиями на белом фоне -->
+<link rel="apple-touch-icon" href="data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 180'%3E%3Crect width='180' height='180' rx='40' fill='%23ffffff'/%3E%3Cg transform='translate(30,30)'%3E%3Crect width='120' height='120' rx='15' fill='%230d6efd'/%3E%3Cpolygon points='0,0 40,0 120,120 80,120' fill='%230a58ca'/%3E%3Cline x1='0' y1='30' x2='120' y2='30' stroke='%23ffffff' stroke-width='8'/%3E%3Cline x1='0' y1='60' x2='120' y2='60' stroke='%23ffffff' stroke-width='8'/%3E%3Cline x1='0' y1='90' x2='120' y2='90' stroke='%23ffffff' stroke-width='8'/%3E%3C/g%3E%3C/svg%3E">
 <script src="https://cdn.tailwindcss.com"></script>
 <script>
 tailwind.config = {
@@ -38,8 +38,8 @@ body { -webkit-tap-highlight-color: transparent; overflow-x: hidden; }
             <p class="text-xs text-slate-400">Гидроизоляция, Инъектирование & Бетонирование</p>
         </div>
     </div>
-    <button type="button" onclick="toggleInfoModal()" class="text-slate-400 hover:text-amber-400 p-2 text-2xl transition-colors">
-        ⚙️
+    <button type="button" onclick="toggleInfoModal()" class="text-slate-400 hover:text-amber-400 p-2 text-xl transition-colors">
+        <i class="fa-solid fa-circle-info"></i>
     </button>
 </header>
 
