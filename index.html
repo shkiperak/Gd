@@ -235,12 +235,13 @@ body { -webkit-tap-highlight-color: transparent; overflow-x: hidden; }
                 <option value="Проштроблено швов (п.м.)">Проштроблено швов (п.м.)</option>
                 <option value="Установлено пакеров (шт)">Установлено пакеров (шт)</option>
                 <option value="Закачано ПенеПурФом (кг)">Закачано ПенеПурФом (кг)</option>
+                <option value="Залито ЦПС (мешки 25кг)">Залито ЦПС (мешки 25кг)</option>
                 <option value="Залито ЦПС / пристенков (м³)">Залито ЦПС / пристенков (м³)</option>
                 <option value="Смонтировано опалубки (м²)">Смонтировано опалубки (м²)</option>
                 <option value="Уложено жгута Пенебар (п.м.)">Уложено жгута Пенебар (п.м.)</option>
             </select>
         </div>
-        <div><label class="text-xs text-slate-400 block mb-1">Количество / Объем</label><input type="number" id="log-val-input" class="w-full bg-slate-900 border border-slate-700 rounded-xl p-2.5 text-sm text-white outline-none focus:border-amber-500" placeholder="0"></div>
+        <div><label class="text-xs text-slate-400 block mb-1">Количество (только цифры)</label><input type="text" inputmode="decimal" id="log-val-input" class="w-full bg-slate-900 border border-slate-700 rounded-xl p-2.5 text-sm text-white outline-none focus:border-amber-500" placeholder="0"></div>
         <div><label class="text-xs text-slate-400 block mb-1">Примечание / Бригада</label><input type="text" id="log-note-input" class="w-full bg-slate-900 border border-slate-700 rounded-xl p-2.5 text-sm text-white outline-none focus:border-amber-500" placeholder="Например: Стена оси А-Б"></div>
         <div class="flex gap-2 justify-end pt-2">
             <button type="button" onclick="closeModal('modal-log')" class="px-4 py-2 bg-slate-700 rounded-xl text-sm font-semibold text-slate-300">Отмена</button>
@@ -520,15 +521,26 @@ function renderObjects() {
     }
     container.innerHTML = db.objects.map(obj => {
         const logsHtml = obj.logs && obj.logs.length > 0
-            ? obj.logs.map((l, lIdx) => `
+            ? obj.logs.map((l, lIdx) => {
+                let displayVal = l.val;
+                let displayType = l.type;
+                
+                // Конвертация мешков в кубы для отображения
+                if (l.type === 'Залито ЦПС (мешки 25кг)') {
+                    const vol = ((l.val * 25) / 2200).toFixed(2);
+                    displayVal = `${l.val} меш. (~${vol} м³)`;
+                    displayType = 'Залито ЦПС';
+                }
+
+                return `
                 <div class="flex justify-between items-center text-xs py-1.5 border-b border-slate-700/50 gap-2">
-                    <span class="text-slate-300 font-medium">${l.type}: <b class="text-amber-400">${l.val}</b> <span class="text-slate-400 font-normal">(${l.note || '—'})</span></span>
+                    <span class="text-slate-300 font-medium">${displayType}: <b class="text-amber-400">${displayVal}</b> <span class="text-slate-400 font-normal">(${l.note || '—'})</span></span>
                     <div class="flex items-center gap-2 shrink-0">
                         <span class="text-slate-500 text-[10px]">${l.date}</span>
                         <button type="button" onclick="openEditLogModal('${String(obj.id)}', ${lIdx})" class="text-slate-400 hover:text-amber-400 p-1"><i class="fa-solid fa-pen text-[10px]"></i></button>
                         <button type="button" onclick="event.stopPropagation(); deleteWorkLog('${String(obj.id)}', ${lIdx})" class="text-slate-500 hover:text-red-400 p-1"><i class="fa-solid fa-trash text-[10px]"></i></button>
                     </div>
-                </div>`).join('')
+                </div>`}).join('')
             : `<p class="text-xs text-slate-500 italic">Выработка еще не вносилась</p>`;
         return `
             <div class="bg-slate-800 border border-slate-700 rounded-2xl p-4 shadow-md space-y-3">
@@ -596,9 +608,12 @@ function saveWorkLog() {
     const objId = document.getElementById('log-obj-id').value;
     const editIdx = document.getElementById('log-edit-idx').value;
     const type = document.getElementById('log-type-input').value;
-    const val = parseFloat(document.getElementById('log-val-input').value);
+    const valInput = document.getElementById('log-val-input').value.replace(',', '.');
+    const val = parseFloat(valInput);
     const note = document.getElementById('log-note-input').value.trim();
-    if (!val || val <= 0) return alert('Введите корректное число');
+    
+    if (!val || val <= 0) return alert('Введите корректное число (только цифры)');
+    
     const obj = db.objects.find(o => String(o.id) === String(objId));
     if (obj) {
         if (!obj.logs) obj.logs = [];
