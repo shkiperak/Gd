@@ -7,7 +7,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="ГидроДел">
-<!-- Новая квадратная иконка: Голубой щит с белыми линиями на белом фоне -->
+<!-- Иконка: Голубой щит с белыми линиями -->
 <link rel="apple-touch-icon" href="data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 180'%3E%3Crect width='180' height='180' rx='40' fill='%23ffffff'/%3E%3Cg transform='translate(30,30)'%3E%3Crect width='120' height='120' rx='15' fill='%230d6efd'/%3E%3Cpolygon points='0,0 40,0 120,120 80,120' fill='%230a58ca'/%3E%3Cline x1='0' y1='30' x2='120' y2='30' stroke='%23ffffff' stroke-width='8'/%3E%3Cline x1='0' y1='60' x2='120' y2='60' stroke='%23ffffff' stroke-width='8'/%3E%3Cline x1='0' y1='90' x2='120' y2='90' stroke='%23ffffff' stroke-width='8'/%3E%3C/g%3E%3C/svg%3E">
 <script src="https://cdn.tailwindcss.com"></script>
 <script>
@@ -72,7 +72,7 @@ body { -webkit-tap-highlight-color: transparent; overflow-x: hidden; }
                     <select id="calc-type" onchange="toggleCalcInputs()" class="w-full bg-slate-900 border border-slate-700 rounded-xl p-2.5 text-sm text-white focus:border-amber-500 outline-none">
                         <option value="strobe">Штробление + Ремстрим Т (1 мешок / 11 м)</option>
                         <option value="inject">Инъектирование (Пакееры + Смолы)</option>
-                        <option value="concrete">Бетонирование пристенков / стяжек (ЦПС, Опалубка, Пенебар)</option>
+                        <option value="concrete">Бетонирование пристенков / стяжек (ЦПС, Опалубка)</option>
                     </select>
                 </div>
                 <div>
@@ -80,12 +80,14 @@ body { -webkit-tap-highlight-color: transparent; overflow-x: hidden; }
                     <input type="number" id="calc-margin" oninput="calculateMaterials()" value="10" class="w-full bg-slate-900 border border-slate-700 rounded-xl p-2.5 text-sm text-white focus:border-amber-500 outline-none">
                 </div>
             </div>
+            
             <div id="inputs-strobe" class="calc-sub-input space-y-3">
                 <div>
                     <label class="text-xs text-slate-400 block mb-1">Длина штробы (погонные метры)</label>
                     <input type="number" id="strobe-length" oninput="calculateMaterials()" value="10" min="0" class="w-full bg-slate-900 border border-slate-700 rounded-xl p-2.5 text-sm text-white focus:border-amber-500 outline-none">
                 </div>
             </div>
+
             <div id="inputs-inject" class="calc-sub-input hidden space-y-3">
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
                     <div>
@@ -101,6 +103,7 @@ body { -webkit-tap-highlight-color: transparent; overflow-x: hidden; }
                     </div>
                 </div>
             </div>
+
             <div id="inputs-concrete" class="calc-sub-input hidden space-y-3">
                 <div class="grid grid-cols-3 gap-2">
                     <div><label class="text-xs text-slate-400 block mb-1">Длина (м)</label><input type="number" id="beton-l" oninput="calculateMaterials()" value="5" step="0.1" class="w-full bg-slate-900 border border-slate-700 rounded-xl p-2 text-sm text-white"></div>
@@ -111,9 +114,30 @@ body { -webkit-tap-highlight-color: transparent; overflow-x: hidden; }
                     <label class="text-xs text-slate-400 block mb-1">Длина примыкания для жгута «Пенебар» (м.п.)</label>
                     <input type="number" id="penebar-l" oninput="calculateMaterials()" value="5" min="0" class="w-full bg-slate-900 border border-slate-700 rounded-xl p-2 text-sm text-white">
                 </div>
+
+                <!-- НОВЫЙ БЛОК: Расчет досок по метражу -->
+                <div class="bg-slate-900/50 p-3 rounded-xl border border-slate-700/60 mt-3 space-y-3">
+                    <h4 class="text-xs font-bold text-amber-400">Расчет пиломатериалов (досок)</h4>
+                    <div class="grid grid-cols-2 gap-2">
+                        <div>
+                            <label class="text-xs text-slate-400 block mb-1">Метраж дюймовки (25мм)</label>
+                            <input type="number" id="doska-25-m" oninput="calculateMaterials()" value="0" min="0" class="w-full bg-slate-900 border border-slate-700 rounded-xl p-2 text-sm text-white">
+                        </div>
+                        <div>
+                            <label class="text-xs text-slate-400 block mb-1">Метраж сороковки (40мм)</label>
+                            <input type="number" id="doska-40-m" oninput="calculateMaterials()" value="0" min="0" class="w-full bg-slate-900 border border-slate-700 rounded-xl p-2 text-sm text-white">
+                        </div>
+                    </div>
+                    <div>
+                        <label class="text-xs text-slate-400 block mb-1">Ширина доски (мм)</label>
+                        <input type="number" id="doska-w" oninput="calculateMaterials()" value="150" min="50" class="w-full bg-slate-900 border border-slate-700 rounded-xl p-2 text-sm text-white">
+                    </div>
+                </div>
             </div>
+
             <div id="calc-results" class="bg-slate-900/90 rounded-xl p-4 border border-amber-500/30 text-sm space-y-2"></div>
         </div>
+        
         <div class="bg-slate-800 border border-slate-700 rounded-2xl p-4 shadow-md">
             <div class="flex flex-col sm:flex-row justify-between sm:items-center gap-2 mb-3">
                 <h3 class="text-md font-bold text-slate-200 flex items-center gap-2">
@@ -672,6 +696,7 @@ function calculateMaterials() {
     const margin = (parseFloat(document.getElementById('calc-margin').value) || 0) / 100 + 1;
     const res = document.getElementById('calc-results');
     if (!res) return;
+    
     if (type === 'strobe') {
         const len = parseFloat(document.getElementById('strobe-length').value) || 0;
         const bags = Math.ceil((len / 11) * margin);
@@ -694,19 +719,43 @@ function calculateMaterials() {
         const bH = parseFloat(document.getElementById('beton-h').value) || 0;
         const bT = (parseFloat(document.getElementById('beton-t').value) || 0) / 100;
         const penebarL = parseFloat(document.getElementById('penebar-l').value) || 0;
+        
+        // Расчет ЦПС и фанеры
         const cpsVol = bL * bH * bT * margin;
         const cpsKg = cpsVol * 2200;
         const cpsBags = Math.ceil(cpsKg / 25);
         const faneraSqm = (bL * bH * 2 * margin).toFixed(1);
         const faneraSheets = Math.ceil(faneraSqm / 2.31);
-        const doskaCubes = (faneraSqm * 0.025).toFixed(2);
         const penebarMeters = Math.ceil(penebarL * margin);
         const penebarRolls = Math.ceil(penebarMeters / 5);
+
+        // Расчет досок по метражу
+        const m25 = parseFloat(document.getElementById('doska-25-m').value) || 0;
+        const m40 = parseFloat(document.getElementById('doska-40-m').value) || 0;
+        const w = (parseFloat(document.getElementById('doska-w').value) || 150) / 1000; // перевод ширины в метры
+
+        let doskaHtml = '';
+        
+        if (m25 > 0) {
+            const vol25 = (m25 * w * 0.025).toFixed(3);
+            const pieces25 = Math.ceil(m25 / 6);
+            doskaHtml += `<div class="flex justify-between text-xs text-slate-300 mt-2"><span>Доска 25мм (дюймовка):</span><span>${vol25} м³ (${pieces25} шт по 6м)</span></div>`;
+        }
+        if (m40 > 0) {
+            const vol40 = (m40 * w * 0.040).toFixed(3);
+            const pieces40 = Math.ceil(m40 / 6);
+            doskaHtml += `<div class="flex justify-between text-xs text-slate-300 mt-1"><span>Доска 40мм (сороковка):</span><span>${vol40} м³ (${pieces40} шт по 6м)</span></div>`;
+        }
+        if (m25 === 0 && m40 === 0) {
+            doskaHtml = `<div class="text-xs text-slate-500 italic mt-2">Доски не рассчитаны (не введен метраж)</div>`;
+        }
+
         res.innerHTML = `
             <div class="flex justify-between font-bold text-white"><span>ЦПС (25кг):</span><span class="text-amber-400">${cpsBags} меш. (${cpsVol.toFixed(2)} м³)</span></div>
-            <div class="flex justify-between text-xs text-slate-300"><span>Фанера:</span><span>${faneraSqm} м² (~${faneraSheets} л.)</span></div>
-            <div class="flex justify-between text-xs text-slate-300"><span>Доска:</span><span>~${doskaCubes} м³</span></div>
-            <div class="flex justify-between font-semibold text-amber-300 text-xs"><span>Пенебар:</span><span>${penebarMeters} м.п. (${penebarRolls} рул.)</span></div>`;
+            <div class="flex justify-between text-xs text-slate-300 mt-1"><span>Фанера (1.52х1.52):</span><span>${faneraSqm} м² (~${faneraSheets} л.)</span></div>
+            <div class="flex justify-between font-semibold text-amber-300 text-xs mt-1"><span>Пенебар:</span><span>${penebarMeters} м.п. (${penebarRolls} рул.)</span></div>
+            <div class="border-t border-slate-700/50 my-2"></div>
+            ${doskaHtml}`;
     }
 }
 
