@@ -131,14 +131,14 @@ body { -webkit-tap-highlight-color: transparent; overflow-x: hidden; }
 
     <section id="tab-tools" class="tab-content hidden space-y-4">
         <div class="flex justify-between items-center">
-            <h2 class="text-xl font-bold text-amber-400 flex items-center gap-2"><i class="fa-solid fa-screwdrivers-hardware"></i> Учет Инструмента</h2>
+            <h2 class="text-xl font-bold text-amber-400 flex items-center gap-2"><i class="fa-solid fa-screwdriver-wrench"></i> Учет Инструмента</h2>
             <button type="button" onclick="openNewToolModal()" class="bg-amber-500 hover:bg-amber-600 text-slate-950 font-bold px-3 py-2 rounded-xl text-sm flex items-center gap-1 shadow-md"><i class="fa-solid fa-plus"></i> Добавить</button>
         </div>
         <div class="flex gap-2 overflow-x-auto pb-1 no-scrollbar text-xs">
-            <button type="button" onclick="filterTools('all')" class="tool-filter-btn active bg-amber-500 text-slate-950 font-bold px-3 py-1.5 rounded-xl whitespace-nowrap">Все</button>
-            <button type="button" onclick="filterTools('sklad')" class="tool-filter-btn bg-slate-800 text-slate-300 px-3 py-1.5 rounded-xl whitespace-nowrap border border-slate-700">На базе/Складе</button>
-            <button type="button" onclick="filterTools('object')" class="tool-filter-btn bg-slate-800 text-slate-300 px-3 py-1.5 rounded-xl whitespace-nowrap border border-slate-700">На объектах</button>
-            <button type="button" onclick="filterTools('repair')" class="tool-filter-btn bg-slate-800 text-slate-300 px-3 py-1.5 rounded-xl whitespace-nowrap border border-slate-700">В ремонте</button>
+            <button type="button" onclick="filterTools('all', event)" class="tool-filter-btn active bg-amber-500 text-slate-950 font-bold px-3 py-1.5 rounded-xl whitespace-nowrap">Все</button>
+            <button type="button" onclick="filterTools('sklad', event)" class="tool-filter-btn bg-slate-800 text-slate-300 px-3 py-1.5 rounded-xl whitespace-nowrap border border-slate-700">На базе/Складе</button>
+            <button type="button" onclick="filterTools('object', event)" class="tool-filter-btn bg-slate-800 text-slate-300 px-3 py-1.5 rounded-xl whitespace-nowrap border border-slate-700">На объектах</button>
+            <button type="button" onclick="filterTools('repair', event)" class="tool-filter-btn bg-slate-800 text-slate-300 px-3 py-1.5 rounded-xl whitespace-nowrap border border-slate-700">В ремонте</button>
         </div>
         <div id="tools-list" class="grid grid-cols-1 sm:grid-cols-2 gap-3"></div>
     </section>
@@ -165,24 +165,20 @@ body { -webkit-tap-highlight-color: transparent; overflow-x: hidden; }
     </section>
 </main>
 
-<<nav class="fixed bottom-0 left-0 right-0 bg-slate-950/95 backdrop-blur-lg border-t border-slate-800 py-2 px-2 z-40">
+<nav class="fixed bottom-0 left-0 right-0 bg-slate-950/95 backdrop-blur-lg border-t border-slate-800 py-2 px-2 z-40">
     <div class="max-w-md mx-auto flex justify-between items-center gap-1.5">
-        <!-- Объекты -->
         <button type="button" onclick="switchTab('objects')" id="nav-objects" class="nav-btn flex-1 flex flex-col items-center justify-center gap-1 py-2 rounded-xl border transition-all text-amber-400 border-amber-500/50 bg-amber-500/10 shadow-[0_0_10px_rgba(245,158,11,0.1)]">
             <i class="fa-solid fa-building text-lg"></i>
             <span class="text-[10px] font-medium">Объекты</span>
         </button>
-        <!-- Сборка -->
         <button type="button" onclick="switchTab('checklists')" id="nav-checklists" class="nav-btn flex-1 flex flex-col items-center justify-center gap-1 py-2 rounded-xl border transition-all text-slate-400 border-slate-700/50 bg-slate-800/30">
             <i class="fa-solid fa-clipboard-check text-lg"></i>
             <span class="text-[10px] font-medium">Сборка</span>
         </button>
-        <!-- Инструмент -->
         <button type="button" onclick="switchTab('tools')" id="nav-tools" class="nav-btn flex-1 flex flex-col items-center justify-center gap-1 py-2 rounded-xl border transition-all text-slate-400 border-slate-700/50 bg-slate-800/30">
             <i class="fa-solid fa-screwdriver-wrench text-lg"></i>
             <span class="text-[10px] font-medium">Инструмент</span>
         </button>
-        <!-- Табель -->
         <button type="button" onclick="switchTab('workers')" id="nav-workers" class="nav-btn flex-1 flex flex-col items-center justify-center gap-1 py-2 rounded-xl border transition-all text-slate-400 border-slate-700/50 bg-slate-800/30">
             <i class="fa-solid fa-users text-lg"></i>
             <span class="text-[10px] font-medium">Табель</span>
@@ -255,7 +251,7 @@ body { -webkit-tap-highlight-color: transparent; overflow-x: hidden; }
 
 <div id="modal-tool" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
     <div class="bg-slate-800 border border-slate-700 rounded-2xl p-5 w-full max-w-md space-y-4">
-        <h3 class="text-lg font-bold text-amber-400 flex items-center gap-2"><i class="fa-solid fa-screwdrivers-hardware"></i> Новый Инструмент</h3>
+        <h3 class="text-lg font-bold text-amber-400 flex items-center gap-2"><i class="fa-solid fa-screwdriver-wrench"></i> Новый Инструмент</h3>
         <div><label class="text-xs text-slate-400 block mb-1">Наименование / Модель</label><input type="text" id="tool-name-input" class="w-full bg-slate-900 border border-slate-700 rounded-xl p-2.5 text-sm text-white outline-none focus:border-amber-500" placeholder="Насос 1К/2К"></div>
         <div><label class="text-xs text-slate-400 block mb-1">Серийный номер / Инв №</label><input type="text" id="tool-sn-input" class="w-full bg-slate-900 border border-slate-700 rounded-xl p-2.5 text-sm text-white outline-none focus:border-amber-500" placeholder="SN-8821"></div>
         <div>
@@ -486,7 +482,6 @@ function askConfirm(text, callback) {
 function switchTab(tabId) {
     document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
     
-    // Сброс стилей всех кнопок меню
     document.querySelectorAll('.nav-btn').forEach(el => { 
         el.classList.remove('text-amber-400');
         el.classList.remove('border-amber-500/50');
@@ -501,7 +496,6 @@ function switchTab(tabId) {
     
     if (targetTab) targetTab.classList.remove('hidden');
     
-    // Установка активного стиля для выбранной кнопки
     if (targetNav) { 
         targetNav.classList.add('text-amber-400');
         targetNav.classList.add('border-amber-500/50');
@@ -516,7 +510,6 @@ function switchTab(tabId) {
     if (tabId === 'tools') renderTools();
     if (tabId === 'workers') renderWorkers();
 }
-    
     
 function renderObjects() {
     const container = document.getElementById('objects-list');
