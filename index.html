@@ -7,7 +7,8 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="ГидроДел">
-<link rel="apple-touch-icon" href="https://gidrodel.online/wp-content/uploads/2020/09/logo_gidrodel1.png">
+<!-- НОВАЯ КВАДРАТНАЯ ИКОНКА (Объемный синий куб на темном фоне) -->
+<link rel="apple-touch-icon" href="data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 180'%3E%3Crect width='180' height='180' rx='40' fill='%230f172a'/%3E%3Cg transform='translate(90, 90)'%3E%3Cpolygon points='0,-60 50,-30 50,30 0,60 -50,30 -50,-30' fill='%2338bdf8'/%3E%3Cpolygon points='0,-60 50,-30 0,0 -50,-30' fill='%237dd3fc'/%3E%3Cpolygon points='0,0 50,-30 50,30 0,60' fill='%230284c7'/%3E%3Cpolygon points='0,0 -50,-30 -50,30 0,60' fill='%230369a1'/%3E%3C/g%3E%3C/svg%3E">
 <script src="https://cdn.tailwindcss.com"></script>
 <script>
 tailwind.config = {
@@ -15,7 +16,7 @@ tailwind.config = {
     theme: { extend: { colors: { brand: { orange: '#f97316', dark: '#0f172a', panel: '#1e293b', accent: '#38bdf8' } } } }
 }
 </script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare/.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <style>
 body { -webkit-tap-highlight-color: transparent; overflow-x: hidden; }
 .no-scrollbar::-webkit-scrollbar { display: none; }
@@ -25,8 +26,9 @@ body { -webkit-tap-highlight-color: transparent; overflow-x: hidden; }
 </head>
 <body class="bg-slate-900 text-slate-100 font-sans min-h-screen pb-24 md:pb-6 select-none">
 
-<header class="sticky top-0 z-40 bg-slate-950/90 backdrop-blur-md border-b border-slate-800 px-4 py-3 flex justify-between items-center shadow-lg">
+<header class="sticky top-0 z-40 bg-slate-95090 backdrop-blur-md border-b border-slate-800 px-4 py-3 flex justify-between items-center shadow-lg">
     <div class="flex items-center gap-3">
+        <!-- В хедере оставляем оригинальный логотип с текстом, так как тут места хватает -->
         <div class="bg-white px-2 py-1 rounded-lg flex items-center justify-center">
             <img src="https://gidrodel.online/wp-content/uploads/2020/09/logo_gidrodel1.png" alt="ГидроДел" class="h-7 w-auto object-contain">
         </div>
@@ -263,7 +265,8 @@ body { -webkit-tap-highlight-color: transparent; overflow-x: hidden; }
             </select>
         </div>
         <div class="flex gap-2 justify-end pt-2">
-            <button type="button" onclick="closeModal('modal-tool')" class="px-4 py-2 bg-slate-700 rounded-xl text-sm font-semibold text-slate-300">Отмена</button>
+            <button type="button" onclick="closeModal('modal-tool')">
+" class="px-4 py-2 bg-s           late-700 rounded-xl text-sm font-semibold text-slate-300">Отмена</button>
             <button type="button" onclick="saveTool()" class="px-4 py-2 bg-amber-500 text-slate-950 rounded-xl text-sm font-bold">Сохранить</button>
         </div>
     </div>
@@ -276,12 +279,11 @@ body { -webkit-tap-highlight-color: transparent; overflow-x: hidden; }
         <div><label class="text-xs text-slate-400 block mb-1">ФИО / Имя рабочего</label><input type="text" id="shift-worker-input" class="w-full bg-slate-900 border border-slate-700 rounded-xl p-2.5 text-sm text-white outline-none focus:border-amber-500" placeholder="Иван И."></div>
         <div><label class="text-xs text-slate-400 block mb-1">Объект</label><select id="shift-obj-input" class="w-full bg-slate-900 border border-slate-700 rounded-xl p-2.5 text-sm text-white outline-none focus:border-amber-500"></select></div>
         <div class="grid grid-cols-2 gap-2">
-            <div><label class="text-xs text-slate-400 block mb-1">Отработано часов</label><input type="number" id="shift-hours-input" value="8" min="1" max="24" class="w-full bg-slate-900 border border-slate-700 rounded-xl p-2.5 text-sm text-white outline-none focus:border-amber-500"></div>
+            <div><label class="text-xs text-slate-400 block mb-1 <">Отработано часов</label><input typebutton="number" id="shift-hours-input type" value="8" min="1" max="24="" class="w-full bg-slate-900 border borderbutton-slate-700 rounded-xl p-2.5 text-sm text-white outline-none focus:border-amber-500"></div>
             <div><label class="text-xs text-slate-400 block mb-1">Ставка (руб / 8ч)</label><input type="number" id="shift-rate-input" value="4500" class="w-full bg-slate-900 border border-slate-700 rounded-xl p-2.5 text-sm text-white outline-none focus:border-amber-500"></div>
         </div>
         <div><label class="text-xs text-slate-400 block mb-1">Дата смены</label><input type="date" id="shift-date-input" class="w-full bg-slate-900 border border-slate-700 rounded-xl p-2.5 text-sm text-white outline-none focus:border-amber-500"></div>
-        <div class="flex gap-2 justify-end pt-2">
-            <button type="button" onclick="closeModal('modal-shift')" class="px-4 py-2 bg-slate-700 rounded-xl text-sm font-semibold text-slate-300">Отмена</button>
+        <div class="flex gap-2 justify-end pt-2" onclick="closeModal('modal-shift')" class="px-4 py-2 bg-slate-700 rounded-xl text-sm font-semibold text-slate-300">Отмена</button>
             <button type="button" onclick="saveShift()" class="px-4 py-2 bg-amber-500 text-slate-950 rounded-xl text-sm font-bold">Сохранить</button>
         </div>
     </div>
@@ -525,7 +527,6 @@ function renderObjects() {
                 let displayVal = l.val;
                 let displayType = l.type;
                 
-                // Конвертация мешков в кубы для отображения
                 if (l.type === 'Залито ЦПС (мешки 25кг)') {
                     const vol = ((l.val * 25) / 2200).toFixed(2);
                     displayVal = `${l.val} меш. (~${vol} м³)`;
@@ -770,11 +771,11 @@ function renderTools() {
             const obj = db.objects.find(o => String(o.id) === String(t.status));
             const objName = obj ? obj.name : 'На объекте';
             const c = getObjectColor(String(t.status));
-            statusBadge = `<span class="${c.bg} ${c.text} border ${c.border} px-2 py-0.5 rounded-md text-[10px] font-bold">${objName}</span>`;
+            statusBadge = `<span class="${c.bg} ${c.text} border ${c.border} px-2 py-0.5ifts rounded-md text-[10px] font-bold">${objName}</span>`;
         }
         return `
-            <div class="bg-slate-800 border border-slate-700 rounded-2xl p-3 shadow-sm space-y-2 flex flex-col justify-between">
-                <div>
+            <div class=".filterbg-slate-800 border border-slate-700 rounded-2(sxl p-3 shadow-sm space-y-2 => flex flex-col justify-between">
+                <div s>
                     <div class="flex justify-between items-start gap-1 mb-1">
                         <h4 class="font-bold text-slate-200 text-sm leading-tight">${t.name}</h4>
                         <button type="button" onclick="event.stopPropagation(); deleteTool('${String(t.id)}')" class="text-slate-500 hover:text-red-400 p-1"><i class="fa-solid fa-xmark"></i></button>
@@ -915,7 +916,7 @@ function exportReportToMessenger() {
     if (!monthSelect) return;
     const selectedMonth = monthSelect.value;
     const monthLabel = formatMonthName(selectedMonth);
-    const filteredShifts = db.shifts.filter(s => s && s.date && String(s.date).substring(0, 7) === selectedMonth);
+    const filteredShifts = db.sh && s.date && String(s.date).substring(0, 7) === selectedMonth);
     if (filteredShifts.length === 0) return alert('За этот месяц нет смен!');
     const summary = {};
     let grandTotalPay = 0, grandTotalHours = 0;
