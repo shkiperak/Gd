@@ -7,6 +7,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="ГидроДел">
+<!-- Новая чистая иконка: Голубой щит на белом фоне -->
 <link rel="apple-touch-icon" href="data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 180'%3E%3Crect width='180' height='180' rx='40' fill='%23ffffff'/%3E%3Cg transform='translate(30,30)'%3E%3Crect width='120' height='120' rx='15' fill='%230d6efd'/%3E%3Cpolygon points='0,0 40,0 120,120 80,120' fill='%230a58ca'/%3E%3Cline x1='0' y1='30' x2='120' y2='30' stroke='%23ffffff' stroke-width='8'/%3E%3Cline x1='0' y1='60' x2='120' y2='60' stroke='%23ffffff' stroke-width='8'/%3E%3Cline x1='0' y1='90' x2='120' y2='90' stroke='%23ffffff' stroke-width='8'/%3E%3C/g%3E%3C/svg%3E">
 <script src="https://cdn.tailwindcss.com"></script>
 <script>
@@ -52,9 +53,7 @@ body { -webkit-tap-highlight-color: transparent; overflow-x: hidden; }
                 <i class="fa-solid fa-plus"></i> Новый объект
             </button>
         </div>
-        <div id="objects-list" class="space-y-4">
-            <!-- Сюда рендерятся объекты -->
-        </div>
+        <div id="objects-list" class="space-y-4"></div>
     </section>
 
     <section id="tab-checklists" class="tab-content hidden space-y-5">
@@ -365,72 +364,90 @@ const initialShifts = [
     { id: 's-2', worker: 'Дмитрий К.', objId: 'obj-1', hours: 8, rate: 4500, date: '2026-11-04' }
 ];
 
+// НОВАЯ СТРУКТУРА ЧЕК-ЛИСТОВ (С КАТЕГОРИЯМИ)
 const defaultChecklists = {
     strobe_inject: [
-        { text: '⚡ Насос д/смолы', checked: true },
-        { text: '⚡ Насос д/воды', checked: false },
-        { text: '⚡ Шуруповёрт', checked: false },
-        { text: '⚡ Перфоратор (бурение)', checked: false },
-        { text: '⚡ Перфоратор (отбойник)', checked: false },
-        { text: '⚡ Миксер', checked: false },
-        { text: '⚡ Пылесос', checked: false },
-        { text: '⚡ УШМ (болгарка)', checked: false },
-        { text: '⚡ Прожектор', checked: false },
-        { text: '⚡ Удлинитель', checked: false },
-        { text: 'Пакеры 10', checked: false },
-        { text: 'Пакеры 8', checked: false },
-        { text: 'Головка д/пакеров 8', checked: false },
-        { text: 'Головка д/пакеров', checked: false },
-        { text: 'Муфты', checked: false },
-        { text: 'Лопатки д/отбойника', checked: false },
-        { text: 'Бур 10', checked: false },
-        { text: 'Масло', checked: false },
-        { text: 'Венчик', checked: false },
-        { text: 'Пылеотвод д/перфа', checked: false },
-        { text: 'Пылеотвод д/ушм', checked: false },
-        { text: 'Мешки д/пылесоса', checked: false },
-        { text: 'Мешки д/мусора', checked: false },
-        { text: 'Плёнка укрывная', checked: false },
-        { text: 'Смола / Акрилатный гель + Отвердитель', checked: false },
-        { text: 'Шовный состав («Ремстрим Т»)', checked: false },
-        { text: 'Саморезы / Уголок металлический', checked: false },
-        { text: 'Пассатижи', checked: false },
-        { text: 'Шпатели', checked: false },
-        { text: 'Ветошь', checked: false },
-        { text: 'Рулетка', checked: false },
-        { text: 'Карандаш / маркер', checked: false },
-        { text: 'Ёмкости (ведра 20л, тазы 60л)', checked: false }
+        { cat: '⚡ Электроинструмент', items: [
+            { text: 'Насос д/смолы', checked: true },
+            { text: 'Насос д/воды', checked: false },
+            { text: 'Шуруповёрт', checked: false },
+            { text: 'Перфоратор (бурение)', checked: false },
+            { text: 'Перфоратор (отбойник)', checked: false },
+            { text: 'Миксер', checked: false },
+            { text: 'Пылесос', checked: false },
+            { text: 'УШМ (болгарка)', checked: false },
+            { text: 'Прожектор', checked: false },
+            { text: 'Удлинитель', checked: false }
+        ]},
+        { cat: '🔧 Ручной инструмент и оснастка', items: [
+            { text: 'Пакеры 10', checked: false },
+            { text: 'Пакеры 8', checked: false },
+            { text: 'Головка д/пакеров 8', checked: false },
+            { text: 'Головка д/пакеров', checked: false },
+            { text: 'Муфты', checked: false },
+            { text: 'Лопатки д/отбойника', checked: false },
+            { text: 'Бур 10', checked: false },
+            { text: 'Венчик', checked: false },
+            { text: 'Пассатижи', checked: false },
+            { text: 'Шпатели', checked: false },
+            { text: 'Рулетка', checked: false },
+            { text: 'Карандаш / маркер', checked: false }
+        ]},
+        { cat: '📦 Расходники и мелочь', items: [
+            { text: 'Масло', checked: false },
+            { text: 'Пылеотвод д/перфа', checked: false },
+            { text: 'Пылеотвод д/ушм', checked: false },
+            { text: 'Мешки д/пылесоса', checked: false },
+            { text: 'Мешки д/мусора', checked: false },
+            { text: 'Плёнка укрывная', checked: false },
+            { text: 'Ветошь', checked: false },
+            { text: 'Ёмкости (ведра 20л, тазы 60л)', checked: false },
+            { text: 'Саморезы / Уголок металлический', checked: false }
+        ]},
+        { cat: '🧪 Материалы', items: [
+            { text: 'Смола / Акрилатный гель + Отвердитель', checked: false },
+            { text: 'Шовный состав («Ремстрим Т»)', checked: false }
+        ]}
     ],
     concrete: [
-        { text: '⚡ Глубинный вибратор (гибкий вал 3-4м)', checked: true },
-        { text: '⚡ Перфоратор', checked: false },
-        { text: '⚡ Шуруповёрт', checked: false },
-        { text: '⚡ Миксер / Бетономешалка', checked: false },
-        { text: '⚡ Прожектор освещения', checked: false },
-        { text: '⚡ Удлинитель', checked: false },
-        { text: 'Мешки д/мусора', checked: false },
-        { text: 'Плёнка укрывная (для бетона)', checked: true },
-        { text: 'Сухая смесь ЦПС (мешки 25 кг)', checked: true },
-        { text: 'Щиты опалубки / Фанера + Шпильки/Гайки', checked: true },
-        { text: 'Доска обрезная / Брус', checked: false },
-        { text: 'Гидропрокладка / Жгут «Пенебар»', checked: false },
-        { text: 'Смазка для опалубки (Эмульсол)', checked: false },
-        { text: 'Уголок металлический', checked: false },
-        { text: 'Саморезы', checked: false },
-        { text: 'Ёмкости (ведра 20л, тазы 60л)', checked: false },
-        { text: 'Мастерок, гладилки, правила 2м', checked: false },
-        { text: 'Рулетка', checked: false },
-        { text: 'Карандаш / маркер', checked: false }
+        { cat: '⚡ Электроинструмент', items: [
+            { text: 'Глубинный вибратор (гибкий вал 3-4м)', checked: true },
+            { text: 'Перфоратор', checked: false },
+            { text: 'Шуруповёрт', checked: false },
+            { text: 'Миксер / Бетономешалка', checked: false },
+            { text: 'Прожектор освещения', checked: false },
+            { text: 'Удлинитель', checked: false }
+        ]},
+        { cat: '🔧 Ручной инструмент и оснастка', items: [
+            { text: 'Мастерок, гладилки, правила 2м', checked: false },
+            { text: 'Рулетка', checked: false },
+            { text: 'Карандаш / маркер', checked: false },
+            { text: 'Ёмкости (ведра 20л, тазы 60л)', checked: false }
+        ]},
+        { cat: '📦 Расходники и крепеж', items: [
+            { text: 'Мешки д/мусора', checked: false },
+            { text: 'Уголок металлический', checked: false },
+            { text: 'Саморезы', checked: false },
+            { text: 'Смазка для опалубки (Эмульсол)', checked: false }
+        ]},
+        { cat: '🧪 Материалы и опалубка', items: [
+            { text: 'Сухая смесь ЦПС (мешки 25 кг)', checked: true },
+            { text: 'Щиты опалубки / Фанера + Шпильки/Гайки', checked: true },
+            { text: 'Доска обрезная / Брус', checked: false },
+            { text: 'Гидропрокладка / Жгут «Пенебар»', checked: false },
+            { text: 'Плёнка укрывная (для бетона)', checked: true }
+        ]}
     ]
 };
 
 let db = { objects: initialObjects, tools: initialTools, shifts: initialShifts, checklists: defaultChecklists };
 
+// Безопасная загрузка данных
 try {
     const savedObj = localStorage.getItem('hydro_objects');
     const savedTools = localStorage.getItem('hydro_tools');
     const savedShifts = localStorage.getItem('hydro_shifts');
-    const savedCl = localStorage.getItem('hydro_checklists');
+    const savedCl = localStorage.getItem('hydro_checklists_v3'); // НОВЫЙ КЛЮЧ ДЛЯ СБРОСА СТАРОГО СПИСКА
     
     if (savedObj) {
         const parsed = JSON.parse(savedObj);
@@ -457,7 +474,7 @@ function saveData() {
         localStorage.setItem('hydro_objects', JSON.stringify(db.objects));
         localStorage.setItem('hydro_tools', JSON.stringify(db.tools));
         localStorage.setItem('hydro_shifts', JSON.stringify(db.shifts));
-        localStorage.setItem('hydro_checklists', JSON.stringify(db.checklists));
+        localStorage.setItem('hydro_checklists_v3', JSON.stringify(db.checklists)); // НОВЫЙ КЛЮЧ
     } catch(e) { console.error('Save error', e); }
 }
 
@@ -764,23 +781,31 @@ function calculateMaterials() {
     }
 }
 
+// ОБНОВЛЕННЫЙ РЕНДЕР ЧЕК-ЛИСТА С КАТЕГОРИЯМИ
 function renderChecklist() {
     const presetSelect = document.getElementById('checklist-preset');
     if (!presetSelect) return;
     const presetKey = presetSelect.value;
-    const items = db.checklists[presetKey] || [];
+    const groups = db.checklists[presetKey] || [];
     const container = document.getElementById('checklist-items');
     if (!container) return;
-    container.innerHTML = items.map((item, idx) => `
-        <div onclick="toggleChecklistItem('${presetKey}', ${idx})" class="flex items-center gap-3 p-3 bg-slate-900/80 rounded-xl border ${item.checked ? 'border-amber-500/40 bg-amber-500/5' : 'border-slate-700/60'} cursor-pointer transition-all">
-            <div class="w-5 h-5 rounded-lg border flex items-center justify-center ${item.checked ? 'bg-amber-500 border-amber-500 text-slate-950' : 'border-slate-500'}">${item.checked ? '<i class="fa-solid fa-check text-xs font-black"></i>' : ''}</div>
-            <span class="text-xs ${item.checked ? 'line-through text-slate-400' : 'text-slate-200 font-medium'}">${item.text}</span>
-        </div>`).join('');
+    
+    container.innerHTML = groups.map((group, gIdx) => `
+        <div class="mt-4 mb-2 text-xs font-bold text-amber-500 uppercase tracking-wider">${group.cat}</div>
+        <div class="space-y-2">
+            ${group.items.map((item, iIdx) => `
+                <div onclick="toggleChecklistItem('${presetKey}', ${gIdx}, ${iIdx})" class="flex items-center gap-3 p-3 bg-slate-900/80 rounded-xl border ${item.checked ? 'border-amber-500/40 bg-amber-500/5' : 'border-slate-700/60'} cursor-pointer transition-all">
+                    <div class="w-5 h-5 rounded-lg border flex items-center justify-center ${item.checked ? 'bg-amber-500 border-amber-500 text-slate-950' : 'border-slate-500'}">${item.checked ? '<i class="fa-solid fa-check text-xs font-black"></i>' : ''}</div>
+                    <span class="text-xs ${item.checked ? 'line-through text-slate-400' : 'text-slate-200 font-medium'}">${item.text}</span>
+                </div>
+            `).join('')}
+        </div>
+    `).join('');
 }
 
-function toggleChecklistItem(presetKey, index) {
-    if (db.checklists[presetKey] && db.checklists[presetKey][index]) {
-        db.checklists[presetKey][index].checked = !db.checklists[presetKey][index].checked;
+function toggleChecklistItem(presetKey, gIdx, iIdx) {
+    if (db.checklists[presetKey] && db.checklists[presetKey][gIdx] && db.checklists[presetKey][gIdx].items[iIdx]) {
+        db.checklists[presetKey][gIdx].items[iIdx].checked = !db.checklists[presetKey][gIdx].items[iIdx].checked;
         saveData(); renderChecklist();
     }
 }
@@ -790,7 +815,9 @@ function resetChecklist() {
     if (!presetSelect) return;
     const presetKey = presetSelect.value;
     if (db.checklists[presetKey]) {
-        db.checklists[presetKey].forEach(i => i.checked = false);
+        db.checklists[presetKey].forEach(group => {
+            group.items.forEach(item => item.checked = false);
+        });
         saveData(); renderChecklist();
     }
 }
