@@ -7,8 +7,8 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="ГидроДел">
-<!-- Новая четкая иконка (каска) -->
-<link rel="apple-touch-icon" href="https://cdn-icons-png.flaticon.com/512/3063/3063822.png">
+<!-- Оригинальный логотип для иконки -->
+<link rel="apple-touch-icon" href="https://gidrodel.online/wp-content/uploads/2020/09/logo_gidrodel1.png">
 <script src="https://cdn.tailwindcss.com"></script>
 <script>
 tailwind.config = {
@@ -38,8 +38,8 @@ body { -webkit-tap-highlight-color: transparent; overflow-x: hidden; }
             <p class="text-xs text-slate-400">Гидроизоляция, Инъектирование & Бетонирование</p>
         </div>
     </div>
-    <button type="button" onclick="toggleInfoModal()" class="text-slate-400 hover:text-amber-400 p-2 text-xl transition-colors">
-        <i class="fa-solid fa-circle-info"></i>
+    <button type="button" onclick="toggleInfoModal()" class="text-slate-400 hover:text-amber-400 p-2 text-2xl transition-colors">
+        ⚙️
     </button>
 </header>
 
@@ -53,7 +53,9 @@ body { -webkit-tap-highlight-color: transparent; overflow-x: hidden; }
                 <i class="fa-solid fa-plus"></i> Новый объект
             </button>
         </div>
-        <div id="objects-list" class="space-y-4"></div>
+        <div id="objects-list" class="space-y-4">
+            <!-- Сюда рендерятся объекты -->
+        </div>
     </section>
 
     <section id="tab-checklists" class="tab-content hidden space-y-5">
@@ -169,19 +171,19 @@ body { -webkit-tap-highlight-color: transparent; overflow-x: hidden; }
 <nav class="fixed bottom-0 left-0 right-0 bg-slate-950/95 backdrop-blur-lg border-t border-slate-800 py-2 px-2 z-40">
     <div class="max-w-md mx-auto flex justify-between items-center gap-1.5">
         <button type="button" onclick="switchTab('objects')" id="nav-objects" class="nav-btn flex-1 flex flex-col items-center justify-center gap-1 py-2 rounded-xl border transition-all text-amber-400 border-amber-500/50 bg-amber-500/10 shadow-[0_0_10px_rgba(245,158,11,0.1)]">
-            <i class="fa-solid fa-building text-lg"></i>
+            <span class="text-xl leading-none">🏢</span>
             <span class="text-[10px] font-medium">Объекты</span>
         </button>
         <button type="button" onclick="switchTab('checklists')" id="nav-checklists" class="nav-btn flex-1 flex flex-col items-center justify-center gap-1 py-2 rounded-xl border transition-all text-slate-400 border-slate-700/50 bg-slate-800/30">
-            <i class="fa-solid fa-clipboard-check text-lg"></i>
+            <span class="text-xl leading-none">📋</span>
             <span class="text-[10px] font-medium">Сборка</span>
         </button>
         <button type="button" onclick="switchTab('tools')" id="nav-tools" class="nav-btn flex-1 flex flex-col items-center justify-center gap-1 py-2 rounded-xl border transition-all text-slate-400 border-slate-700/50 bg-slate-800/30">
-            <i class="fa-solid fa-screwdriver-wrench text-lg"></i>
+            <span class="text-xl leading-none">🛠️</span>
             <span class="text-[10px] font-medium">Инструмент</span>
         </button>
         <button type="button" onclick="switchTab('workers')" id="nav-workers" class="nav-btn flex-1 flex flex-col items-center justify-center gap-1 py-2 rounded-xl border transition-all text-slate-400 border-slate-700/50 bg-slate-800/30">
-            <i class="fa-solid fa-users text-lg"></i>
+            <span class="text-xl leading-none">👥</span>
             <span class="text-[10px] font-medium">Табель</span>
         </button>
     </div>
@@ -189,7 +191,7 @@ body { -webkit-tap-highlight-color: transparent; overflow-x: hidden; }
 
 <div id="modal-confirm" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
     <div class="bg-slate-800 border border-slate-700 rounded-2xl p-5 w-full max-w-sm space-y-4 shadow-2xl">
-        <h3 class="text-base font-bold text-amber-400 flex items-center gap-2"><i class="fa-solid fa-triangle-exclamation"></i> Подтверждение действия</h3>
+        <h3 class="text-base font-bold text-amber-400 flex items-center gap-2"><i class="fa-solid fa-triangle-exclamation"></i> Подтверждение</h3>
         <p id="confirm-text" class="text-xs text-slate-300 leading-relaxed"></p>
         <div class="flex gap-2 justify-end pt-2">
             <button type="button" onclick="closeModal('modal-confirm')" class="px-4 py-2 bg-slate-700 hover:bg-slate-600 rounded-xl text-xs font-semibold text-slate-300">Отмена</button>
@@ -200,10 +202,10 @@ body { -webkit-tap-highlight-color: transparent; overflow-x: hidden; }
 
 <div id="modal-move-tool" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
     <div class="bg-slate-800 border border-slate-700 rounded-2xl p-5 w-full max-w-md space-y-4 shadow-2xl">
-        <h3 id="move-tool-title" class="text-lg font-bold text-amber-400 flex items-center gap-2"><i class="fa-solid fa-arrow-right-arrow-left"></i> Перемещение инструмента</h3>
+        <h3 id="move-tool-title" class="text-lg font-bold text-amber-400 flex items-center gap-2"><i class="fa-solid fa-arrow-right-arrow-left"></i> Перемещение</h3>
         <input type="hidden" id="move-tool-id">
         <div>
-            <label class="text-xs text-slate-400 block mb-1">Выберите новое местоположение</label>
+            <label class="text-xs text-slate-400 block mb-1">Новое местоположение</label>
             <select id="move-tool-target" class="w-full bg-slate-900 border border-slate-700 rounded-xl p-2.5 text-sm text-white outline-none focus:border-amber-500"></select>
         </div>
         <div class="flex gap-2 justify-end pt-2">
@@ -217,7 +219,7 @@ body { -webkit-tap-highlight-color: transparent; overflow-x: hidden; }
     <div class="bg-slate-800 border border-slate-700 rounded-2xl p-5 w-full max-w-md space-y-4">
         <h3 class="text-lg font-bold text-amber-400 flex items-center gap-2"><i class="fa-solid fa-building"></i> Добавить объект</h3>
         <div><label class="text-xs text-slate-400 block mb-1">Название / Адрес</label><input type="text" id="obj-name-input" class="w-full bg-slate-900 border border-slate-700 rounded-xl p-2.5 text-sm text-white outline-none focus:border-amber-500" placeholder="Пример: Невский проспект, 45"></div>
-        <div><label class="text-xs text-slate-400 block mb-1">Вид работ</label><input type="text" id="obj-type-input" class="w-full bg-slate-900 border border-slate-700 rounded-xl p-2.5 text-sm text-white outline-none focus:border-amber-500" placeholder="Штробление, инъектирование, бетонирование"></div>
+        <div><label class="text-xs text-slate-400 block mb-1">Вид работ</label><input type="text" id="obj-type-input" class="w-full bg-slate-900 border border-slate-700 rounded-xl p-2.5 text-sm text-white outline-none focus:border-amber-500" placeholder="Штробление, инъектирование"></div>
         <div class="flex gap-2 justify-end pt-2">
             <button type="button" onclick="closeModal('modal-object')" class="px-4 py-2 bg-slate-700 rounded-xl text-sm font-semibold text-slate-300">Отмена</button>
             <button type="button" onclick="saveNewObject()" class="px-4 py-2 bg-amber-500 text-slate-950 rounded-xl text-sm font-bold">Сохранить</button>
@@ -307,12 +309,12 @@ body { -webkit-tap-highlight-color: transparent; overflow-x: hidden; }
             <p>Автономное PWA-приложение «ГидроДел» (v2.30).</p>
             <p class="font-bold text-white">Резервное копирование:</p>
             <div class="flex gap-2 pt-1">
-                <button type="button" onclick="exportBackup()" class="flex-1 px-3 py-2 bg-sky-600 hover:bg-sky-500 text-white rounded-xl text-xs font-bold flex items-center justify-center gap-1.5 shadow-md"><i class="fa-solid fa-download"></i> Сохранить копию</button>
-                <label class="flex-1 px-3 py-2 bg-slate-700 hover:bg-slate-600 text-slate-200 rounded-xl text-xs font-bold flex items-center justify-center gap-1.5 shadow-md cursor-pointer text-center"><i class="fa-solid fa-upload"></i> Загрузить копию<input type="file" id="import-file-input" accept=".json" onchange="importBackup(event)" class="hidden"></label>
+                <button type="button" onclick="exportBackup()" class="flex-1 px-3 py-2 bg-sky-600 hover:bg-sky-500 text-white rounded-xl text-xs font-bold flex items-center justify-center gap-1.5 shadow-md"><i class="fa-solid fa-download"></i> Сохранить</button>
+                <label class="flex-1 px-3 py-2 bg-slate-700 hover:bg-slate-600 text-slate-200 rounded-xl text-xs font-bold flex items-center justify-center gap-1.5 shadow-md cursor-pointer text-center"><i class="fa-solid fa-upload"></i> Загрузить<input type="file" id="import-file-input" accept=".json" onchange="importBackup(event)" class="hidden"></label>
             </div>
         </div>
         <div class="border-t border-slate-700/60 pt-3 flex justify-between items-center">
-            <button type="button" onclick="clearAllData()" class="px-3 py-2 bg-red-500/20 text-red-400 border border-red-500/40 rounded-xl text-xs font-bold hover:bg-red-500/30">Сбросить всю БД</button>
+            <button type="button" onclick="clearAllData()" class="px-3 py-2 bg-red-500/20 text-red-400 border border-red-500/40 rounded-xl text-xs font-bold hover:bg-red-500/30">Сбросить БД</button>
             <button type="button" onclick="closeModal('modal-info')" class="px-4 py-2 bg-amber-500 text-slate-950 rounded-xl text-xs font-bold">Закрыть</button>
         </div>
     </div>
@@ -392,23 +394,31 @@ const defaultChecklists = {
 
 let db = { objects: initialObjects, tools: initialTools, shifts: initialShifts, checklists: defaultChecklists };
 
+// Безопасная загрузка данных
 try {
     const savedObj = localStorage.getItem('hydro_objects');
     const savedTools = localStorage.getItem('hydro_tools');
     const savedShifts = localStorage.getItem('hydro_shifts');
     const savedCl = localStorage.getItem('hydro_checklists');
-    if (savedObj || savedTools || savedShifts || savedCl) {
-        if (savedObj) db.objects = JSON.parse(savedObj);
-        if (savedTools) db.tools = JSON.parse(savedTools);
-        if (savedShifts) db.shifts = JSON.parse(savedShifts);
-        if (savedCl) db.checklists = JSON.parse(savedCl);
-    } else {
-        saveData();
+    
+    if (savedObj) {
+        const parsed = JSON.parse(savedObj);
+        if (Array.isArray(parsed)) db.objects = parsed;
+    }
+    if (savedTools) {
+        const parsed = JSON.parse(savedTools);
+        if (Array.isArray(parsed)) db.tools = parsed;
+    }
+    if (savedShifts) {
+        const parsed = JSON.parse(savedShifts);
+        if (Array.isArray(parsed)) db.shifts = parsed;
+    }
+    if (savedCl) {
+        const parsed = JSON.parse(savedCl);
+        if (typeof parsed === 'object') db.checklists = parsed;
     }
 } catch(e) { 
-    console.error('Storage parse error', e); 
-    localStorage.clear();
-    db = { objects: initialObjects, tools: initialTools, shifts: initialShifts, checklists: defaultChecklists };
+    console.error('Ошибка чтения БД', e); 
 }
 
 function saveData() {
@@ -485,12 +495,8 @@ function switchTab(tabId) {
     document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
     
     document.querySelectorAll('.nav-btn').forEach(el => { 
-        el.classList.remove('text-amber-400');
-        el.classList.remove('border-amber-500/50');
-        el.classList.remove('bg-amber-500/10');
-        el.classList.add('text-slate-400');
-        el.classList.add('border-slate-700/50');
-        el.classList.add('bg-slate-800/30');
+        el.classList.remove('text-amber-400', 'border-amber-500/50', 'bg-amber-500/10');
+        el.classList.add('text-slate-400', 'border-slate-700/50', 'bg-slate-800/30');
     });
     
     const targetTab = document.getElementById(`tab-${tabId}`);
@@ -499,12 +505,8 @@ function switchTab(tabId) {
     if (targetTab) targetTab.classList.remove('hidden');
     
     if (targetNav) { 
-        targetNav.classList.add('text-amber-400');
-        targetNav.classList.add('border-amber-500/50');
-        targetNav.classList.add('bg-amber-500/10');
-        targetNav.classList.remove('text-slate-400');
-        targetNav.classList.remove('border-slate-700/50');
-        targetNav.classList.remove('bg-slate-800/30');
+        targetNav.classList.add('text-amber-400', 'border-amber-500/50', 'bg-amber-500/10');
+        targetNav.classList.remove('text-slate-400', 'border-slate-700/50', 'bg-slate-800/30');
     }
     
     if (tabId === 'objects') renderObjects();
@@ -516,12 +518,17 @@ function switchTab(tabId) {
 function renderObjects() {
     const container = document.getElementById('objects-list');
     if (!container) return;
-    if (!db.objects || db.objects.length === 0) {
-        container.innerHTML = `<div class="text-center py-8 text-slate-500 text-sm">Нет активных объектов. Нажмите "+ Новый объект"</div>`;
-        return;
-    }
-
+    
     try {
+        if (!db.objects || db.objects.length === 0) {
+            container.innerHTML = `
+                <div class="text-center py-12 px-4 bg-slate-800/50 rounded-2xl border border-slate-700 border-dashed">
+                    <p class="text-slate-400 text-sm mb-4">Список объектов пуст.</p>
+                    <button onclick="clearAllData()" class="text-xs text-red-400 border border-red-500/30 px-3 py-1.5 rounded-lg">Если видите эту надпись из-за ошибки — нажмите сюда для сброса</button>
+                </div>`;
+            return;
+        }
+
         container.innerHTML = db.objects.map(obj => {
             const logsHtml = obj.logs && obj.logs.length > 0
                 ? obj.logs.map((l, lIdx) => {
@@ -559,8 +566,12 @@ function renderObjects() {
                 </div>`;
         }).join('');
     } catch(e) {
-        console.error('Render error', e);
-        container.innerHTML = `<div class="text-center py-8 text-red-500 text-sm">Ошибка загрузки данных. Попробуйте сбросить БД в настройках (иконка i).</div>`;
+        console.error('Критическая ошибка рендера', e);
+        container.innerHTML = `
+            <div class="text-center py-8 text-red-400 text-sm">
+                Ошибка базы данных.<br>
+                <button onclick="clearAllData()" class="mt-4 bg-red-500 text-white px-4 py-2 rounded-xl">Сбросить данные</button>
+            </div>`;
     }
 }
 
@@ -574,7 +585,7 @@ function saveNewObject() {
     const name = document.getElementById('obj-name-input').value.trim();
     const type = document.getElementById('obj-type-input').value.trim();
     if (!name) return alert('Укажите название объекта');
-    db.objects.push({ id: 'obj-' + Date.now(), name, type: type || 'Штробление, инъектирование, бетонирование', logs: [] });
+    db.objects.push({ id: 'obj-' + Date.now(), name, type: type || 'Штробление, инъектирование', logs: [] });
     saveData();
     closeModal('modal-object');
     renderObjects();
@@ -589,7 +600,7 @@ function deleteObject(id) {
 }
 
 function openAddLogModal(objId) {
-    document.getElementById('log-modal-title').innerHTML = `<i class="fa-solid fa-list-check"></i> Запись выработки`;
+    document.getElementById('log-modal-title').innerHTML = `<i class="fa-solid fa-list-check"></i> Запись`;
     document.getElementById('log-obj-id').value = String(objId);
     document.getElementById('log-edit-idx').value = '';
     document.getElementById('log-val-input').value = '';
@@ -602,7 +613,7 @@ function openEditLogModal(objId, logIdx) {
     const obj = db.objects.find(o => String(o.id) === targetId);
     if (!obj || !obj.logs[logIdx]) return;
     const log = obj.logs[logIdx];
-    document.getElementById('log-modal-title').innerHTML = `<i class="fa-solid fa-pen-to-square"></i> Редактировать`;
+    document.getElementById('log-modal-title').innerHTML = `<i class="fa-solid fa-pen-to-square"></i> Ред.`;
     document.getElementById('log-obj-id').value = targetId;
     document.getElementById('log-edit-idx').value = logIdx;
     document.getElementById('log-type-input').value = log.type;
@@ -619,7 +630,7 @@ function saveWorkLog() {
     const val = parseFloat(valInput);
     const note = document.getElementById('log-note-input').value.trim();
     
-    if (!val || val <= 0) return alert('Введите корректное число (только цифры)');
+    if (!val || val <= 0) return alert('Введите корректное число');
     
     const obj = db.objects.find(o => String(o.id) === String(objId));
     if (obj) {
@@ -667,19 +678,17 @@ function calculateMaterials() {
         const totalKg = bags * 25;
         const gruntKg = (len * 0.2 * margin).toFixed(1);
         res.innerHTML = `
-            <div class="flex justify-between font-bold text-white"><span>Шовный состав («Ремстрим Т»):</span><span class="text-amber-400">${bags} меш. (${totalKg} кг)</span></div>
-            <div class="flex justify-between text-xs text-slate-300"><span>Грунтовка:</span><span>~${gruntKg} кг</span></div>
-            <div class="flex justify-between text-[11px] text-slate-400"><span>Дисков 125мм:</span><span>~${Math.ceil(len/25)} шт</span></div>`;
+            <div class="flex justify-between font-bold text-white"><span>Состав:</span><span class="text-amber-400">${bags} меш. (${totalKg} кг)</span></div>
+            <div class="flex justify-between text-xs text-slate-300"><span>Грунтовка:</span><span>~${gruntKg} кг</span></div>`;
     } else if (type === 'inject') {
         const len = parseFloat(document.getElementById('inj-length').value) || 0;
         const resinType = document.getElementById('inj-resin-type').value;
-        const resinName = resinType === '1k' ? 'ПенеПурФом 1К' : 'ПенеПурФом 65';
+        const resinName = resinType === '1k' ? '1К' : '65';
         const packers = Math.ceil(len * 7 * margin);
         const resinKg = (len * 2.0 * margin).toFixed(1);
         res.innerHTML = `
-            <div class="flex justify-between font-bold text-white"><span>Пакеры (7 шт/м):</span><span class="text-amber-400">${packers} шт</span></div>
-            <div class="flex justify-between font-bold text-white"><span>Смола (${resinName}):</span><span class="text-amber-400">~${resinKg} кг</span></div>
-            <div class="flex justify-between text-[11px] text-slate-400"><span>Промывка:</span><span>~${Math.ceil(len/10)} л</span></div>`;
+            <div class="flex justify-between font-bold text-white"><span>Пакеры:</span><span class="text-amber-400">${packers} шт</span></div>
+            <div class="flex justify-between font-bold text-white"><span>Смола (${resinName}):</span><span class="text-amber-400">~${resinKg} кг</span></div>`;
     } else if (type === 'concrete') {
         const bL = parseFloat(document.getElementById('beton-l').value) || 0;
         const bH = parseFloat(document.getElementById('beton-h').value) || 0;
@@ -694,10 +703,10 @@ function calculateMaterials() {
         const penebarMeters = Math.ceil(penebarL * margin);
         const penebarRolls = Math.ceil(penebarMeters / 5);
         res.innerHTML = `
-            <div class="flex justify-between font-bold text-white"><span>ЦПС (мешки 25кг):</span><span class="text-amber-400">${cpsBags} меш. (${cpsVol.toFixed(2)} м³)</span></div>
-            <div class="flex justify-between text-xs text-slate-300"><span>Фанера:</span><span>${faneraSqm} м² (~${faneraSheets} листов)</span></div>
-            <div class="flex justify-between text-xs text-slate-300"><span>Доска / брус:</span><span>~${doskaCubes} м³</span></div>
-            <div class="flex justify-between font-semibold text-amber-300 text-xs"><span>Жгут «Пенебар»:</span><span>${penebarMeters} м.п. (${penebarRolls} рул.)</span></div>`;
+            <div class="flex justify-between font-bold text-white"><span>ЦПС (25кг):</span><span class="text-amber-400">${cpsBags} меш. (${cpsVol.toFixed(2)} м³)</span></div>
+            <div class="flex justify-between text-xs text-slate-300"><span>Фанера:</span><span>${faneraSqm} м² (~${faneraSheets} л.)</span></div>
+            <div class="flex justify-between text-xs text-slate-300"><span>Доска:</span><span>~${doskaCubes} м³</span></div>
+            <div class="flex justify-between font-semibold text-amber-300 text-xs"><span>Пенебар:</span><span>${penebarMeters} м.п. (${penebarRolls} рул.)</span></div>`;
     }
 }
 
@@ -1004,7 +1013,10 @@ function closeModal(id) { const m = document.getElementById(id); if (m) m.classL
 function toggleInfoModal() { const m = document.getElementById('modal-info'); if (m) m.classList.toggle('hidden'); }
 function clearAllData() { askConfirm('Сбросить всю БД?', function() { localStorage.clear(); location.reload(); }); }
 
-window.onload = function() { renderObjects(); toggleCalcInputs(); };
+window.onload = function() { 
+    try { renderObjects(); } catch(e) { console.error(e); }
+    try { toggleCalcInputs(); } catch(e) { console.error(e); }
+};
 </script>
 </body>
 </html>
