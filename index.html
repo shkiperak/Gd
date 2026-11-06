@@ -485,11 +485,24 @@ function askConfirm(text, callback) {
 
 function switchTab(tabId) {
     document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
-    document.querySelectorAll('.nav-btn').forEach(el => { el.classList.remove('text-amber-400'); el.classList.add('text-slate-400'); });
+    
+    // Сброс стилей всех кнопок меню
+    document.querySelectorAll('.nav-btn').forEach(el => { 
+        el.classList.remove('text-amber-400', 'border-amber-500/50', 'bg-amber-500/10', 'shadow-[0_0_10px_rgba(245,158,11,0.1)]'); 
+        el.classList.add('text-slate-400', 'border-slate-700/50', 'bg-slate-800/30'); 
+    });
+    
     const targetTab = document.getElementById(`tab-${tabId}`);
     const targetNav = document.getElementById(`nav-${tabId}`);
+    
     if (targetTab) targetTab.classList.remove('hidden');
-    if (targetNav) { targetNav.classList.add('text-amber-400'); targetNav.classList.remove('text-slate-400'); }
+    
+    // Установка активного стиля для выбранной кнопки
+    if (targetNav) { 
+        targetNav.classList.add('text-amber-400', 'border-amber-500/50', 'bg-amber-500/10', 'shadow-[0_0_10px_rgba(245,158,11,0.1)]'); 
+        targetNav.classList.remove('text-slate-400', 'border-slate-700/50', 'bg-slate-800/30'); 
+    }
+    
     if (tabId === 'objects') renderObjects();
     if (tabId === 'checklists') { toggleCalcInputs(); renderChecklist(); calculateMaterials(); }
     if (tabId === 'tools') renderTools();
