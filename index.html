@@ -165,12 +165,28 @@ body { -webkit-tap-highlight-color: transparent; overflow-x: hidden; }
     </section>
 </main>
 
-<nav class="fixed bottom-0 left-0 right-0 bg-slate-950/95 backdrop-blur-lg border-t border-slate-800 py-2 px-3 z-40">
-    <div class="max-w-md mx-auto flex justify-between items-center">
-        <button type="button" onclick="switchTab('objects')" id="nav-objects" class="nav-btn text-amber-400 flex flex-col items-center gap-1 w-1/4"><i class="fa-solid fa-building text-lg"></i><span class="text-[10px] font-medium">Объекты</span></button>
-        <button type="button" onclick="switchTab('checklists')" id="nav-checklists" class="nav-btn text-slate-400 flex flex-col items-center gap-1 w-1/4"><i class="fa-solid fa-clipboard-check text-lg"></i><span class="text-[10px] font-medium">Сборка</span></button>
-        <button type="button" onclick="switchTab('tools')" id="nav-tools" class="nav-btn text-slate-400 flex flex-col items-center gap-1 w-1/4"><i class="fa-solid fa-screwdrivers-hardware text-lg"></i><span class="text-[10px] font-medium">Инструмент</span></button>
-        <button type="button" onclick="switchTab('workers')" id="nav-workers" class="nav-btn text-slate-400 flex flex-col items-center gap-1 w-1/4"><i class="fa-solid fa-users text-lg"></i><span class="text-[10px] font-medium">Табель</span></button>
+<<nav class="fixed bottom-0 left-0 right-0 bg-slate-950/95 backdrop-blur-lg border-t border-slate-800 py-2 px-2 z-40">
+    <div class="max-w-md mx-auto flex justify-between items-center gap-1.5">
+        <!-- Объекты -->
+        <button type="button" onclick="switchTab('objects')" id="nav-objects" class="nav-btn flex-1 flex flex-col items-center justify-center gap-1 py-2 rounded-xl border transition-all text-amber-400 border-amber-500/50 bg-amber-500/10 shadow-[0_0_10px_rgba(245,158,11,0.1)]">
+            <i class="fa-solid fa-building text-lg"></i>
+            <span class="text-[10px] font-medium">Объекты</span>
+        </button>
+        <!-- Сборка -->
+        <button type="button" onclick="switchTab('checklists')" id="nav-checklists" class="nav-btn flex-1 flex flex-col items-center justify-center gap-1 py-2 rounded-xl border transition-all text-slate-400 border-slate-700/50 bg-slate-800/30">
+            <i class="fa-solid fa-clipboard-check text-lg"></i>
+            <span class="text-[10px] font-medium">Сборка</span>
+        </button>
+        <!-- Инструмент -->
+        <button type="button" onclick="switchTab('tools')" id="nav-tools" class="nav-btn flex-1 flex flex-col items-center justify-center gap-1 py-2 rounded-xl border transition-all text-slate-400 border-slate-700/50 bg-slate-800/30">
+            <i class="fa-solid fa-screwdriver-wrench text-lg"></i>
+            <span class="text-[10px] font-medium">Инструмент</span>
+        </button>
+        <!-- Табель -->
+        <button type="button" onclick="switchTab('workers')" id="nav-workers" class="nav-btn flex-1 flex flex-col items-center justify-center gap-1 py-2 rounded-xl border transition-all text-slate-400 border-slate-700/50 bg-slate-800/30">
+            <i class="fa-solid fa-users text-lg"></i>
+            <span class="text-[10px] font-medium">Табель</span>
+        </button>
     </div>
 </nav>
 
