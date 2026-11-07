@@ -526,19 +526,11 @@ function importBackup(event) {
     reader.onload = function(e) {
         try {
             const imported = JSON.parse(e.target.result);
+            
             if (imported && imported.objects && imported.tools && imported.shifts) {
+                // 1. Загружаем объекты, инструменты и смены (они редко меняют структуру)
                 db.objects = imported.objects;
-                db.tools = imported.tools;
-                db.shifts = imported.shifts;
-                if (imported.checklists) db.checklists = imported.checklists;
-                saveData();
-                alert('✅ Копия восстановлена!');
-                location.reload();
-            } else { alert('❌ Неверная структура файла.'); }
-        } catch(err) { alert('❌ Ошибка чтения JSON: ' + err.message); }
-    };
-    reader.readAsText(file);
-}
+                db.tools = i...
 
 let pendingConfirmCallback = null;
 function askConfirm(text, callback) {
