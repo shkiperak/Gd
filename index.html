@@ -3,10 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>ГидроДел | Помощник Прораба</title>
+<title>Р“РёРґСЂРѕР”РµР» | РџРѕРјРѕС‰РЅРёРє РџСЂРѕСЂР°Р±Р°</title>
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="apple-mobile-web-app-title" content="ГидроДел">
+<meta name="apple-mobile-web-app-title" content="Р“РёРґСЂРѕР”РµР»">
 <link rel="apple-touch-icon" href="./logo_gidrodel1.png">
 <script src="https://cdn.tailwindcss.com"></script>
 <script>
@@ -16,25 +16,21 @@ tailwind.config = {
 }
 </script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-<style>
-body { -webkit-tap-highlight-color: transparent; overflow-x: hidden; }
-.no-scrollbar::-webkit-scrollbar { display: none; }
-.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
-.hidden { display: none !important; }
-</style>
+<!-- РџРѕРґРєР»СЋС‡Р°РµРј РІРЅРµС€РЅРёР№ С„Р°Р№Р» СЃРѕ СЃС‚РёР»СЏРјРё -->
+<link rel="stylesheet" href="style.css">
 </head>
 <body class="bg-slate-900 text-slate-100 font-sans min-h-screen pb-24 md:pb-6 select-none">
 
 <header class="sticky top-0 z-40 bg-slate-950/90 backdrop-blur-md border-b border-slate-800 px-4 py-3 flex justify-between items-center shadow-lg">
     <div class="flex items-center gap-3">
         <div class="bg-white px-2 py-1 rounded-lg flex items-center justify-center">
-            <img src="https://gidrodel.online/wp-content/uploads/2020/09/logo_gidrodel1.png" alt="ГидроДел" class="h-7 w-auto object-contain">
+            <img src="https://gidrodel.online/wp-content/uploads/2020/09/logo_gidrodel1.png" alt="Р“РёРґСЂРѕР”РµР»" class="h-7 w-auto object-contain">
         </div>
         <div>
             <h1 class="font-bold text-base leading-tight text-white flex items-center gap-1.5">
-                ГидроДел <span class="text-xs font-semibold px-2 py-0.5 bg-amber-500/20 text-amber-400 rounded-full border border-amber-500/30">PRO v2.30</span>
+                Р“РёРґСЂРѕР”РµР» <span class="text-xs font-semibold px-2 py-0.5 bg-amber-500/20 text-amber-400 rounded-full border border-amber-500/30">PRO v2.30</span>
             </h1>
-            <p class="text-xs text-slate-400">Гидроизоляция, Инъектирование & Бетонирование</p>
+            <p class="text-xs text-slate-400">Р“РёРґСЂРѕРёР·РѕР»СЏС†РёСЏ, РРЅСЉРµРєС‚РёСЂРѕРІР°РЅРёРµ & Р‘РµС‚РѕРЅРёСЂРѕРІР°РЅРёРµ</p>
         </div>
     </div>
     <button type="button" onclick="toggleInfoModal()" class="text-slate-400 hover:text-amber-400 p-2 text-xl transition-colors">
@@ -46,10 +42,10 @@ body { -webkit-tap-highlight-color: transparent; overflow-x: hidden; }
     <section id="tab-objects" class="tab-content block">
         <div class="flex justify-between items-center mb-4">
             <h2 class="text-xl font-bold text-amber-400 flex items-center gap-2">
-                <i class="fa-solid fa-building"></i> Объекты и Выработка
+                <i class="fa-solid fa-building"></i> РћР±СЉРµРєС‚С‹ Рё Р’С‹СЂР°Р±РѕС‚РєР°
             </h2>
             <button type="button" onclick="openNewObjectModal()" class="bg-amber-500 hover:bg-amber-600 active:scale-95 text-slate-950 font-bold px-3 py-2 rounded-xl text-sm flex items-center gap-1 shadow-md transition-all">
-                <i class="fa-solid fa-plus"></i> Новый объект
+                <i class="fa-solid fa-plus"></i> РќРѕРІС‹Р№ РѕР±СЉРµРєС‚
             </button>
         </div>
         <div id="objects-list" class="space-y-4"></div>
@@ -57,30 +53,30 @@ body { -webkit-tap-highlight-color: transparent; overflow-x: hidden; }
 
     <section id="tab-checklists" class="tab-content hidden space-y-5">
         <h2 class="text-xl font-bold text-amber-400 flex items-center gap-2">
-            <i class="fa-solid fa-clipboard-check"></i> Комплектовщик и Калькулятор
+            <i class="fa-solid fa-clipboard-check"></i> РљРѕРјРїР»РµРєС‚РѕРІС‰РёРє Рё РљР°Р»СЊРєСѓР»СЏС‚РѕСЂ
         </h2>
         <div class="bg-slate-800 border border-slate-700 rounded-2xl p-4 shadow-md space-y-4">
             <h3 class="text-md font-bold text-slate-200 flex items-center gap-2 border-b border-slate-700/60 pb-2">
-                <i class="fa-solid fa-calculator text-amber-500"></i> Точный расчёт материалов
+                <i class="fa-solid fa-calculator text-amber-500"></i> РўРѕС‡РЅС‹Р№ СЂР°СЃС‡С‘С‚ РјР°С‚РµСЂРёР°Р»РѕРІ
             </h3>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
                 <div>
-                    <label class="text-xs text-slate-400 block mb-1">Вид выполняемой работы</label>
+                    <label class="text-xs text-slate-400 block mb-1">Р’РёРґ РІС‹РїРѕР»РЅСЏРµРјРѕР№ СЂР°Р±РѕС‚С‹</label>
                     <select id="calc-type" onchange="toggleCalcInputs()" class="w-full bg-slate-900 border border-slate-700 rounded-xl p-2.5 text-sm text-white focus:border-amber-500 outline-none">
-                        <option value="strobe">Штробление + Ремстрим Т (1 мешок / 11 м)</option>
-                        <option value="inject">Инъектирование (Пакееры + Смолы)</option>
-                        <option value="concrete">Бетонирование пристенков / стяжек (ЦПС, Опалубка)</option>
+                        <option value="strobe">РЁС‚СЂРѕР±Р»РµРЅРёРµ + Р РµРјСЃС‚СЂРёРј Рў (1 РјРµС€РѕРє / 11 Рј)</option>
+                        <option value="inject">РРЅСЉРµРєС‚РёСЂРѕРІР°РЅРёРµ (РџР°РєРµРµСЂС‹ + РЎРјРѕР»С‹)</option>
+                        <option value="concrete">Р‘РµС‚РѕРЅРёСЂРѕРІР°РЅРёРµ РїСЂРёСЃС‚РµРЅРєРѕРІ / СЃС‚СЏР¶РµРє (Р¦РџРЎ, РћРїР°Р»СѓР±РєР°)</option>
                     </select>
                 </div>
                 <div>
-                    <label class="text-xs text-slate-400 block mb-1">Запас на потери / перерасход (%)</label>
+                    <label class="text-xs text-slate-400 block mb-1">Р—Р°РїР°СЃ РЅР° РїРѕС‚РµСЂРё / РїРµСЂРµСЂР°СЃС…РѕРґ (%)</label>
                     <input type="number" id="calc-margin" oninput="calculateMaterials()" value="10" class="w-full bg-slate-900 border border-slate-700 rounded-xl p-2.5 text-sm text-white focus:border-amber-500 outline-none">
                 </div>
             </div>
             
             <div id="inputs-strobe" class="calc-sub-input space-y-3">
                 <div>
-                    <label class="text-xs text-slate-400 block mb-1">Длина штробы (погонные метры)</label>
+                    <label class="text-xs text-slate-400 block mb-1">Р”Р»РёРЅР° С€С‚СЂРѕР±С‹ (РїРѕРіРѕРЅРЅС‹Рµ РјРµС‚СЂС‹)</label>
                     <input type="number" id="strobe-length" oninput="calculateMaterials()" value="10" min="0" class="w-full bg-slate-900 border border-slate-700 rounded-xl p-2.5 text-sm text-white focus:border-amber-500 outline-none">
                 </div>
             </div>
@@ -88,14 +84,14 @@ body { -webkit-tap-highlight-color: transparent; overflow-x: hidden; }
             <div id="inputs-inject" class="calc-sub-input hidden space-y-3">
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
                     <div>
-                        <label class="text-xs text-slate-400 block mb-1">Длина шва/трещины (м)</label>
+                        <label class="text-xs text-slate-400 block mb-1">Р”Р»РёРЅР° С€РІР°/С‚СЂРµС‰РёРЅС‹ (Рј)</label>
                         <input type="number" id="inj-length" oninput="calculateMaterials()" value="10" min="0" class="w-full bg-slate-900 border border-slate-700 rounded-xl p-2.5 text-sm text-white focus:border-amber-500 outline-none">
                     </div>
                     <div>
-                        <label class="text-xs text-slate-400 block mb-1">Тип инъекционной смолы</label>
+                        <label class="text-xs text-slate-400 block mb-1">РўРёРї РёРЅСЉРµРєС†РёРѕРЅРЅРѕР№ СЃРјРѕР»С‹</label>
                         <select id="inj-resin-type" onchange="calculateMaterials()" class="w-full bg-slate-900 border border-slate-700 rounded-xl p-2.5 text-sm text-white focus:border-amber-500 outline-none">
-                            <option value="1k">ПенеПурФом 1К (Однокомпонентная)</option>
-                            <option value="65">ПенеПурФом 65 (Двухкомпонентная)</option>
+                            <option value="1k">РџРµРЅРµРџСѓСЂР¤РѕРј 1Рљ (РћРґРЅРѕРєРѕРјРїРѕРЅРµРЅС‚РЅР°СЏ)</option>
+                            <option value="65">РџРµРЅРµРџСѓСЂР¤РѕРј 65 (Р”РІСѓС…РєРѕРјРїРѕРЅРµРЅС‚РЅР°СЏ)</option>
                         </select>
                     </div>
                 </div>
@@ -103,29 +99,29 @@ body { -webkit-tap-highlight-color: transparent; overflow-x: hidden; }
 
             <div id="inputs-concrete" class="calc-sub-input hidden space-y-3">
                 <div class="grid grid-cols-3 gap-2">
-                    <div><label class="text-xs text-slate-400 block mb-1">Длина (м)</label><input type="number" id="beton-l" oninput="calculateMaterials()" value="5" step="0.1" class="w-full bg-slate-900 border border-slate-700 rounded-xl p-2 text-sm text-white"></div>
-                    <div><label class="text-xs text-slate-400 block mb-1">Высота (м)</label><input type="number" id="beton-h" oninput="calculateMaterials()" value="1" step="0.1" class="w-full bg-slate-900 border border-slate-700 rounded-xl p-2 text-sm text-white"></div>
-                    <div><label class="text-xs text-slate-400 block mb-1">Толщина (см)</label><input type="number" id="beton-t" oninput="calculateMaterials()" value="10" step="1" class="w-full bg-slate-900 border border-slate-700 rounded-xl p-2 text-sm text-white"></div>
+                    <div><label class="text-xs text-slate-400 block mb-1">Р”Р»РёРЅР° (Рј)</label><input type="number" id="beton-l" oninput="calculateMaterials()" value="5" step="0.1" class="w-full bg-slate-900 border border-slate-700 rounded-xl p-2 text-sm text-white"></div>
+                    <div><label class="text-xs text-slate-400 block mb-1">Р’С‹СЃРѕС‚Р° (Рј)</label><input type="number" id="beton-h" oninput="calculateMaterials()" value="1" step="0.1" class="w-full bg-slate-900 border border-slate-700 rounded-xl p-2 text-sm text-white"></div>
+                    <div><label class="text-xs text-slate-400 block mb-1">РўРѕР»С‰РёРЅР° (СЃРј)</label><input type="number" id="beton-t" oninput="calculateMaterials()" value="10" step="1" class="w-full bg-slate-900 border border-slate-700 rounded-xl p-2 text-sm text-white"></div>
                 </div>
                 <div>
-                    <label class="text-xs text-slate-400 block mb-1">Длина примыкания для жгута «Пенебар» (м.п.)</label>
+                    <label class="text-xs text-slate-400 block mb-1">Р”Р»РёРЅР° РїСЂРёРјС‹РєР°РЅРёСЏ РґР»СЏ Р¶РіСѓС‚Р° В«РџРµРЅРµР±Р°СЂВ» (Рј.Рї.)</label>
                     <input type="number" id="penebar-l" oninput="calculateMaterials()" value="5" min="0" class="w-full bg-slate-900 border border-slate-700 rounded-xl p-2 text-sm text-white">
                 </div>
 
                 <div class="bg-slate-900/50 p-3 rounded-xl border border-slate-700/60 mt-3 space-y-3">
-                    <h4 class="text-xs font-bold text-amber-400">Расчет пиломатериалов (досок)</h4>
+                    <h4 class="text-xs font-bold text-amber-400">Р Р°СЃС‡РµС‚ РїРёР»РѕРјР°С‚РµСЂРёР°Р»РѕРІ (РґРѕСЃРѕРє)</h4>
                     <div class="grid grid-cols-2 gap-2">
                         <div>
-                            <label class="text-xs text-slate-400 block mb-1">Метраж дюймовки (25мм)</label>
+                            <label class="text-xs text-slate-400 block mb-1">РњРµС‚СЂР°Р¶ РґСЋР№РјРѕРІРєРё (25РјРј)</label>
                             <input type="number" id="doska-25-m" oninput="calculateMaterials()" value="0" min="0" class="w-full bg-slate-900 border border-slate-700 rounded-xl p-2 text-sm text-white">
                         </div>
                         <div>
-                            <label class="text-xs text-slate-400 block mb-1">Метраж сороковки (40мм)</label>
+                            <label class="text-xs text-slate-400 block mb-1">РњРµС‚СЂР°Р¶ СЃРѕСЂРѕРєРѕРІРєРё (40РјРј)</label>
                             <input type="number" id="doska-40-m" oninput="calculateMaterials()" value="0" min="0" class="w-full bg-slate-900 border border-slate-700 rounded-xl p-2 text-sm text-white">
                         </div>
                     </div>
                     <div>
-                        <label class="text-xs text-slate-400 block mb-1">Ширина доски (мм)</label>
+                        <label class="text-xs text-slate-400 block mb-1">РЁРёСЂРёРЅР° РґРѕСЃРєРё (РјРј)</label>
                         <input type="number" id="doska-w" oninput="calculateMaterials()" value="150" min="50" class="w-full bg-slate-900 border border-slate-700 rounded-xl p-2 text-sm text-white">
                     </div>
                 </div>
@@ -137,52 +133,52 @@ body { -webkit-tap-highlight-color: transparent; overflow-x: hidden; }
         <div class="bg-slate-800 border border-slate-700 rounded-2xl p-4 shadow-md">
             <div class="flex flex-col sm:flex-row justify-between sm:items-center gap-2 mb-3">
                 <h3 class="text-md font-bold text-slate-200 flex items-center gap-2">
-                    <i class="fa-solid fa-boxes-packing text-amber-500"></i> Чек-лист сбора на объект
+                    <i class="fa-solid fa-boxes-packing text-amber-500"></i> Р§РµРє-Р»РёСЃС‚ СЃР±РѕСЂР° РЅР° РѕР±СЉРµРєС‚
                 </h3>
                 <select id="checklist-preset" onchange="renderChecklist()" class="bg-slate-900 border border-slate-700 rounded-xl p-2 text-sm text-amber-400 font-semibold outline-none">
-                    <option value="strobe_inject">Штробление и Инъектирование</option>
-                    <option value="concrete">Бетонирование пристенков / стяжек</option>
+                    <option value="strobe_inject">РЁС‚СЂРѕР±Р»РµРЅРёРµ Рё РРЅСЉРµРєС‚РёСЂРѕРІР°РЅРёРµ</option>
+                    <option value="concrete">Р‘РµС‚РѕРЅРёСЂРѕРІР°РЅРёРµ РїСЂРёСЃС‚РµРЅРєРѕРІ / СЃС‚СЏР¶РµРє</option>
                 </select>
             </div>
-            <p class="text-xs text-slate-400 mb-3">Отмечайте то, что погружено в машину. Галочки сохраняются автоматически.</p>
+            <p class="text-xs text-slate-400 mb-3">РћС‚РјРµС‡Р°Р№С‚Рµ С‚Рѕ, С‡С‚Рѕ РїРѕРіСЂСѓР¶РµРЅРѕ РІ РјР°С€РёРЅСѓ. Р“Р°Р»РѕС‡РєРё СЃРѕС…СЂР°РЅСЏСЋС‚СЃСЏ Р°РІС‚РѕРјР°С‚РёС‡РµСЃРєРё.</p>
             <div id="checklist-items" class="space-y-2"></div>
             <button type="button" onclick="resetChecklist()" class="mt-4 text-xs text-slate-400 hover:text-amber-400 flex items-center gap-1 underline">
-                <i class="fa-solid fa-rotate-right"></i> Сбросить галочки
+                <i class="fa-solid fa-rotate-right"></i> РЎР±СЂРѕСЃРёС‚СЊ РіР°Р»РѕС‡РєРё
             </button>
         </div>
     </section>
 
     <section id="tab-tools" class="tab-content hidden space-y-4">
         <div class="flex justify-between items-center">
-            <h2 class="text-xl font-bold text-amber-400 flex items-center gap-2"><i class="fa-solid fa-screwdriver-wrench"></i> Учет Инструмента</h2>
-            <button type="button" onclick="openNewToolModal()" class="bg-amber-500 hover:bg-amber-600 text-slate-950 font-bold px-3 py-2 rounded-xl text-sm flex items-center gap-1 shadow-md"><i class="fa-solid fa-plus"></i> Добавить</button>
+            <h2 class="text-xl font-bold text-amber-400 flex items-center gap-2"><i class="fa-solid fa-screwdriver-wrench"></i> РЈС‡РµС‚ РРЅСЃС‚СЂСѓРјРµРЅС‚Р°</h2>
+            <button type="button" onclick="openNewToolModal()" class="bg-amber-500 hover:bg-amber-600 text-slate-950 font-bold px-3 py-2 rounded-xl text-sm flex items-center gap-1 shadow-md"><i class="fa-solid fa-plus"></i> Р”РѕР±Р°РІРёС‚СЊ</button>
         </div>
         <div class="flex gap-2 overflow-x-auto pb-1 no-scrollbar text-xs">
-            <button type="button" onclick="filterTools('all', event)" class="tool-filter-btn active bg-amber-500 text-slate-950 font-bold px-3 py-1.5 rounded-xl whitespace-nowrap">Все</button>
-            <button type="button" onclick="filterTools('sklad', event)" class="tool-filter-btn bg-slate-800 text-slate-300 px-3 py-1.5 rounded-xl whitespace-nowrap border border-slate-700">На базе/Складе</button>
-            <button type="button" onclick="filterTools('object', event)" class="tool-filter-btn bg-slate-800 text-slate-300 px-3 py-1.5 rounded-xl whitespace-nowrap border border-slate-700">На объектах</button>
-            <button type="button" onclick="filterTools('repair', event)" class="tool-filter-btn bg-slate-800 text-slate-300 px-3 py-1.5 rounded-xl whitespace-nowrap border border-slate-700">В ремонте</button>
+            <button type="button" onclick="filterTools('all', event)" class="tool-filter-btn active bg-amber-500 text-slate-950 font-bold px-3 py-1.5 rounded-xl whitespace-nowrap">Р’СЃРµ</button>
+            <button type="button" onclick="filterTools('sklad', event)" class="tool-filter-btn bg-slate-800 text-slate-300 px-3 py-1.5 rounded-xl whitespace-nowrap border border-slate-700">РќР° Р±Р°Р·Рµ/РЎРєР»Р°РґРµ</button>
+            <button type="button" onclick="filterTools('object', event)" class="tool-filter-btn bg-slate-800 text-slate-300 px-3 py-1.5 rounded-xl whitespace-nowrap border border-slate-700">РќР° РѕР±СЉРµРєС‚Р°С…</button>
+            <button type="button" onclick="filterTools('repair', event)" class="tool-filter-btn bg-slate-800 text-slate-300 px-3 py-1.5 rounded-xl whitespace-nowrap border border-slate-700">Р’ СЂРµРјРѕРЅС‚Рµ</button>
         </div>
         <div id="tools-list" class="grid grid-cols-1 sm:grid-cols-2 gap-3"></div>
     </section>
 
     <section id="tab-workers" class="tab-content hidden space-y-4">
         <div class="flex justify-between items-center">
-            <h2 class="text-xl font-bold text-amber-400 flex items-center gap-2"><i class="fa-solid fa-users"></i> Табель и Смены</h2>
-            <button type="button" onclick="openShiftModal()" class="bg-amber-500 hover:bg-amber-600 text-slate-950 font-bold px-3 py-2 rounded-xl text-sm flex items-center gap-1 shadow-md"><i class="fa-solid fa-plus"></i> Внести смену</button>
+            <h2 class="text-xl font-bold text-amber-400 flex items-center gap-2"><i class="fa-solid fa-users"></i> РўР°Р±РµР»СЊ Рё РЎРјРµРЅС‹</h2>
+            <button type="button" onclick="openShiftModal()" class="bg-amber-500 hover:bg-amber-600 text-slate-950 font-bold px-3 py-2 rounded-xl text-sm flex items-center gap-1 shadow-md"><i class="fa-solid fa-plus"></i> Р’РЅРµСЃС‚Рё СЃРјРµРЅСѓ</button>
         </div>
         <div class="bg-slate-800 border border-slate-700 rounded-2xl p-4 shadow-md space-y-3">
             <div class="flex flex-col sm:flex-row justify-between sm:items-center gap-2">
-                <h3 class="text-sm font-bold text-slate-200">Итоговая ведомость по выплатам</h3>
+                <h3 class="text-sm font-bold text-slate-200">РС‚РѕРіРѕРІР°СЏ РІРµРґРѕРјРѕСЃС‚СЊ РїРѕ РІС‹РїР»Р°С‚Р°Рј</h3>
                 <div class="flex items-center gap-2">
                     <select id="statement-month-select" onchange="renderWorkers()" class="bg-slate-900 border border-slate-700 rounded-xl p-2 text-xs text-amber-400 font-semibold outline-none"></select>
-                    <button type="button" onclick="exportReportToMessenger()" class="bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold px-3 py-2 rounded-xl flex items-center gap-1.5 shadow-md active:scale-95 transition-all"><i class="fa-solid fa-share-nodes"></i> Скопировать отчёт</button>
+                    <button type="button" onclick="exportReportToMessenger()" class="bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold px-3 py-2 rounded-xl flex items-center gap-1.5 shadow-md active:scale-95 transition-all"><i class="fa-solid fa-share-nodes"></i> РЎРєРѕРїРёСЂРѕРІР°С‚СЊ РѕС‚С‡С‘С‚</button>
                 </div>
             </div>
             <div id="workers-summary" class="space-y-2 pt-1"></div>
         </div>
         <div class="bg-slate-800 border border-slate-700 rounded-2xl p-4 shadow-md space-y-3">
-            <h3 class="text-sm font-bold text-slate-200">Реестр смен (история)</h3>
+            <h3 class="text-sm font-bold text-slate-200">Р РµРµСЃС‚СЂ СЃРјРµРЅ (РёСЃС‚РѕСЂРёСЏ)</h3>
             <div id="shifts-history" class="space-y-2 text-xs"></div>
         </div>
     </section>
@@ -191,913 +187,156 @@ body { -webkit-tap-highlight-color: transparent; overflow-x: hidden; }
 <nav class="fixed bottom-0 left-0 right-0 bg-slate-950/95 backdrop-blur-lg border-t border-slate-800 py-2 px-2 z-40">
     <div class="max-w-md mx-auto flex justify-between items-center gap-1.5">
         <button type="button" onclick="switchTab('objects')" id="nav-objects" class="nav-btn flex-1 flex flex-col items-center justify-center gap-1 py-2 rounded-xl border transition-all text-amber-400 border-amber-500/50 bg-amber-500/10 shadow-[0_0_10px_rgba(245,158,11,0.1)]">
-            <span class="text-xl leading-none">🏢</span>
-            <span class="text-[10px] font-medium">Объекты</span>
+            <span class="text-xl leading-none">рџЏў</span>
+            <span class="text-[10px] font-medium">РћР±СЉРµРєС‚С‹</span>
         </button>
         <button type="button" onclick="switchTab('checklists')" id="nav-checklists" class="nav-btn flex-1 flex flex-col items-center justify-center gap-1 py-2 rounded-xl border transition-all text-slate-400 border-slate-700/50 bg-slate-800/30">
-            <span class="text-xl leading-none">📋</span>
-            <span class="text-[10px] font-medium">Сборка</span>
+            <span class="text-xl leading-none">рџ“‹</span>
+            <span class="text-[10px] font-medium">РЎР±РѕСЂРєР°</span>
         </button>
         <button type="button" onclick="switchTab('tools')" id="nav-tools" class="nav-btn flex-1 flex flex-col items-center justify-center gap-1 py-2 rounded-xl border transition-all text-slate-400 border-slate-700/50 bg-slate-800/30">
-            <span class="text-xl leading-none">🛠️</span>
-            <span class="text-[10px] font-medium">Инструмент</span>
+            <span class="text-xl leading-none">рџ› пёЏ</span>
+            <span class="text-[10px] font-medium">РРЅСЃС‚СЂСѓРјРµРЅС‚</span>
         </button>
         <button type="button" onclick="switchTab('workers')" id="nav-workers" class="nav-btn flex-1 flex flex-col items-center justify-center gap-1 py-2 rounded-xl border transition-all text-slate-400 border-slate-700/50 bg-slate-800/30">
-            <span class="text-xl leading-none">👥</span>
-            <span class="text-[10px] font-medium">Табель</span>
+            <span class="text-xl leading-none">рџ‘Ґ</span>
+            <span class="text-[10px] font-medium">РўР°Р±РµР»СЊ</span>
         </button>
     </div>
 </nav>
 
 <div id="modal-confirm" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
     <div class="bg-slate-800 border border-slate-700 rounded-2xl p-5 w-full max-w-sm space-y-4 shadow-2xl">
-        <h3 class="text-base font-bold text-amber-400 flex items-center gap-2"><i class="fa-solid fa-triangle-exclamation"></i> Подтверждение</h3>
+        <h3 class="text-base font-bold text-amber-400 flex items-center gap-2"><i class="fa-solid fa-triangle-exclamation"></i> РџРѕРґС‚РІРµСЂР¶РґРµРЅРёРµ</h3>
         <p id="confirm-text" class="text-xs text-slate-300 leading-relaxed"></p>
         <div class="flex gap-2 justify-end pt-2">
-            <button type="button" onclick="closeModal('modal-confirm')" class="px-4 py-2 bg-slate-700 hover:bg-slate-600 rounded-xl text-xs font-semibold text-slate-300">Отмена</button>
-            <button type="button" id="confirm-yes-btn" class="px-4 py-2 bg-red-500 hover:bg-red-600 text-white rounded-xl text-xs font-bold shadow-md">Удалить</button>
+            <button type="button" onclick="closeModal('modal-confirm')" class="px-4 py-2 bg-slate-700 hover:bg-slate-600 rounded-xl text-xs font-semibold text-slate-300">РћС‚РјРµРЅР°</button>
+            <button type="button" id="confirm-yes-btn" class="px-4 py-2 bg-red-500 hover:bg-red-600 text-white rounded-xl text-xs font-bold shadow-md">РЈРґР°Р»РёС‚СЊ</button>
         </div>
     </div>
 </div>
 
 <div id="modal-move-tool" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
     <div class="bg-slate-800 border border-slate-700 rounded-2xl p-5 w-full max-w-md space-y-4 shadow-2xl">
-        <h3 id="move-tool-title" class="text-lg font-bold text-amber-400 flex items-center gap-2"><i class="fa-solid fa-arrow-right-arrow-left"></i> Перемещение</h3>
+        <h3 id="move-tool-title" class="text-lg font-bold text-amber-400 flex items-center gap-2"><i class="fa-solid fa-arrow-right-arrow-left"></i> РџРµСЂРµРјРµС‰РµРЅРёРµ</h3>
         <input type="hidden" id="move-tool-id">
         <div>
-            <label class="text-xs text-slate-400 block mb-1">Новое местоположение</label>
+            <label class="text-xs text-slate-400 block mb-1">РќРѕРІРѕРµ РјРµСЃС‚РѕРїРѕР»РѕР¶РµРЅРёРµ</label>
             <select id="move-tool-target" class="w-full bg-slate-900 border border-slate-700 rounded-xl p-2.5 text-sm text-white outline-none focus:border-amber-500"></select>
         </div>
         <div class="flex gap-2 justify-end pt-2">
-            <button type="button" onclick="closeModal('modal-move-tool')" class="px-4 py-2 bg-slate-700 rounded-xl text-sm font-semibold text-slate-300">Отмена</button>
-            <button type="button" onclick="confirmMoveTool()" class="px-4 py-2 bg-amber-500 text-slate-950 rounded-xl text-sm font-bold">Переместить</button>
+            <button type="button" onclick="closeModal('modal-move-tool')" class="px-4 py-2 bg-slate-700 rounded-xl text-sm font-semibold text-slate-300">РћС‚РјРµРЅР°</button>
+            <button type="button" onclick="confirmMoveTool()" class="px-4 py-2 bg-amber-500 text-slate-950 rounded-xl text-sm font-bold">РџРµСЂРµРјРµСЃС‚РёС‚СЊ</button>
         </div>
     </div>
 </div>
 
 <div id="modal-object" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
     <div class="bg-slate-800 border border-slate-700 rounded-2xl p-5 w-full max-w-md space-y-4">
-        <h3 class="text-lg font-bold text-amber-400 flex items-center gap-2"><i class="fa-solid fa-building"></i> Добавить объект</h3>
-        <div><label class="text-xs text-slate-400 block mb-1">Название / Адрес</label><input type="text" id="obj-name-input" class="w-full bg-slate-900 border border-slate-700 rounded-xl p-2.5 text-sm text-white outline-none focus:border-amber-500" placeholder="Пример: Невский проспект, 45"></div>
-        <div><label class="text-xs text-slate-400 block mb-1">Вид работ</label><input type="text" id="obj-type-input" class="w-full bg-slate-900 border border-slate-700 rounded-xl p-2.5 text-sm text-white outline-none focus:border-amber-500" placeholder="Штробление, инъектирование"></div>
+        <h3 class="text-lg font-bold text-amber-400 flex items-center gap-2"><i class="fa-solid fa-building"></i> Р”РѕР±Р°РІРёС‚СЊ РѕР±СЉРµРєС‚</h3>
+        <div><label class="text-xs text-slate-400 block mb-1">РќР°Р·РІР°РЅРёРµ / РђРґСЂРµСЃ</label><input type="text" id="obj-name-input" class="w-full bg-slate-900 border border-slate-700 rounded-xl p-2.5 text-sm text-white outline-none focus:border-amber-500" placeholder="РџСЂРёРјРµСЂ: РќРµРІСЃРєРёР№ РїСЂРѕСЃРїРµРєС‚, 45"></div>
+        <div><label class="text-xs text-slate-400 block mb-1">Р’РёРґ СЂР°Р±РѕС‚</label><input type="text" id="obj-type-input" class="w-full bg-slate-900 border border-slate-700 rounded-xl p-2.5 text-sm text-white outline-none focus:border-amber-500" placeholder="РЁС‚СЂРѕР±Р»РµРЅРёРµ, РёРЅСЉРµРєС‚РёСЂРѕРІР°РЅРёРµ"></div>
         <div class="flex gap-2 justify-end pt-2">
-            <button type="button" onclick="closeModal('modal-object')" class="px-4 py-2 bg-slate-700 rounded-xl text-sm font-semibold text-slate-300">Отмена</button>
-            <button type="button" onclick="saveNewObject()" class="px-4 py-2 bg-amber-500 text-slate-950 rounded-xl text-sm font-bold">Сохранить</button>
+            <button type="button" onclick="closeModal('modal-object')" class="px-4 py-2 bg-slate-700 rounded-xl text-sm font-semibold text-slate-300">РћС‚РјРµРЅР°</button>
+            <button type="button" onclick="saveNewObject()" class="px-4 py-2 bg-amber-500 text-slate-950 rounded-xl text-sm font-bold">РЎРѕС…СЂР°РЅРёС‚СЊ</button>
         </div>
     </div>
 </div>
 
 <div id="modal-log" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
     <div class="bg-slate-800 border border-slate-700 rounded-2xl p-5 w-full max-w-md space-y-4">
-        <h3 id="log-modal-title" class="text-lg font-bold text-amber-400 flex items-center gap-2"><i class="fa-solid fa-list-check"></i> Запись выработки</h3>
+        <h3 id="log-modal-title" class="text-lg font-bold text-amber-400 flex items-center gap-2"><i class="fa-solid fa-list-check"></i> Р—Р°РїРёСЃСЊ РІС‹СЂР°Р±РѕС‚РєРё</h3>
         <input type="hidden" id="log-obj-id">
         <input type="hidden" id="log-edit-idx">
         <div>
-            <label class="text-xs text-slate-400 block mb-1">Тип выполненной работы</label>
+            <label class="text-xs text-slate-400 block mb-1">РўРёРї РІС‹РїРѕР»РЅРµРЅРЅРѕР№ СЂР°Р±РѕС‚С‹</label>
             <select id="log-type-input" class="w-full bg-slate-900 border border-slate-700 rounded-xl p-2.5 text-sm text-white outline-none focus:border-amber-500">
-                <option value="Проштроблено швов (п.м.)">Проштроблено швов (п.м.)</option>
-                <option value="Установлено пакеров (шт)">Установлено пакеров (шт)</option>
-                <option value="Закачано ПенеПурФом (кг)">Закачано ПенеПурФом (кг)</option>
-                <option value="Залито ЦПС (мешки 25кг)">Залито ЦПС (мешки 25кг)</option>
-                <option value="Залито ЦПС / пристенков (м³)">Залито ЦПС / пристенков (м³)</option>
-                <option value="Смонтировано опалубки (м²)">Смонтировано опалубки (м²)</option>
-                <option value="Уложено жгута Пенебар (п.м.)">Уложено жгута Пенебар (п.м.)</option>
+                <option value="РџСЂРѕС€С‚СЂРѕР±Р»РµРЅРѕ С€РІРѕРІ (Рї.Рј.)">РџСЂРѕС€С‚СЂРѕР±Р»РµРЅРѕ С€РІРѕРІ (Рї.Рј.)</option>
+                <option value="РЈСЃС‚Р°РЅРѕРІР»РµРЅРѕ РїР°РєРµСЂРѕРІ (С€С‚)">РЈСЃС‚Р°РЅРѕРІР»РµРЅРѕ РїР°РєРµСЂРѕРІ (С€С‚)</option>
+                <option value="Р—Р°РєР°С‡Р°РЅРѕ РџРµРЅРµРџСѓСЂР¤РѕРј (РєРі)">Р—Р°РєР°С‡Р°РЅРѕ РџРµРЅРµРџСѓСЂР¤РѕРј (РєРі)</option>
+                <option value="Р—Р°Р»РёС‚Рѕ Р¦РџРЎ (РјРµС€РєРё 25РєРі)">Р—Р°Р»РёС‚Рѕ Р¦РџРЎ (РјРµС€РєРё 25РєРі)</option>
+                <option value="Р—Р°Р»РёС‚Рѕ Р¦РџРЎ / РїСЂРёСЃС‚РµРЅРєРѕРІ (РјВі)">Р—Р°Р»РёС‚Рѕ Р¦РџРЎ / РїСЂРёСЃС‚РµРЅРєРѕРІ (РјВі)</option>
+                <option value="РЎРјРѕРЅС‚РёСЂРѕРІР°РЅРѕ РѕРїР°Р»СѓР±РєРё (РјВІ)">РЎРјРѕРЅС‚РёСЂРѕРІР°РЅРѕ РѕРїР°Р»СѓР±РєРё (РјВІ)</option>
+                <option value="РЈР»РѕР¶РµРЅРѕ Р¶РіСѓС‚Р° РџРµРЅРµР±Р°СЂ (Рї.Рј.)">РЈР»РѕР¶РµРЅРѕ Р¶РіСѓС‚Р° РџРµРЅРµР±Р°СЂ (Рї.Рј.)</option>
             </select>
         </div>
-        <div><label class="text-xs text-slate-400 block mb-1">Количество (только цифры)</label><input type="text" inputmode="decimal" id="log-val-input" class="w-full bg-slate-900 border border-slate-700 rounded-xl p-2.5 text-sm text-white outline-none focus:border-amber-500" placeholder="0"></div>
-        <div><label class="text-xs text-slate-400 block mb-1">Примечание / Бригада</label><input type="text" id="log-note-input" class="w-full bg-slate-900 border border-slate-700 rounded-xl p-2.5 text-sm text-white outline-none focus:border-amber-500" placeholder="Например: Стена оси А-Б"></div>
+        <div><label class="text-xs text-slate-400 block mb-1">РљРѕР»РёС‡РµСЃС‚РІРѕ (С‚РѕР»СЊРєРѕ С†РёС„СЂС‹)</label><input type="text" inputmode="decimal" id="log-val-input" class="w-full bg-slate-900 border border-slate-700 rounded-xl p-2.5 text-sm text-white outline-none focus:border-amber-500" placeholder="0"></div>
+        <div><label class="text-xs text-slate-400 block mb-1">РџСЂРёРјРµС‡Р°РЅРёРµ / Р‘СЂРёРіР°РґР°</label><input type="text" id="log-note-input" class="w-full bg-slate-900 border border-slate-700 rounded-xl p-2.5 text-sm text-white outline-none focus:border-amber-500" placeholder="РќР°РїСЂРёРјРµСЂ: РЎС‚РµРЅР° РѕСЃРё Рђ-Р‘"></div>
         <div class="flex gap-2 justify-end pt-2">
-            <button type="button" onclick="closeModal('modal-log')" class="px-4 py-2 bg-slate-700 rounded-xl text-sm font-semibold text-slate-300">Отмена</button>
-            <button type="button" onclick="saveWorkLog()" class="px-4 py-2 bg-amber-500 text-slate-950 rounded-xl text-sm font-bold">Сохранить</button>
+            <button type="button" onclick="closeModal('modal-log')" class="px-4 py-2 bg-slate-700 rounded-xl text-sm font-semibold text-slate-300">РћС‚РјРµРЅР°</button>
+            <button type="button" onclick="saveWorkLog()" class="px-4 py-2 bg-amber-500 text-slate-950 rounded-xl text-sm font-bold">РЎРѕС…СЂР°РЅРёС‚СЊ</button>
         </div>
     </div>
 </div>
 
 <div id="modal-tool" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
     <div class="bg-slate-800 border border-slate-700 rounded-2xl p-5 w-full max-w-md space-y-4">
-        <h3 class="text-lg font-bold text-amber-400 flex items-center gap-2"><i class="fa-solid fa-screwdriver-wrench"></i> Новый Инструмент</h3>
-        <div><label class="text-xs text-slate-400 block mb-1">Наименование / Модель</label><input type="text" id="tool-name-input" class="w-full bg-slate-900 border border-slate-700 rounded-xl p-2.5 text-sm text-white outline-none focus:border-amber-500" placeholder="Насос 1К/2К"></div>
-        <div><label class="text-xs text-slate-400 block mb-1">Серийный номер / Инв №</label><input type="text" id="tool-sn-input" class="w-full bg-slate-900 border border-slate-700 rounded-xl p-2.5 text-sm text-white outline-none focus:border-amber-500" placeholder="SN-8821"></div>
+        <h3 class="text-lg font-bold text-amber-400 flex items-center gap-2"><i class="fa-solid fa-screwdriver-wrench"></i> РќРѕРІС‹Р№ РРЅСЃС‚СЂСѓРјРµРЅС‚</h3>
+        <div><label class="text-xs text-slate-400 block mb-1">РќР°РёРјРµРЅРѕРІР°РЅРёРµ / РњРѕРґРµР»СЊ</label><input type="text" id="tool-name-input" class="w-full bg-slate-900 border border-slate-700 rounded-xl p-2.5 text-sm text-white outline-none focus:border-amber-500" placeholder="РќР°СЃРѕСЃ 1Рљ/2Рљ"></div>
+        <div><label class="text-xs text-slate-400 block mb-1">РЎРµСЂРёР№РЅС‹Р№ РЅРѕРјРµСЂ / РРЅРІ в„–</label><input type="text" id="tool-sn-input" class="w-full bg-slate-900 border border-slate-700 rounded-xl p-2.5 text-sm text-white outline-none focus:border-amber-500" placeholder="SN-8821"></div>
         <div>
-            <label class="text-xs text-slate-400 block mb-1">Текущий статус / Где находится</label>
+            <label class="text-xs text-slate-400 block mb-1">РўРµРєСѓС‰РёР№ СЃС‚Р°С‚СѓСЃ / Р“РґРµ РЅР°С…РѕРґРёС‚СЃСЏ</label>
             <select id="tool-status-input" class="w-full bg-slate-900 border border-slate-700 rounded-xl p-2.5 text-sm text-white outline-none focus:border-amber-500">
-                <option value="sklad">На базе / Складе</option>
-                <option value="repair">В ремонте</option>
-            </select>
+                <option value="sklad">РќР°-xs Р±Р°Р·Рµ / РЎРєР»Р°РґРµ text</option>
+                <-soption value="repair">Р’ СЂРµРјРѕРЅС‚Рµlate</option>
+            </select->
         </div>
-        <div class="flex gap-2 justify-end pt-2">
-            <button type="button" onclick="closeModal('modal-tool')" class="px-4 py-2 bg-slate-700 rounded-xl text-sm font-semibold text-slate-300">Отмена</button>
-            <button type="button" onclick="saveTool()" class="px-4 py-2 bg-amber-500 text-slate-950 rounded-xl text-sm font-bold">Сохранить</button>
+        <div class="400flex gap-2 justify-end pt-2">
+            <button type="button" onclick="closeModal('modal-tool')" class="px-4 py-2 bg-slate-700 rounded-xl text-sm font-semibold text-slate-300">РћС‚РјРµРЅР°</button>
+            <button type="button" onclick="saveTool()" class="px-4 py-2 bg-amber-500 text-slate-950 rounded-xl text-sm font-bold">РЎРѕС…СЂР°РЅРёС‚СЊ</button>
         </div>
     </div>
 </div>
 
 <div id="modal-shift" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
     <div class="bg-slate-800 border border-slate-700 rounded-2xl p-5 w-full max-w-md space-y-4">
-        <h3 id="shift-modal-title" class="text-lg font-bold text-amber-400 flex items-center gap-2"><i class="fa-solid fa-user-plus"></i> Внести смену</h3>
+        <h3 id="shift-modal-title" class="text-lg font-bold text-amber-400 flex items-center gap-2"><i class="fa-solid fa-user-plus"></i> Р’РЅРµСЃС‚Рё СЃРјРµРЅСѓ</h3>
         <input type="hidden" id="shift-edit-id">
-        <div><label class="text-xs text-slate-400 block mb-1">ФИО / Имя рабочего</label><input type="text" id="shift-worker-input" class="w-full bg-slate-900 border border-slate-700 rounded-xl p-2.5 text-sm text-white outline-none focus:border-amber-500" placeholder="Иван И."></div>
-        <div><label class="text-xs text-slate-400 block mb-1">Объект</label><select id="shift-obj-input" class="w-full bg-slate-900 border border-slate-700 rounded-xl p-2.5 text-sm text-white outline-none focus:border-amber-500"></select></div>
+        <div><label class="text-xs text-slate-400 block mb-1">Р¤РРћ / РРјСЏ СЂР°Р±РѕС‡РµРіРѕ</label><input type="text" id="shift-worker-input" class="w-full bg-slate-900 border border-slate-700 rounded-xl p-2.5 text-sm text-white outline-none focus:border-amber-500" placeholder="РРІР°РЅ Р."></div>
+        <div><label class="text-xs text-slate-400 block mb-1">РћР±СЉРµРєС‚</label><select id="shift-obj-input" class="w-full bg-slate-900 border border-slate-700 rounded-xl p-2.5 text-sm text-white outline-none focus:border-amber-500"></select></div>
         <div class="grid grid-cols-2 gap-2">
-            <div><label class="text-xs text-slate-400 block mb-1">Отработано часов</label><input type="number" id="shift-hours-input" value="8" min="1" max="24" class="w-full bg-slate-900 border border-slate-700 rounded-xl p-2.5 text-sm text-white outline-none focus:border-amber-500"></div>
-            <div><label class="text-xs text-slate-400 block mb-1">Ставка (руб / 8ч)</label><input type="number" id="shift-rate-input" value="4500" class="w-full bg-slate-900 border border-slate-700 rounded-xl p-2.5 text-sm text-white outline-none focus:border-amber-500"></div>
+            <div><label class="text-xs text-slate-400 block mb-1">РћС‚СЂР°Р±РѕС‚Р°РЅРѕ С‡Р°СЃРѕРІ</label><input type="number" id="shift-hours-input" value="8" min="1" max="24" class="w-full bg-slate-900 border border-slate-700 rounded-xl p-2.5 text-sm text-white outline-none focus:border-amber-500"></div>
+            <div><label class="text-xs text-slate-400 block mb-1">РЎС‚Р°РІРєР° (СЂСѓР± / 8С‡)</label><input type="number" id="shift-rate-input" value="4500" class="w-full bg-slate-900 border border-slate-700 rounded-xl p-2.5 text-sm text-white outline-none focus:border-amber-500"></div>
         </div>
-        <div><label class="text-xs text-slate-400 block mb-1">Дата смены</label><input type="date" id="shift-date-input" class="w-full bg-slate-900 border border-slate-700 rounded-xl p-2.5 text-sm text-white outline-none focus:border-amber-500"></div>
+        <div><label class="text block mb-1">Р”Р°С‚Р° СЃРјРµРЅС‹</label><input type="date" id="shift-date-input" class="w-full bg-slate-900 border border-slate-700 rounded-xl p-2.5 text-sm text-white outline-none focus:border-amber-500"></div>
         <div class="flex gap-2 justify-end pt-2">
-            <button type="button" onclick="closeModal('modal-shift')" class="px-4 py-2 bg-slate-700 rounded-xl text-sm font-semibold text-slate-300">Отмена</button>
-            <button type="button" onclick="saveShift()" class="px-4 py-2 bg-amber-500 text-slate-950 rounded-xl text-sm font-bold">Сохранить</button>
+            <button type="button" onclick="closeModal('modal-shift')" class="px-4 py-2 bg-slate-700 rounded-xl text-sm font-semibold text-slate-300">РћС‚РјРµРЅР°</button>
+            <button type="button" onclick="saveShift()" class="px-4 py-2 bg-amber-500 text-slate-950 rounded-xl text-sm font-bold">РЎРѕС…СЂР°РЅРёС‚СЊ</button>
         </div>
     </div>
 </div>
 
 <div id="modal-backup-text" class="fixed inset-0 bg-slate-950/85 backdrop-blur-md z-50 flex items-center justify-center p-4 hidden">
     <div class="bg-slate-800 border border-slate-700 rounded-2xl p-5 w-full max-w-lg space-y-4 shadow-2xl">
-        <h3 class="text-base font-bold text-amber-400 flex items-center gap-2"><i class="fa-solid fa-file-code"></i> Резервная копия (JSON)</h3>
-        <p class="text-xs text-slate-300">Скопируйте текст ниже и сохраните в заметки или файл <code class="text-amber-400">backup.json</code>:</p>
+        <h3 class="text-base font-bold text-amber-400 flex items-center gap-2"><i class="fa-solid fa-file-code"></i> Р РµР·РµСЂРІРЅР°СЏ РєРѕРїРёСЏ (JSON)</h3>
+        <p class="text-xs text-slate-300">РЎРєРѕРїРёСЂСѓР№С‚Рµ С‚РµРєСЃС‚ РЅРёР¶Рµ Рё СЃРѕС…СЂР°РЅРёС‚Рµ РІ Р·Р°РјРµС‚РєРё РёР»Рё С„Р°Р№Р» <code class="text-amber-400">backup.json</code>:</p>
         <textarea id="backup-json-textarea" readonly class="w-full h-40 bg-slate-900 border border-slate-700 rounded-xl p-3 text-xs text-slate-200 font-mono select-all outline-none"></textarea>
         <div class="flex gap-2 justify-end pt-2">
-            <button type="button" onclick="copyBackupText()" class="px-4 py-2 bg-emerald-600 hover:bg-emerald-500 text-white rounded-xl text-xs font-bold flex items-center gap-1.5"><i class="fa-solid fa-copy"></i> Скопировать</button>
-            <button type="button" onclick="closeModal('modal-backup-text')" class="px-4 py-2 bg-slate-700 hover:bg-slate-600 rounded-xl text-xs font-semibold text-slate-300">Закрыть</button>
+            <button type="button" onclick="copyBackupText()" class="px-4 py-2 bg-emerald-600 hover:bg-emerald-500 text-white rounded-xl text-xs font-bold flex items-center gap-1.5"><i class="fa-solid fa-copy"></i> РЎРєРѕРїРёСЂРѕРІР°С‚СЊ</button>
+            <button type="button" onclick="closeModal('modal-backup-text')" class="px-4 py-2 bg-slate-700 hover:bg-slate-600 rounded-xl text-xs font-semibold text-slate-300">Р—Р°РєСЂС‹С‚СЊ</button>
         </div>
     </div>
 </div>
 
 <div id="modal-info" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
     <div class="bg-slate-800 border border-slate-700 rounded-2xl p-5 w-full max-w-md space-y-4">
-        <h3 class="text-lg font-bold text-amber-400 flex items-center gap-2"><i class="fa-solid fa-mobile-screen-button"></i> Информация и База данных</h3>
+        <h3 class="text-lg font-bold text-amber-400 flex items-center gap-2"><i class="fa-solid fa-mobile-screen-button"></i> РРЅС„РѕСЂРјР°С†РёСЏ Рё Р‘Р°Р·Р° РґР°РЅРЅС‹С…</h3>
         <div class="text-xs text-slate-300 space-y-2 leading-relaxed">
-            <p>Автономное PWA-приложение «ГидроДел» (v2.30).</p>
-            <p class="font-bold text-white">Резервное копирование:</p>
+            <p>РђРІС‚РѕРЅРѕРјРЅРѕРµ PWA-РїСЂРёР»РѕР¶РµРЅРёРµ В«Р“РёРґСЂРѕР”РµР»В» (v2.30).</p>
+            <p class="font-bold text-white">Р РµР·РµСЂРІРЅРѕРµ РєРѕРїРёСЂРѕРІР°РЅРёРµ:</p>
             <div class="flex gap-2 pt-1">
-                <button type="button" onclick="exportBackup()" class="flex-1 px-3 py-2 bg-sky-600 hover:bg-sky-500 text-white rounded-xl text-xs font-bold flex items-center justify-center gap-1.5 shadow-md"><i class="fa-solid fa-download"></i> Сохранить</button>
-                <label class="flex-1 px-3 py-2 bg-slate-700 hover:bg-slate-600 text-slate-200 rounded-xl text-xs font-bold flex items-center justify-center gap-1.5 shadow-md cursor-pointer text-center"><i class="fa-solid fa-upload"></i> Загрузить<input type="file" id="import-file-input" accept=".json" onchange="importBackup(event)" class="hidden"></label>
+                <button type="button" onclick="exportBackup()" class="flex-1 px-3 py-2 bg-sky-600 hover:bg-sky-500 text-white rounded-xl text-xs font-bold flex items-center justify-center gap-1.5 shadow-md"><i class="fa-solid fa-download"></i> РЎРѕС…СЂР°РЅРёС‚СЊ</button>
+                <label class="flex-1 px-3 py-2 bg-slate-700 hover:bg-slate-600 text-slate-200 rounded-xl text-xs font-bold flex items-center justify-center gap-1.5 shadow-md cursor-pointer text-center"><i class="fa-solid fa-upload"></i> Р—Р°РіСЂСѓР·РёС‚СЊ<input type="file" id="import-file-input" accept=".json" onchange="importBackup(event)" class="hidden"></label>
             </div>
         </div>
         <div class="border-t border-slate-700/60 pt-3 flex justify-between items-center">
-            <button type="button" onclick="clearAllData()" class="px-3 py-2 bg-red-500/20 text-red-400 border border-red-500/40 rounded-xl text-xs font-bold hover:bg-red-500/30">Сбросить БД</button>
-            <button type="button" onclick="closeModal('modal-info')" class="px-4 py-2 bg-amber-500 text-slate-950 rounded-xl text-xs font-bold">Закрыть</button>
+            <button type="button" onclick="clearAllData()" class="px-3 py-2 bg-red-500/20 text-red-400 border border-red-500/40 rounded-xl text-xs font-bold hover:bg-red-500/30">РЎР±СЂРѕСЃРёС‚СЊ Р‘Р”</button>
+            <button type="button" onclick="closeModal('modal-info')" class="px-4 py-2 bg-amber-500 text-slate-950 rounded-xl text-xs font-bold">Р—Р°РєСЂС‹С‚СЊ</button>
         </div>
     </div>
 </div>
 
-<script>
-const initialObjects = [
-    { id: 'obj-1', name: 'Дворцовая наб. 12 (Подвал)', type: 'Инъектирование и заделка штроб', logs: [
-        { date: '2026-11-03', type: 'Проштроблено швов (п.м.)', val: 15, note: 'Шов 25х25 мм' },
-        { date: '2026-11-04', type: 'Закачано ПенеПурФом (кг)', val: 24, note: 'ПенеПурФом 1К' }
-    ]},
-    { id: 'obj-2', name: 'ЖК Невский Пассаж', type: 'Бетонирование пристенков и стяжек', logs: [
-        { date: '2026-11-04', type: 'Залито ЦПС / пристенков (м³)', val: 2.5, note: 'Жгут Пенебар 12м' }
-    ]}
-];
-
-const initialTools = [
-    { id: 't-1', name: 'Инъекционный насос 1К/2К', sn: 'PUMP-992', status: 'obj-1' },
-    { id: 't-2', name: 'Перфоратор SDS-Max Bosch', sn: 'BSH-004', status: 'obj-2' },
-    { id: 't-3', name: 'Глубинный вибратор (вала 3м)', sn: 'VIB-102', status: 'sklad' },
-    { id: 't-4', name: 'Штроборез + Пылесос', sn: 'STR-44', status: 'repair' }
-];
-
-const initialShifts = [
-    { id: 's-1', worker: 'Алексей М.', objId: 'obj-1', hours: 8, rate: 4500, date: '2026-11-04' },
-    { id: 's-2', worker: 'Дмитрий К.', objId: 'obj-1', hours: 8, rate: 4500, date: '2026-11-04' }
-];
-
-const CHECKLIST_VERSION = 'v2';
-
-const defaultChecklists = {
-    strobe_inject: [
-        { cat: '⚡ Электроинструмент', items: [
-            { text: 'Насос д/смолы', checked: true },
-            { text: 'Насос д/воды', checked: false },
-            { text: 'Шуруповёрт', checked: false },
-            { text: 'Перфоратор (бурение)', checked: false },
-            { text: 'Перфоратор (отбойник)', checked: false },
-            { text: 'Миксер', checked: false },
-            { text: 'Пылесос', checked: false },
-            { text: 'УШМ (болгарка)', checked: false },
-            { text: 'Прожектор', checked: false },
-            { text: 'Удлинитель', checked: false }
-        ]},
-        { cat: '🔧 Ручной инструмент и оснастка', items: [
-            { text: 'Головка д/пакеров 8', checked: false },
-            { text: 'Головка д/пакеров 10', checked: false },
-            { text: 'Пылеотвод д/перфа', checked: false },
-            { text: 'Пылеотвод д/ушм', checked: false },
-            { text: 'Венчик', checked: false },
-            { text: 'Пистолет д/пены монтаж', checked: false },
-            { text: 'Пассатижи', checked: false },
-            { text: 'Молоток', checked: false },
-            { text: 'Жук', checked: false },
-            { text: 'Шпатели', checked: false },
-            { text: 'Рулетка', checked: false },
-            { text: 'Кисть маклавица', checked: false },
-            { text: 'Карандаш / маркер', checked: false }
-        ]},
-        { cat: '📦 Расходники и мелочь', items: [
-            { text: 'Пакеры 8', checked: false },
-            { text: 'Пакеры 10', checked: false },
-            { text: 'Муфты', checked: false },
-            { text: 'Лопатки д/sds+/sdsmax', checked: false },
-            { text: 'Бур 10', checked: false },
-            { text: 'Бур 6', checked: false },
-            { text: 'Масло', checked: false },
-            { text: 'Растворитель', checked: false },
-            { text: 'Мешки д/пылесоса', checked: false },
-            { text: 'Мешки д/мусора', checked: false },
-            { text: 'Плёнка укрывная', checked: false },
-            { text: 'Ветошь', checked: false },
-            { text: 'Ёмкости (ведра 20л, тазы 60л)', checked: false },
-            { text: 'Саморезы', checked: false },
-            { text: 'Сарматы', checked: false },
-            { text: 'Уголок металический', checked: false },
-            { text: 'Пена монтажная', checked: false }
-        ]},
-        { cat: '🧪 Материалы', items: [
-            { text: 'Смола / Акрилатный гель + Отвердитель', checked: false },
-            { text: 'Обмазочная Гидроизоляция', checked: false },
-            { text: 'Гидропломба', checked: false },
-            { text: 'Шовный состав («Ремстрим Т»)', checked: false }
-        ]}
-    ],
-    concrete: [
-        { cat: '⚡ Электроинструмент', items: [
-            { text: 'Глубинный вибратор', checked: true },
-            { text: 'Перфоратор', checked: false },
-            { text: 'Шуруповёрт', checked: false },
-            { text: 'Миксер / Бетономешалка', checked: false },
-            { text: 'Прожектор освещения', checked: false },
-            { text: 'Удлинитель', checked: false }
-        ]},
-        { cat: '🔧 Ручной инструмент и оснастка', items: [
-            { text: 'Мастерок, гладилки, правила 2м', checked: false },
-            { text: 'Рулетка', checked: false },
-            { text: 'Карандаш / маркер', checked: false },
-            { text: 'Ёмкости (ведра 20л, тазы 60л)', checked: false },
-            { text: 'Крюк вязальный', checked: false },
-            { text: 'Жук', checked: false },
-            { text: 'Кувалда мал', checked: false },
-            { text: 'Бур 6', checked: false },
-            { text: 'Биты д/шурика', checked: false },
-            { text: 'Молоток', checked: false },
-            { text: 'Пистолет д/пены монтаж', checked: false }
-        ]},
-        { cat: '📦 Расходники и крепеж', items: [
-            { text: 'Мешки д/мусора', checked: false },
-            { text: 'Пена монтажная', checked: false },
-            { text: 'Уголок металлический', checked: false },
-            { text: 'Саморезы', checked: false },
-            { text: 'Сарматы', checked: false },
-            { text: 'Уголок металический', checked: false },
-            { text: 'Проволока вязальная', checked: false }
-        ]},
-        { cat: '🧪 Материалы и опалубка', items: [
-            { text: 'Сухая смесь ЦПС (мешки 25 кг)', checked: true },
-            { text: 'Щиты опалубки / Фанера + Шпильки/Гайки', checked: true },
-            { text: 'Доска обрезная / Брус', checked: false },
-            { text: 'Гидропрокладка / Жгут «Пенебар»', checked: false },
-            { text: 'Сетка/перфолента д/пенебар', checked: false },
-            { text: 'Плёнка укрывная (для бетона)', checked: true }
-        ]}
-    ]
-};
-
-let db = { objects: initialObjects, tools: initialTools, shifts: initialShifts, checklists: defaultChecklists };
-
-try {
-    const savedObj = localStorage.getItem('hydro_objects');
-    const savedTools = localStorage.getItem('hydro_tools');
-    const savedShifts = localStorage.getItem('hydro_shifts');
-    const savedCl = localStorage.getItem('hydro_checklists_v3'); 
-    const savedVersion = localStorage.getItem('hydro_checklist_version');
-    
-    if (savedObj) { const parsed = JSON.parse(savedObj); if (Array.isArray(parsed)) db.objects = parsed; }
-    if (savedTools) { const parsed = JSON.parse(savedTools); if (Array.isArray(parsed)) db.tools = parsed; }
-    if (savedShifts) { const parsed = JSON.parse(savedShifts); if (Array.isArray(parsed)) db.shifts = parsed; }
-    
-    if (savedVersion !== CHECKLIST_VERSION) {
-        db.checklists = defaultChecklists;
-        localStorage.setItem('hydro_checklists_v3', JSON.stringify(db.checklists));
-        localStorage.setItem('hydro_checklist_version', CHECKLIST_VERSION);
-    } else if (savedCl) {
-        const parsed = JSON.parse(savedCl);
-        if (typeof parsed === 'object') db.checklists = parsed;
-    }
-} catch(e) { 
-    console.error('Ошибка чтения БД', e); 
-}
-
-function saveData() {
-    try {
-        localStorage.setItem('hydro_objects', JSON.stringify(db.objects));
-        localStorage.setItem('hydro_tools', JSON.stringify(db.tools));
-        localStorage.setItem('hydro_shifts', JSON.stringify(db.shifts));
-        localStorage.setItem('hydro_checklists_v3', JSON.stringify(db.checklists)); 
-        localStorage.setItem('hydro_checklist_version', CHECKLIST_VERSION); 
-    } catch(e) { console.error('Save error', e); }
-}
-
-async function exportBackup() {
-    const backupData = JSON.stringify(db, null, 2);
-    const blob = new Blob([backupData], { type: 'application/json' });
-    const fileName = `GidroDel_Backup_${new Date().toISOString().split('T')[0]}.json`;
-    if (navigator.canShare && navigator.canShare({ files: [new File([blob], fileName, { type: 'application/json' })] })) {
-        try {
-            await navigator.share({ title: 'Резервная копия', files: [new File([blob], fileName, { type: 'application/json' })] });
-            return;
-        } catch (err) { if (err.name !== 'AbortError') console.log('Share fallback:', err); }
-    }
-    const ta = document.getElementById('backup-json-textarea');
-    if (ta) {
-        ta.value = backupData;
-        toggleInfoModal();
-        document.getElementById('modal-backup-text').classList.remove('hidden');
-    }
-}
-
-function copyBackupText() {
-    const ta = document.getElementById('backup-json-textarea');
-    if (!ta) return;
-    ta.select();
-    navigator.clipboard.writeText(ta.value).then(() => alert('✅ Скопировано!')).catch(() => alert('Скопируйте вручную.'));
-}
-
-function importBackup(event) {
-    const file = event.target.files[0];
-    if (!file) return;
-    const reader = new FileReader();
-    reader.onload = function(e) {
-        try {
-            const imported = JSON.parse(e.target.result);
-            if (imported && imported.objects && imported.tools && imported.shifts) {
-                db.objects = imported.objects;
-                db.tools = imported.tools;
-                db.shifts = imported.shifts;
-                saveData();
-                alert('✅ Копия восстановлена!');
-                location.reload();
-            } else { alert('❌ Неверная структура файла.'); }
-        } catch(err) { alert('❌ Ошибка чтения JSON: ' + err.message); }
-    };
-    reader.readAsText(file);
-}
-
-let pendingConfirmCallback = null;
-function askConfirm(text, callback) {
-    const textElem = document.getElementById('confirm-text');
-    const yesBtn = document.getElementById('confirm-yes-btn');
-    if (textElem) textElem.innerText = text;
-    pendingConfirmCallback = callback;
-    if (yesBtn) {
-        yesBtn.onclick = function() {
-            closeModal('modal-confirm');
-            if (typeof pendingConfirmCallback === 'function') { pendingConfirmCallback(); pendingConfirmCallback = null; }
-        };
-    }
-    document.getElementById('modal-confirm').classList.remove('hidden');
-}
-
-function switchTab(tabId) {
-    document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
-    document.querySelectorAll('.nav-btn').forEach(el => { 
-        el.classList.remove('text-amber-400', 'border-amber-500/50', 'bg-amber-500/10');
-        el.classList.add('text-slate-400', 'border-slate-700/50', 'bg-slate-800/30');
-    });
-    
-    const targetTab = document.getElementById(`tab-${tabId}`);
-    const targetNav = document.getElementById(`nav-${tabId}`);
-    
-    if (targetTab) targetTab.classList.remove('hidden');
-    if (targetNav) { 
-        targetNav.classList.add('text-amber-400', 'border-amber-500/50', 'bg-amber-500/10');
-        targetNav.classList.remove('text-slate-400', 'border-slate-700/50', 'bg-slate-800/30');
-    }
-    
-    if (tabId === 'objects') renderObjects();
-    if (tabId === 'checklists') { toggleCalcInputs(); renderChecklist(); calculateMaterials(); }
-    if (tabId === 'tools') renderTools();
-    if (tabId === 'workers') renderWorkers();
-}
-    
-function renderObjects() {
-    const container = document.getElementById('objects-list');
-    if (!container) return;
-    try {
-        if (!db.objects || db.objects.length === 0) {
-            container.innerHTML = `
-                <div class="text-center py-12 px-4 bg-slate-800/50 rounded-2xl border border-slate-700 border-dashed">
-                    <p class="text-slate-400 text-sm mb-4">Список объектов пуст.</p>
-                    <button onclick="clearAllData()" class="text-xs text-red-400 border border-red-500/30 px-3 py-1.5 rounded-lg">Если видите эту надпись из-за ошибки — нажмите сюда для сброса</button>
-                </div>`;
-            return;
-        }
-
-        container.innerHTML = db.objects.map(obj => {
-            const logsHtml = obj.logs && obj.logs.length > 0
-                ? obj.logs.map((l, lIdx) => {
-                    let displayVal = l.val;
-                    let displayType = l.type;
-                    if (l.type === 'Залито ЦПС (мешки 25кг)') {
-                        const vol = ((l.val * 25) / 2200).toFixed(2);
-                        displayVal = `${l.val} меш. (~${vol} м³)`;
-                        displayType = 'Залито ЦПС';
-                    }
-                    return `
-                    <div class="flex justify-between items-center text-xs py-1.5 border-b border-slate-700/50 gap-2">
-                        <span class="text-slate-300 font-medium">${displayType}: <b class="text-amber-400">${displayVal}</b> <span class="text-slate-400 font-normal">(${l.note || '—'})</span></span>
-                        <div class="flex items-center gap-2 shrink-0">
-                            <span class="text-slate-500 text-[10px]">${l.date}</span>
-                            <button type="button" onclick="openEditLogModal('${String(obj.id)}', ${lIdx})" class="text-slate-400 hover:text-amber-400 p-1"><i class="fa-solid fa-pen text-[10px]"></i></button>
-                            <button type="button" onclick="event.stopPropagation(); deleteWorkLog('${String(obj.id)}', ${lIdx})" class="text-slate-500 hover:text-red-400 p-1"><i class="fa-solid fa-trash text-[10px]"></i></button>
-                        </div>
-                    </div>`;
-                }).join('')
-                : `<p class="text-xs text-slate-500 italic">Выработка еще не вносилась</p>`;
-            return `
-                <div class="bg-slate-800 border border-slate-700 rounded-2xl p-4 shadow-md space-y-3">
-                    <div class="flex justify-between items-start">
-                        <div><h3 class="font-bold text-white text-base">${obj.name}</h3><p class="text-xs text-amber-400/90 font-medium">${obj.type}</p></div>
-                        <button type="button" onclick="event.stopPropagation(); deleteObject('${String(obj.id)}')" class="text-slate-500 hover:text-red-400 p-1.5 bg-slate-900/40 rounded-lg"><i class="fa-solid fa-trash text-xs"></i></button>
-                    </div>
-                    <div class="bg-slate-900/60 rounded-xl p-3 border border-slate-700/40 space-y-1">
-                        <div class="text-[11px] font-bold text-slate-400 uppercase tracking-wider mb-1 flex justify-between"><span>Журнал выработки</span><i class="fa-solid fa-clock-rotate-left"></i></div>
-                        ${logsHtml}
-                    </div>
-                    <button type="button" onclick="openAddLogModal('${String(obj.id)}')" class="w-full bg-slate-700 hover:bg-slate-600 active:scale-95 text-amber-400 text-xs font-bold py-2 rounded-xl border border-slate-600 flex items-center justify-center gap-1"><i class="fa-solid fa-plus"></i> Внести объем</button>
-                </div>`;
-        }).join('');
-    } catch(e) {
-        console.error('Критическая ошибка рендера', e);
-        container.innerHTML = `<div class="text-center py-8 text-red-400 text-sm">Ошибка базы данных.<br><button onclick="clearAllData()" class="mt-4 bg-red-500 text-white px-4 py-2 rounded-xl">Сбросить данные</button></div>`;
-    }
-}
-
-function openNewObjectModal() {
-    document.getElementById('obj-name-input').value = '';
-    document.getElementById('obj-type-input').value = '';
-    document.getElementById('modal-object').classList.remove('hidden');
-}
-
-function saveNewObject() {
-    const name = document.getElementById('obj-name-input').value.trim();
-    const type = document.getElementById('obj-type-input').value.trim();
-    if (!name) return alert('Укажите название объекта');
-    db.objects.push({ id: 'obj-' + Date.now(), name, type: type || 'Штробление, инъектирование', logs: [] });
-    saveData(); closeModal('modal-object'); renderObjects();
-}
-
-function deleteObject(id) {
-    askConfirm('Удалить объект и всю историю?', function() {
-        db.objects = db.objects.filter(o => String(o.id) !== String(id));
-        saveData(); renderObjects();
-    });
-}
-
-function openAddLogModal(objId) {
-    document.getElementById('log-modal-title').innerHTML = `<i class="fa-solid fa-list-check"></i> Запись`;
-    document.getElementById('log-obj-id').value = String(objId);
-    document.getElementById('log-edit-idx').value = '';
-    document.getElementById('log-val-input').value = '';
-    document.getElementById('log-note-input').value = '';
-    document.getElementById('modal-log').classList.remove('hidden');
-}
-
-function openEditLogModal(objId, logIdx) {
-    const obj = db.objects.find(o => String(o.id) === String(objId));
-    if (!obj || !obj.logs[logIdx]) return;
-    const log = obj.logs[logIdx];
-    document.getElementById('log-modal-title').innerHTML = `<i class="fa-solid fa-pen-to-square"></i> Ред.`;
-    document.getElementById('log-obj-id').value = String(objId);
-    document.getElementById('log-edit-idx').value = logIdx;
-    document.getElementById('log-type-input').value = log.type;
-    document.getElementById('log-val-input').value = log.val;
-    document.getElementById('log-note-input').value = log.note || '';
-    document.getElementById('modal-log').classList.remove('hidden');
-}
-
-function saveWorkLog() {
-    const objId = document.getElementById('log-obj-id').value;
-    const editIdx = document.getElementById('log-edit-idx').value;
-    const type = document.getElementById('log-type-input').value;
-    const valInput = document.getElementById('log-val-input').value.replace(',', '.');
-    const val = parseFloat(valInput);
-    const note = document.getElementById('log-note-input').value.trim();
-    if (!val || val <= 0) return alert('Введите корректное число');
-    
-    const obj = db.objects.find(o => String(o.id) === String(objId));
-    if (obj) {
-        if (!obj.logs) obj.logs = [];
-        if (editIdx !== '') {
-            const idx = parseInt(editIdx);
-            if (obj.logs[idx]) { obj.logs[idx].type = type; obj.logs[idx].val = val; obj.logs[idx].note = note; }
-        } else {
-            obj.logs.unshift({ date: new Date().toISOString().split('T')[0], type, val, note });
-        }
-        saveData(); closeModal('modal-log'); renderObjects();
-    }
-}
-
-function deleteWorkLog(objId, logIdx) {
-    askConfirm('Удалить запись?', function() {
-        const obj = db.objects.find(o => String(o.id) === String(objId));
-        if (obj && obj.logs && obj.logs[logIdx] !== undefined) {
-            obj.logs.splice(logIdx, 1); saveData(); renderObjects();
-        }
-    });
-}
-
-function toggleCalcInputs() {
-    const typeElem = document.getElementById('calc-type');
-    if (!typeElem) return;
-    const type = typeElem.value;
-    document.querySelectorAll('.calc-sub-input').forEach(el => el.classList.add('hidden'));
-    const sub = document.getElementById(`inputs-${type}`);
-    if (sub) sub.classList.remove('hidden');
-    calculateMaterials();
-}
-
-function calculateMaterials() {
-    const typeElem = document.getElementById('calc-type');
-    if (!typeElem) return;
-    const type = typeElem.value;
-    const margin = (parseFloat(document.getElementById('calc-margin').value) || 0) / 100 + 1;
-    const res = document.getElementById('calc-results');
-    if (!res) return;
-    
-    if (type === 'strobe') {
-        const len = parseFloat(document.getElementById('strobe-length').value) || 0;
-        const bags = Math.ceil((len / 11) * margin);
-        const totalKg = bags * 25;
-        const gruntKg = (len * 0.2 * margin).toFixed(1);
-        res.innerHTML = `
-            <div class="flex justify-between font-bold text-white"><span>Состав:</span><span class="text-amber-400">${bags} меш. (${totalKg} кг)</span></div>
-            <div class="flex justify-between text-xs text-slate-300"><span>Грунтовка:</span><span>~${gruntKg} кг</span></div>`;
-    } else if (type === 'inject') {
-        const len = parseFloat(document.getElementById('inj-length').value) || 0;
-        const resinType = document.getElementById('inj-resin-type').value;
-        const resinName = resinType === '1k' ? '1К' : '65';
-        const packers = Math.ceil(len * 7 * margin);
-        const resinKg = (len * 2.0 * margin).toFixed(1);
-        res.innerHTML = `
-            <div class="flex justify-between font-bold text-white"><span>Пакеры:</span><span class="text-amber-400">${packers} шт</span></div>
-            <div class="flex justify-between font-bold text-white"><span>Смола (${resinName}):</span><span class="text-amber-400">~${resinKg} кг</span></div>`;
-    } else if (type === 'concrete') {
-        const bL = parseFloat(document.getElementById('beton-l').value) || 0;
-        const bH = parseFloat(document.getElementById('beton-h').value) || 0;
-        const bT = (parseFloat(document.getElementById('beton-t').value) || 0) / 100;
-        const penebarL = parseFloat(document.getElementById('penebar-l').value) || 0;
-        
-        const cpsVol = bL * bH * bT * margin;
-        const cpsKg = cpsVol * 2200;
-        const cpsBags = Math.ceil(cpsKg / 25);
-        const faneraSqm = (bL * bH * 2 * margin).toFixed(1);
-        const faneraSheets = Math.ceil(faneraSqm / 2.31);
-        const penebarMeters = Math.ceil(penebarL * margin);
-        const penebarRolls = Math.ceil(penebarMeters / 5);
-
-        const m25 = parseFloat(document.getElementById('doska-25-m').value) || 0;
-        const m40 = parseFloat(document.getElementById('doska-40-m').value) || 0;
-        const w = (parseFloat(document.getElementById('doska-w').value) || 150) / 1000;
-        let doskaHtml = '';
-        
-        if (m25 > 0) {
-            const vol25 = (m25 * w * 0.025).toFixed(3);
-            const pieces25 = Math.ceil(m25 / 6);
-            doskaHtml += `<div class="flex justify-between text-xs text-slate-300 mt-2"><span>Доска 25мм (дюймовка):</span><span>${vol25} м³ (${pieces25} шт по 6м)</span></div>`;
-        }
-        if (m40 > 0) {
-            const vol40 = (m40 * w * 0.040).toFixed(3);
-            const pieces40 = Math.ceil(m40 / 6);
-            doskaHtml += `<div class="flex justify-between text-xs text-slate-300 mt-1"><span>Доска 40мм (сороковка):</span><span>${vol40} м³ (${pieces40} шт по 6м)</span></div>`;
-        }
-        if (m25 === 0 && m40 === 0) {
-            doskaHtml = `<div class="text-xs text-slate-500 italic mt-2">Доски не рассчитаны (не введен метраж)</div>`;
-        }
-
-        res.innerHTML = `
-            <div class="flex justify-between font-bold text-white"><span>ЦПС (25кг):</span><span class="text-amber-400">${cpsBags} меш. (${cpsVol.toFixed(2)} м³)</span></div>
-            <div class="flex justify-between text-xs text-slate-300 mt-1"><span>Фанера (1.52х1.52):</span><span>${faneraSqm} м² (~${faneraSheets} л.)</span></div>
-            <div class="flex justify-between font-semibold text-amber-300 text-xs mt-1"><span>Пенебар:</span><span>${penebarMeters} м.п. (${penebarRolls} рул.)</span></div>
-            <div class="border-t border-slate-700/50 my-2"></div>
-            ${doskaHtml}`;
-    }
-}
-
-function renderChecklist() {
-    const presetSelect = document.getElementById('checklist-preset');
-    if (!presetSelect) return;
-    const presetKey = presetSelect.value;
-    const groups = db.checklists[presetKey] || [];
-    const container = document.getElementById('checklist-items');
-    if (!container) return;
-    
-    container.innerHTML = groups.map((group, gIdx) => `
-        <div class="mt-4 mb-2 text-xs font-bold text-amber-500 uppercase tracking-wider">${group.cat}</div>
-        <div class="space-y-2">
-            ${group.items.map((item, iIdx) => `
-                <div onclick="toggleChecklistItem('${presetKey}', ${gIdx}, ${iIdx})" class="flex items-center gap-3 p-3 bg-slate-900/80 rounded-xl border ${item.checked ? 'border-amber-500/40 bg-amber-500/5' : 'border-slate-700/60'} cursor-pointer transition-all">
-                    <div class="w-5 h-5 rounded-lg border flex items-center justify-center ${item.checked ? 'bg-amber-500 border-amber-500 text-slate-950' : 'border-slate-500'}">${item.checked ? '<i class="fa-solid fa-check text-xs font-black"></i>' : ''}</div>
-                    <span class="text-xs ${item.checked ? 'line-through text-slate-400' : 'text-slate-200 font-medium'}">${item.text}</span>
-                </div>
-            `).join('')}
-        </div>
-    `).join('');
-}
-
-function toggleChecklistItem(presetKey, gIdx, iIdx) {
-    if (db.checklists[presetKey] && db.checklists[presetKey][gIdx] && db.checklists[presetKey][gIdx].items[iIdx]) {
-        db.checklists[presetKey][gIdx].items[iIdx].checked = !db.checklists[presetKey][gIdx].items[iIdx].checked;
-        saveData(); renderChecklist();
-    }
-}
-
-function resetChecklist() {
-    const presetSelect = document.getElementById('checklist-preset');
-    if (!presetSelect) return;
-    const presetKey = presetSelect.value;
-    if (db.checklists[presetKey]) {
-        db.checklists[presetKey].forEach(group => {
-            group.items.forEach(item => item.checked = false);
-        });
-        saveData(); renderChecklist();
-    }
-}
-
-let currentToolFilter = 'all';
-function filterTools(filter, e) {
-    currentToolFilter = filter;
-    document.querySelectorAll('.tool-filter-btn').forEach(btn => { btn.classList.remove('bg-amber-500', 'text-slate-950', 'font-bold'); btn.classList.add('bg-slate-800', 'text-slate-300'); });
-    if (e && e.target) { e.target.classList.add('bg-amber-500', 'text-slate-950', 'font-bold'); e.target.classList.remove('bg-slate-800', 'text-slate-300'); }
-    renderTools();
-}
-
-function getObjectColor(objId) {
-    const colors = [
-        { bg: 'bg-emerald-500/20', text: 'text-emerald-400', border: 'border-emerald-500/30' },
-        { bg: 'bg-purple-500/20', text: 'text-purple-400', border: 'border-purple-500/30' },
-        { bg: 'bg-pink-500/20', text: 'text-pink-400', border: 'border-pink-500/30' },
-        { bg: 'bg-indigo-500/20', text: 'text-indigo-400', border: 'border-indigo-500/30' },
-        { bg: 'bg-teal-500/20', text: 'text-teal-400', border: 'border-teal-500/30' },
-        { bg: 'bg-orange-500/20', text: 'text-orange-400', border: 'border-orange-500/30' },
-        { bg: 'bg-cyan-500/20', text: 'text-cyan-400', border: 'border-cyan-500/30' },
-        { bg: 'bg-fuchsia-500/20', text: 'text-fuchsia-400', border: 'border-fuchsia-500/30' }
-    ];
-    let index = 0;
-    if (db.objects) {
-        const objIndex = db.objects.findIndex(o => String(o.id) === String(objId));
-        if (objIndex >= 0) index = objIndex % colors.length;
-    }
-    return colors[index];
-}
-
-function renderTools() {
-    const container = document.getElementById('tools-list');
-    if (!container) return;
-    let filtered = db.tools || [];
-    if (currentToolFilter === 'sklad') filtered = db.tools.filter(t => t.status === 'sklad');
-    if (currentToolFilter === 'repair') filtered = db.tools.filter(t => t.status === 'repair');
-    if (currentToolFilter === 'object') filtered = db.tools.filter(t => t.status !== 'sklad' && t.status !== 'repair');
-    if (filtered.length === 0) { container.innerHTML = `<div class="col-span-2 text-center py-6 text-slate-500 text-sm">Инструментов не найдено</div>`; return; }
-    container.innerHTML = filtered.map(t => {
-        let statusBadge = '';
-        if (t.status === 'sklad') {
-            statusBadge = `<span class="bg-blue-500/20 text-blue-400 border border-blue-500/30 px-2 py-0.5 rounded-md text-[10px] font-bold">На складе</span>`;
-        } else if (t.status === 'repair') {
-            statusBadge = `<span class="bg-red-500/20 text-red-400 border border-red-500/30 px-2 py-0.5 rounded-md text-[10px] font-bold">В ремонте</span>`;
-        } else {
-            const obj = db.objects.find(o => String(o.id) === String(t.status));
-            const objName = obj ? obj.name : 'На объекте';
-            const c = getObjectColor(String(t.status));
-            statusBadge = `<span class="${c.bg} ${c.text} border ${c.border} px-2 py-0.5 rounded-md text-[10px] font-bold">${objName}</span>`;
-        }
-        return `
-            <div class="bg-slate-800 border border-slate-700 rounded-2xl p-3 shadow-sm space-y-2 flex flex-col justify-between">
-                <div>
-                    <div class="flex justify-between items-start gap-1 mb-1">
-                        <h4 class="font-bold text-slate-200 text-sm leading-tight">${t.name}</h4>
-                        <button type="button" onclick="event.stopPropagation(); deleteTool('${String(t.id)}')" class="text-slate-500 hover:text-red-400 p-1"><i class="fa-solid fa-xmark"></i></button>
-                    </div>
-                    <p class="text-[11px] text-slate-400">Инв / SN: ${t.sn || 'б/н'}</p>
-                </div>
-                <div class="pt-2 border-t border-slate-700/60 flex justify-between items-center">
-                    ${statusBadge}
-                    <button type="button" onclick="openMoveToolModal('${String(t.id)}')" class="text-xs text-slate-400 hover:text-amber-400 flex items-center gap-1"><i class="fa-solid fa-arrow-right-arrow-left text-[10px]"></i> Переместить</button>
-                </div>
-            </div>`;
-    }).join('');
-}
-
-function openNewToolModal() {
-    document.getElementById('tool-name-input').value = '';
-    document.getElementById('tool-sn-input').value = '';
-    const select = document.getElementById('tool-status-input');
-    if (select) {
-        select.innerHTML = `<option value="sklad">На базе / Складе</option><option value="repair">В ремонте</option>${db.objects.map(o => `<option value="${String(o.id)}">Объект: ${o.name}</option>`).join('')}`;
-    }
-    document.getElementById('modal-tool').classList.remove('hidden');
-}
-
-function saveTool() {
-    const name = document.getElementById('tool-name-input').value.trim();
-    const sn = document.getElementById('tool-sn-input').value.trim();
-    const status = document.getElementById('tool-status-input').value;
-    if (!name) return alert('Укажите название');
-    db.tools.push({ id: 't-' + Date.now(), name, sn, status });
-    saveData(); closeModal('modal-tool'); renderTools();
-}
-
-function openMoveToolModal(toolId) {
-    const tool = db.tools.find(t => String(t.id) === String(toolId));
-    if (!tool) return;
-    document.getElementById('move-tool-id').value = tool.id;
-    document.getElementById('move-tool-title').innerHTML = `<i class="fa-solid fa-arrow-right-arrow-left"></i> Перемещение: ${tool.name}`;
-    const select = document.getElementById('move-tool-target');
-    if (select) {
-        select.innerHTML = `
-            <option value="sklad" ${tool.status === 'sklad' ? 'selected' : ''}>📍 На базе / Складе</option>
-            <option value="repair" ${tool.status === 'repair' ? 'selected' : ''}>🛠 В ремонте</option>
-            ${db.objects.map(o => `<option value="${String(o.id)}" ${String(o.id) === String(tool.status) ? 'selected' : ''}>🏗 Объект: ${o.name}</option>`).join('')}`;
-    }
-    document.getElementById('modal-move-tool').classList.remove('hidden');
-}
-
-function confirmMoveTool() {
-    const toolId = document.getElementById('move-tool-id').value;
-    const newStatus = document.getElementById('move-tool-target').value;
-    const tool = db.tools.find(t => String(t.id) === String(toolId));
-    if (tool) { tool.status = newStatus; saveData(); closeModal('modal-move-tool'); renderTools(); }
-}
-
-function deleteTool(id) {
-    askConfirm('Удалить инструмент?', function() {
-        db.tools = db.tools.filter(t => String(t.id) !== String(id));
-        saveData(); renderTools();
-    });
-}
-
-function formatMonthName(yearMonthStr) {
-    if (!yearMonthStr) return '';
-    const parts = String(yearMonthStr).split('-');
-    if (parts.length < 2) return yearMonthStr;
-    const date = new Date(parseInt(parts[0]), parseInt(parts[1]) - 1, 1);
-    return date.toLocaleString('ru-RU', { month: 'long', year: 'numeric' });
-}
-
-function renderWorkers() {
-    const summaryContainer = document.getElementById('workers-summary');
-    const historyContainer = document.getElementById('shifts-history');
-    const monthSelect = document.getElementById('statement-month-select');
-    if (!summaryContainer || !historyContainer || !monthSelect) return;
-    const monthsSet = new Set();
-    if (Array.isArray(db.shifts)) db.shifts.forEach(s => { if (s && s.date) monthsSet.add(String(s.date).substring(0, 7)); });
-    monthsSet.add(new Date().toISOString().substring(0, 7));
-    const sortedMonths = Array.from(monthsSet).sort().reverse();
-    const selectedMonth = monthSelect.value && monthsSet.has(monthSelect.value) ? monthSelect.value : sortedMonths[0];
-    monthSelect.innerHTML = sortedMonths.map(ym => `<option value="${ym}" ${ym === selectedMonth ? 'selected' : ''}>${formatMonthName(ym)}</option>`).join('');
-    const filteredShifts = (db.shifts || []).filter(s => s && s.date && String(s.date).substring(0, 7) === selectedMonth);
-    const summary = {};
-    filteredShifts.forEach(s => {
-        if (!summary[s.worker]) summary[s.worker] = { totalHours: 0, totalPay: 0 };
-        const hours = parseFloat(s.hours) || 0;
-        const rate = parseFloat(s.rate) || 0;
-        summary[s.worker].totalHours += hours;
-        summary[s.worker].totalPay += (rate / 8) * hours;
-    });
-    const workerNames = Object.keys(summary);
-    if (workerNames.length === 0) {
-        summaryContainer.innerHTML = `<p class="text-xs text-slate-500 py-2">Нет ведомости за месяц</p>`;
-    } else {
-        summaryContainer.innerHTML = workerNames.map(w => `
-            <div class="flex justify-between items-center p-2.5 bg-slate-900/60 rounded-xl border border-slate-700/50 text-xs">
-                <div><p class="font-bold text-white text-sm">${w}</p><p class="text-slate-400">Отработано: <b class="text-slate-200">${summary[w].totalHours} ч</b></p></div>
-                <p class="font-bold text-amber-400 text-sm">${summary[w].totalPay.toLocaleString('ru-RU')} ₽</p>
-            </div>`).join('');
-    }
-    if (!db.shifts || db.shifts.length === 0) {
-        historyContainer.innerHTML = `<p class="text-xs text-slate-500">Реестр пуст</p>`;
-    } else {
-        historyContainer.innerHTML = db.shifts.map((s, idx) => {
-            const obj = db.objects.find(o => String(o.id) === String(s.objId));
-            const hours = parseFloat(s.hours) || 8;
-            const rate = parseFloat(s.rate) || 0;
-            const shiftPay = Math.round((rate / 8) * hours);
-            const shiftId = String(s.id || 's-' + idx);
-            return `
-                <div class="flex justify-between items-center p-2.5 bg-slate-900/60 rounded-xl border border-slate-700/40">
-                    <div>
-                        <div class="flex items-center gap-2">
-                            <span class="font-bold text-slate-200 text-sm">${s.worker}</span>
-                            <span class="text-[10px] bg-amber-500/20 text-amber-400 px-2 py-0.5 rounded-md font-semibold">${hours} ч (${shiftPay.toLocaleString('ru-RU')} ₽)</span>
-                        </div>
-                        <p class="text-slate-400 text-[11px] mt-0.5">${obj ? obj.name : 'Объект не указан'} • <span class="text-slate-500">${s.date}</span></p>
-                    </div>
-                    <div class="flex items-center gap-1">
-                        <button type="button" onclick="openEditShiftModal('${shiftId}')" class="p-2 text-slate-400 hover:text-amber-400"><i class="fa-solid fa-pen text-sm"></i></button>
-                        <button type="button" onclick="deleteShiftById('${shiftId}')" class="p-2 text-slate-500 hover:text-red-400"><i class="fa-solid fa-trash text-sm"></i></button>
-                    </div>
-                </div>`;
-        }).join('');
-    }
-}
-
-function deleteShiftById(shiftId) {
-    askConfirm('Удалить эту смену?', function() {
-        db.shifts = db.shifts.filter(s => String(s.id) !== String(shiftId));
-        saveData(); renderWorkers();
-    });
-}
-
-function exportReportToMessenger() {
-    const monthSelect = document.getElementById('statement-month-select');
-    if (!monthSelect) return;
-    const selectedMonth = monthSelect.value;
-    const monthLabel = formatMonthName(selectedMonth);
-    const filteredShifts = db.shifts.filter(s => s && s.date && String(s.date).substring(0, 7) === selectedMonth);
-    if (filteredShifts.length === 0) return alert('За этот месяц нет смен!');
-    const summary = {};
-    let grandTotalPay = 0, grandTotalHours = 0;
-    filteredShifts.forEach(s => {
-        if (!summary[s.worker]) summary[s.worker] = { totalHours: 0, totalPay: 0, shiftsCount: 0 };
-        const hours = parseFloat(s.hours) || 0;
-        const rate = parseFloat(s.rate) || 0;
-        const pay = (rate / 8) * hours;
-        summary[s.worker].totalHours += hours;
-        summary[s.worker].totalPay += pay;
-        summary[s.worker].shiftsCount += 1;
-        grandTotalHours += hours;
-        grandTotalPay += pay;
-    });
-    let report = `📋 *ОТЧЁТ ПО ВЫПЛАТАМ*\n📅 *Период:* ${monthLabel.toUpperCase()}\n─────────────────\n\n💰 *ВЕДОМОСТЬ:*\n`;
-    Object.keys(summary).forEach((w, idx) => {
-        report += `${idx + 1}. *${w}*: ${summary[w].totalHours} ч (${summary[w].shiftsCount} смен) ➔ *${summary[w].totalPay.toLocaleString('ru-RU')} ₽*\n`;
-    });
-    report += `\n📊 *ИТОГО:* ${grandTotalPay.toLocaleString('ru-RU')} ₽ (${grandTotalHours} ч)\n`;
-    if (db.objects && db.objects.length > 0) {
-        report += `\n🏗 *ВЫРАБОТКА:*\n`;
-        db.objects.forEach(obj => {
-            if (obj.logs && obj.logs.length > 0) {
-                report += `• *${obj.name}*:\n`;
-                obj.logs.forEach(l => { report += `   - ${l.type}: ${l.val} (${l.date}${l.note ? ', ' + l.note : ''})\n`; });
-            }
-        });
-    }
-    report += `\n_ГидроДел_`;
-    navigator.clipboard.writeText(report).then(() => alert('✅ Отчёт скопирован!')).catch(() => prompt('Скопируйте вручную:', report));
-}
-
-function openShiftModal() {
-    if (!db.objects || db.objects.length === 0) return alert('Сначала создайте объект!');
-    document.getElementById('shift-edit-id').value = '';
-    document.getElementById('shift-modal-title').innerHTML = `<i class="fa-solid fa-user-plus"></i> Внести смену`;
-    document.getElementById('shift-worker-input').value = '';
-    document.getElementById('shift-hours-input').value = '8';
-    document.getElementById('shift-rate-input').value = '4500';
-    document.getElementById('shift-date-input').value = new Date().toISOString().split('T')[0];
-    const select = document.getElementById('shift-obj-input');
-    if (select) select.innerHTML = db.objects.map(o => `<option value="${String(o.id)}">${o.name}</option>`).join('');
-    document.getElementById('modal-shift').classList.remove('hidden');
-}
-
-function openEditShiftModal(shiftId) {
-    const shift = db.shifts.find(s => String(s.id) === String(shiftId));
-    if (!shift) return;
-    document.getElementById('shift-edit-id').value = String(shift.id);
-    document.getElementById('shift-modal-title').innerHTML = `<i class="fa-solid fa-pen-to-square"></i> Редактировать`;
-    document.getElementById('shift-worker-input').value = shift.worker;
-    document.getElementById('shift-hours-input').value = shift.hours;
-    document.getElementById('shift-rate-input').value = shift.rate;
-    document.getElementById('shift-date-input').value = shift.date || new Date().toISOString().split('T')[0];
-    const select = document.getElementById('shift-obj-input');
-    if (select) select.innerHTML = db.objects.map(o => `<option value="${String(o.id)}" ${String(o.id) === String(shift.objId) ? 'selected' : ''}>${o.name}</option>`).join('');
-    document.getElementById('modal-shift').classList.remove('hidden');
-}
-
-function saveShift() {
-    const editId = document.getElementById('shift-edit-id').value;
-    const worker = document.getElementById('shift-worker-input').value.trim();
-    const objId = document.getElementById('shift-obj-input').value;
-    const hours = parseFloat(document.getElementById('shift-hours-input').value) || 8;
-    const rate = parseFloat(document.getElementById('shift-rate-input').value) || 0;
-    const date = document.getElementById('shift-date-input').value || new Date().toISOString().split('T')[0];
-    if (!worker) return alert('Введите имя');
-    if (editId) {
-        const shift = db.shifts.find(s => String(s.id) === String(editId));
-        if (shift) { shift.worker = worker; shift.objId = objId; shift.hours = hours; shift.rate = rate; shift.date = date; }
-    } else {
-        if (!Array.isArray(db.shifts)) db.shifts = [];
-        db.shifts.unshift({ id: 's-' + Date.now(), worker, objId, hours, rate, date });
-    }
-    saveData(); closeModal('modal-shift'); renderWorkers();
-}
-
-function closeModal(id) { const m = document.getElementById(id); if (m) m.classList.add('hidden'); }
-function toggleInfoModal() { const m = document.getElementById('modal-info'); if (m) m.classList.toggle('hidden'); }
-function clearAllData() { askConfirm('Сбросить всю БД?', function() { localStorage.clear(); location.reload(); }); }
-
-window.onload = function() { 
-    try { renderObjects(); } catch(e) { console.error(e); }
-    try { toggleCalcInputs(); } catch(e) { console.error(e); }
-};
-</script>
+<!-- РџРѕРґРєР»СЋС‡Р°РµРј РЅР°С€ РЅРѕРІС‹Р№ С„Р°Р№Р» СЃ Р»РѕРіРёРєРѕР№ -->
+<script src="app.js"></script>
 </body>
 </html>
