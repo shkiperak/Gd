@@ -7,7 +7,6 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="ГидроДел">
-<!-- НОВАЯ КАРТИНКА В ФОРМАТЕ PNG (iOS понимает только PNG/JPG) -->
 <link rel="apple-touch-icon" href="./logo_gidrodel1.png">
 <script src="https://cdn.tailwindcss.com"></script>
 <script>
@@ -364,6 +363,8 @@ const initialShifts = [
     { id: 's-2', worker: 'Дмитрий К.', objId: 'obj-1', hours: 8, rate: 4500, date: '2026-11-04' }
 ];
 
+const CHECKLIST_VERSION = 'v1'; // <--- Меняй на 'v2', 'v3', когда добавляешь новые пункты в код!
+
 const defaultChecklists = {
     strobe_inject: [
         { cat: '⚡ Электроинструмент', items: [
@@ -436,7 +437,7 @@ const defaultChecklists = {
             { text: 'Кувалда мал', checked: false },
             { text: 'Бур 6', checked: false },
             { text: 'Биты д/шурика', checked: false },
-            { text: 'Молоток', checked: false },
+            { text: 'Молоток', checked: false }
         ]},
         { cat: '📦 Расходники и крепеж', items: [
             { text: 'Мешки д/мусора', checked: false },
@@ -464,20 +465,18 @@ try {
     const savedTools = localStorage.getItem('hydro_tools');
     const savedShifts = localStorage.getItem('hydro_shifts');
     const savedCl = localStorage.getItem('hydro_checklists_v3'); 
+    const savedVersion = localStorage.getItem('hydro_checklist_version');
     
-    if (savedObj) {
-        const parsed = JSON.parse(savedObj);
-        if (Array.isArray(parsed)) db.objects = parsed;
-    }
-    if (savedTools) {
-        const parsed = JSON.parse(savedTools);
-        if (Array.isArray(parsed)) db.tools = parsed;
-    }
-    if (savedShifts) {
-        const parsed = JSON.parse(savedShifts);
-        if (Array.isArray(parsed)) db.shifts = parsed;
-    }
-    if (savedCl) {
+    if (savedObj) { const parsed = JSON.parse(savedObj); if (Array.isArray(parsed)) db.objects = parsed; }
+    if (savedTools) { const parsed = JSON.parse(savedTools); if (Array.isArray(parsed)) db.tools = parsed; }
+    if (savedShifts) { const parsed = JSON.parse(savedShifts); if (Array.isArray(parsed)) db.shifts = parsed; }
+    
+    // Умная проверка версии чек-листа
+    if (savedVersion !== CHECKLIST_VERSION) {
+        db.checklists = defaultChecklists;
+        localStorage.setItem('hydro_checklists_v3', JSON.stringify(db.checklists));
+        localStorage.setItem('hydro_checklist_version', CHECKLIST_VERSION);
+    } else if (savedCl) {
         const parsed = JSON.parse(savedCl);
         if (typeof parsed === 'object') db.checklists = parsed;
     }
@@ -491,6 +490,7 @@ function saveData() {
         localStorage.setItem('hydro_tools', JSON.stringify(db.tools));
         localStorage.setItem('hydro_shifts', JSON.stringify(db.shifts));
         localStorage.setItem('hydro_checklists_v3', JSON.stringify(db.checklists)); 
+        localStorage.setItem('hydro_checklist_version', CHECKLIST_VERSION); 
     } catch(e) { console.error('Save error', e); }
 }
 
@@ -530,11 +530,7 @@ function importBackup(event) {
                 db.objects = imported.objects;
                 db.tools = imported.tools;
                 db.shifts = imported.shifts;
-                if (imported.checklists) {
-    const isNewFormat = imported.checklists.strobe_inject && imported.checklists.strobe_inject[0] && imported.checklists.strobe_inject[0].hasOwnProperty('items');
-    if (isNewFormat) { db.checklists = imported.checklists; } 
-    else { console.warn('Загружен старый бэкап. Чек-лист оставлен по умолчанию.'); }
-}
+                // Чек-лист не трогаем, он всегда обновляется по версии из кода
                 saveData();
                 alert('✅ Копия восстановлена!');
                 location.reload();
@@ -561,7 +557,6 @@ function askConfirm(text, callback) {
 
 function switchTab(tabId) {
     document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
-    
     document.querySelectorAll('.nav-btn').forEach(el => { 
         el.classList.remove('text-amber-400', 'border-amber-500/50', 'bg-amber-500/10');
         el.classList.add('text-slate-400', 'border-slate-700/50', 'bg-slate-800/30');
@@ -571,7 +566,6 @@ function switchTab(tabId) {
     const targetNav = document.getElementById(`nav-${tabId}`);
     
     if (targetTab) targetTab.classList.remove('hidden');
-    
     if (targetNav) { 
         targetNav.classList.add('text-amber-400', 'border-amber-500/50', 'bg-amber-500/10');
         targetNav.classList.remove('text-slate-400', 'border-slate-700/50', 'bg-slate-800/30');
@@ -586,7 +580,6 @@ function switchTab(tabId) {
 function renderObjects() {
     const container = document.getElementById('objects-list');
     if (!container) return;
-    
     try {
         if (!db.objects || db.objects.length === 0) {
             container.innerHTML = `
@@ -602,13 +595,11 @@ function renderObjects() {
                 ? obj.logs.map((l, lIdx) => {
                     let displayVal = l.val;
                     let displayType = l.type;
-                    
                     if (l.type === 'Залито ЦПС (мешки 25кг)') {
                         const vol = ((l.val * 25) / 2200).toFixed(2);
                         displayVal = `${l.val} меш. (~${vol} м³)`;
                         displayType = 'Залито ЦПС';
                     }
-
                     return `
                     <div class="flex justify-between items-center text-xs py-1.5 border-b border-slate-700/50 gap-2">
                         <span class="text-slate-300 font-medium">${displayType}: <b class="text-amber-400">${displayVal}</b> <span class="text-slate-400 font-normal">(${l.note || '—'})</span></span>
@@ -635,11 +626,7 @@ function renderObjects() {
         }).join('');
     } catch(e) {
         console.error('Критическая ошибка рендера', e);
-        container.innerHTML = `
-            <div class="text-center py-8 text-red-400 text-sm">
-                Ошибка базы данных.<br>
-                <button onclick="clearAllData()" class="mt-4 bg-red-500 text-white px-4 py-2 rounded-xl">Сбросить данные</button>
-            </div>`;
+        container.innerHTML = `<div class="text-center py-8 text-red-400 text-sm">Ошибка базы данных.<br><button onclick="clearAllData()" class="mt-4 bg-red-500 text-white px-4 py-2 rounded-xl">Сбросить данные</button></div>`;
     }
 }
 
@@ -654,15 +641,12 @@ function saveNewObject() {
     const type = document.getElementById('obj-type-input').value.trim();
     if (!name) return alert('Укажите название объекта');
     db.objects.push({ id: 'obj-' + Date.now(), name, type: type || 'Штробление, инъектирование', logs: [] });
-    saveData();
-    closeModal('modal-object');
-    renderObjects();
+    saveData(); closeModal('modal-object'); renderObjects();
 }
 
 function deleteObject(id) {
-    const targetId = String(id);
     askConfirm('Удалить объект и всю историю?', function() {
-        db.objects = db.objects.filter(o => String(o.id) !== targetId);
+        db.objects = db.objects.filter(o => String(o.id) !== String(id));
         saveData(); renderObjects();
     });
 }
@@ -677,12 +661,11 @@ function openAddLogModal(objId) {
 }
 
 function openEditLogModal(objId, logIdx) {
-    const targetId = String(objId);
-    const obj = db.objects.find(o => String(o.id) === targetId);
+    const obj = db.objects.find(o => String(o.id) === String(objId));
     if (!obj || !obj.logs[logIdx]) return;
     const log = obj.logs[logIdx];
     document.getElementById('log-modal-title').innerHTML = `<i class="fa-solid fa-pen-to-square"></i> Ред.`;
-    document.getElementById('log-obj-id').value = targetId;
+    document.getElementById('log-obj-id').value = String(objId);
     document.getElementById('log-edit-idx').value = logIdx;
     document.getElementById('log-type-input').value = log.type;
     document.getElementById('log-val-input').value = log.val;
@@ -693,12 +676,11 @@ function openEditLogModal(objId, logIdx) {
 function saveWorkLog() {
     const objId = document.getElementById('log-obj-id').value;
     const editIdx = document.getElementById('log-edit-idx').value;
-    const type = document.getElementById('log-type-input').value;
-    const valInput = document.getElementById('log-val-input').value.replace(',', '.');
+    const type = document.getElementById('log-type-input').valueinj;
+    const valInput = document.getElementById('log-val-res-input').value.replace(',in', '.');
     const val = parseFloat(valInput);
-    const note = document.getElementById('log-note-input').value.trim();
-    
-    if (!val || val <= 0) return alert('Введите корректное число');
+   -type const note = document.getElementById('log-n').ote-input').value.trim();
+    if (!valvalue || val <= 0) return alert('Введите корректное число');
     
     const obj = db.objects.find(o => String(o.id) === String(objId));
     if (obj) {
@@ -714,9 +696,8 @@ function saveWorkLog() {
 }
 
 function deleteWorkLog(objId, logIdx) {
-    const targetId = String(objId);
     askConfirm('Удалить запись?', function() {
-        const obj = db.objects.find(o => String(o.id) === targetId);
+        const obj = db.objects.find(o => String(o.id) === String(objId));
         if (obj && obj.logs && obj.logs[logIdx] !== undefined) {
             obj.logs.splice(logIdx, 1); saveData(); renderObjects();
         }
@@ -751,7 +732,7 @@ function calculateMaterials() {
             <div class="flex justify-between text-xs text-slate-300"><span>Грунтовка:</span><span>~${gruntKg} кг</span></div>`;
     } else if (type === 'inject') {
         const len = parseFloat(document.getElementById('inj-length').value) || 0;
-        const resinType = document.getElementById('inj-resin-type').value;
+        const resinType = document.getElementById(';
         const resinName = resinType === '1k' ? '1К' : '65';
         const packers = Math.ceil(len * 7 * margin);
         const resinKg = (len * 2.0 * margin).toFixed(1);
@@ -775,7 +756,6 @@ function calculateMaterials() {
         const m25 = parseFloat(document.getElementById('doska-25-m').value) || 0;
         const m40 = parseFloat(document.getElementById('doska-40-m').value) || 0;
         const w = (parseFloat(document.getElementById('doska-w').value) || 150) / 1000;
-
         let doskaHtml = '';
         
         if (m25 > 0) {
@@ -947,9 +927,8 @@ function confirmMoveTool() {
 }
 
 function deleteTool(id) {
-    const targetId = String(id);
     askConfirm('Удалить инструмент?', function() {
-        db.tools = db.tools.filter(t => String(t.id) !== targetId);
+        db.tools = db.tools.filter(t => String(t.id) !== String(id));
         saveData(); renderTools();
     });
 }
