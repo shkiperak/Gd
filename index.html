@@ -530,7 +530,11 @@ function importBackup(event) {
                 db.objects = imported.objects;
                 db.tools = imported.tools;
                 db.shifts = imported.shifts;
-                if (imported.checklists) db.checklists = imported.checklists;
+                if (imported.checklists) {
+    const isNewFormat = imported.checklists.strobe_inject && imported.checklists.strobe_inject[0] && imported.checklists.strobe_inject[0].hasOwnProperty('items');
+    if (isNewFormat) { db.checklists = imported.checklists; } 
+    else { console.warn('Загружен старый бэкап. Чек-лист оставлен по умолчанию.'); }
+}
                 saveData();
                 alert('✅ Копия восстановлена!');
                 location.reload();
