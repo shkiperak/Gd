@@ -126,15 +126,33 @@ try {
     const savedQr = localStorage.getItem('hydro_qr_links');
 
     if (savedObj) { const parsed = JSON.parse(savedObj); if (Array.isArray(parsed)) db.objects = parsed; }
-    i...
+    if (savedTools) { const parsed = JSON.parse(savedTools); if (Array.isArray(parsed)) db.tools = parsed; }
+    if (savedShifts) { const parsed = JSON.parse(savedShifts); if (Array.isArray(parsed)) db.shifts = parsed; }
+    
+    if (savedQr) {
+        db.qrLinks = JSON.parse(savedQr);
+    }
+
+    if (savedVersion !== CHECKLIST_VERSION) {
+        db.checklists = defaultChecklists;
+        localStorage.setItem('hydro_checklists_v3', JSON.stringify(db.checklists));
+        localStorage.setItem('hydro_checklist_version', CHECKLIST_VERSION);
+    } else if (savedCl) {
+        const parsed = JSON.parse(savedCl);
+        if (typeof parsed === 'object') db.checklists = parsed;
+    }
+} catch(e) {
+    console.error('Ошибка чтения БД', e);
+}
 
 function saveData() {
     try {
         localStorage.setItem('hydro_objects', JSON.stringify(db.objects));
         localStorage.setItem('hydro_tools', JSON.stringify(db.tools));
         localStorage.setItem('hydro_shifts', JSON.stringify(db.shifts));
-        localStorage.setItem('hydro_checklists_v3', JSON.stringify(db.checklists)); 
-        localStorage.setItem('hydro_checklist_version', CHECKLIST_VERSION); 
+        localStorage.setItem('hydro_checklists_v3', JSON.stringify(db.checklists));
+        localStorage.setItem('hydro_checklist_version', CHECKLIST_VERSION);
+        localStorage.setItem('hydro_qr_links', JSON.stringify(db.qrLinks));
     } catch(e) { console.error('Save error', e); }
 }
 
@@ -184,17 +202,36 @@ function importBackup(event) {
 }
 
 let pendingConfirmCallback = null;
-function askConfirm(text, callback) {
+function askConfirm(text, callback, yesText = 'Удалить', noText = 'Отмена', noCallback = null) {
     const textElem = document.getElementById('confirm-text');
     const yesBtn = document.getElementById('confirm-yes-btn');
+    
     if (textElem) textElem.innerText = text;
+    if (yesBtn) yesBtn.innerText = yesText;
+
     pendingConfirmCallback = callback;
     if (yesBtn) {
         yesBtn.onclick = function() {
             closeModal('modal-confirm');
-            if (typeof pendingConfirmCallback === 'function') { pendingConfirmCallback(); pendingConfirmCallback = null; }
+            if (typeof pendingConfirmCallback === 'function') { 
+                pendingConfirmCallback(); 
+                pendingConfirmCallback = null; 
+            }
         };
     }
+
+    const noBtn = document.querySelector("#modal-confirm button[onclick*=\"closeModal\"]");
+    if (noBtn) {
+        noBtn.innerText = noText;
+        noBtn.onclick = function() {
+            closeModal('modal-confirm');
+            if (typeof noCallback === 'function') noCallback();
+        };
+        noBtn.className = noText === 'Отмена' ? 
+            "px-4 py-2 bg-slate-700 hover:bg-slate-600 rounded-xl text-xs font-semibold text-slate-300" : 
+            "px-4 py-2 bg-red-500/20 text-red-400 border border-red-500/40 rounded-xl text-xs font-bold";
+    }
+
     document.getElementById('modal-confirm').classList.remove('hidden');
 }
 
@@ -730,6 +767,118 @@ function saveShift() {
     }
     saveData(); closeModal('modal-shift'); renderWorkers();
 }
+
+// ================= ЛОГИКА QR-КОДОВ =================
+
+let html5QrCode = null;
+
+function startScanner() {
+    document.getElementById('modal-scanner').classList.remove('hidden');
+    if (!html5QrCode) {
+        html5QrCode = new Html5Qrcode("reader");
+    }
+    
+    html5QrCode.start(
+        { facingMode: "environment" },
+        { fps: 10, qrbox: { width: 250, height: 250 } },
+        onScanSuccess
+    ).catch(err => {
+        alert("Ошибка камеры. Разрешите доступ в настройках Safari.");
+        stopScanner();
+    });
+}
+
+function stopScanner() {
+    if (html5QrCode) {
+        html5QrCode.stop().then(() => {
+            html5QrCode.clear();
+            document.getElementById('modal-scanner').classList.add('hidden');
+        }).catch(err => console.error(err));
+    } else {
+        document.getElementById('modal-scanner').classList.add('hidden');
+    }
+}
+
+function onScanSuccess(decodedText, decodedResult) {
+    stopScanner(); // Выключаем камеру
+    handleScannedCode(decodedText);
+}
+
+function handleScannedCode(code) {
+    const link = db.qrLinks[code];
+
+    if (!link) {
+        showBindQrModal(code);
+    } else {
+        if (link.type === 'obj') {
+            const obj = db.objects.find(o => String(o.id) === String(link.id));
+            const name = obj ? obj.name : 'Неизвестный объект';
+            askConfirm(`QR-код привязан к объекту "${name}".\n\nНажмите "Открыть", чтобы внести выработку.`, function() {
+                switchTab('objects');
+                openAddLogModal(link.id);
+            }, "Открыть", "Отвязать код", function() {
+                delete db.qrLinks[code];
+                saveData();
+                alert('✅ Код отвязан. Теперь его можно использовать для другого объекта.');
+            });
+        } else if (link.type === 'tool') {
+            const tool = db.tools.find(t => String(t.id) === String(link.id));
+            const name = tool ? tool.name : 'Неизвестный инструмент';
+            askConfirm(`QR-код привязан к инструменту "${name}".\n\nНажмите "Открыть" для перемещения.`, function() {
+                switchTab('tools');
+                openMoveToolModal(link.id);
+            }, "Открыть", "Отвязать код", function() {
+                delete db.qrLinks[code];
+                saveData();
+                alert('✅ Код отвязан.');
+            });
+        }
+    }
+}
+
+function showBindQrModal(code) {
+    document.getElementById('bind-qr-code').value = code;
+    document.getElementById('bind-qr-text').innerText = code;
+
+    const objSelect = document.getElementById('bind-obj-select');
+    objSelect.innerHTML = '<option value="">-- Выберите объект --</option>' + db.objects.map(o => `<option value="${o.id}">${o.name}</option>`).join('');
+
+    const toolSelect = document.getElementById('bind-tool-select');
+    toolSelect.innerHTML = '<option value="">-- Выберите инструмент --</option>' + db.tools.map(t => `<option value="${t.id}">${t.name}</option>`).join('');
+
+    document.getElementById('modal-bind-qr').classList.remove('hidden');
+}
+
+function saveQrBinding() {
+    const code = document.getElementById('bind-qr-code').value;
+    const objId = document.getElementById('bind-obj-select').value;
+    const toolId = document.getElementById('bind-tool-select').value;
+
+    if (!objId && !toolId) {
+        alert('Выберите объект или инструмент!');
+        return;
+    }
+
+    if (!db.qrLinks) db.qrLinks = {};
+
+    if (objId) {
+        for (let k in db.qrLinks) {
+            if (db.qrLinks[k].type === 'obj' && db.qrLinks[k].id === objId) delete db.qrLinks[k];
+        }
+        db.qrLinks[code] = { type: 'obj', id: objId };
+    } else if (toolId) {
+        for (let k in db.qrLinks) {
+            if (db.qrLinks[k].type === 'tool' && db.qrLinks[k].id === toolId) delete db.qrLinks[k];
+        }
+        db.qrLinks[code] = { type: 'tool', id: toolId };
+    }
+
+    saveData();
+    closeModal('modal-bind-qr');
+    alert('✅ QR-код успешно привязан!');
+}
+
+// ===================================================
 
 function closeModal(id) { const m = document.getElementById(id); if (m) m.classList.add('hidden'); }
 function toggleInfoModal() { const m = document.getElementById('modal-info'); if (m) m.classList.toggle('hidden'); }
