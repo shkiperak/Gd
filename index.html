@@ -225,16 +225,26 @@ tailwind.config = {
         <input type="hidden" id="bind-qr-code">
         <div>
             <label class="text-xs text-slate-400 block mb-1">Привязать к объекту:</label>
-            <select id="bind-obj-select" class="w-full bg-slate-900 border border-slate-700 rounded-xl p-2.5 text-sm text-white outline-none focus:border-amber-500">
+            <select id="bind-obj-select" onchange="toggleNewBindingInputs()" class="w-full bg-slate-900 border border-slate-700 rounded-xl p-2.5 text-sm text-white outline-none focus:border-amber-500">
                 <option value="">-- Выберите объект --</option>
+                <option value="new">➕ Создать новый объект</option>
             </select>
+            <div id="bind-new-obj-fields" class="hidden space-y-2 mt-2">
+                <input type="text" id="bind-new-obj-name" placeholder="Название объекта" class="w-full bg-slate-900 border border-slate-700 rounded-xl p-2.5 text-sm text-white outline-none focus:border-amber-500">
+                <input type="text" id="bind-new-obj-type" placeholder="Вид работ (необязательно)" class="w-full bg-slate-900 border border-slate-700 rounded-xl p-2.5 text-sm text-white outline-none focus:border-amber-500">
+            </div>
         </div>
         <div class="text-center text-xs text-slate-500 font-bold">ИЛИ</div>
         <div>
             <label class="text-xs text-slate-400 block mb-1">Привязать к инструменту:</label>
-            <select id="bind-tool-select" class="w-full bg-slate-900 border border-slate-700 rounded-xl p-2.5 text-sm text-white outline-none focus:border-amber-500">
+            <select id="bind-tool-select" onchange="toggleNewBindingInputs()" class="w-full bg-slate-900 border border-slate-700 rounded-xl p-2.5 text-sm text-white outline-none focus:border-amber-500">
                 <option value="">-- Выберите инструмент --</option>
+                <option value="new">➕ Создать новый инструмент</option>
             </select>
+            <div id="bind-new-tool-fields" class="hidden space-y-2 mt-2">
+                <input type="text" id="bind-new-tool-name" placeholder="Название инструмента" class="w-full bg-slate-900 border border-slate-700 rounded-xl p-2.5 text-sm text-white outline-none focus:border-amber-500">
+                <input type="text" id="bind-new-tool-sn" placeholder="Инв № / SN (необязательно)" class="w-full bg-slate-900 border border-slate-700 rounded-xl p-2.5 text-sm text-white outline-none focus:border-amber-500">
+            </div>
         </div>
         <div class="flex gap-2 justify-end pt-2">
             <button type="button" onclick="closeModal('modal-bind-qr')" class="px-4 py-2 bg-slate-700 rounded-xl text-sm font-semibold text-slate-300">Отмена</button>
