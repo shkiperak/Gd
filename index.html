@@ -363,7 +363,7 @@ const initialShifts = [
     { id: 's-2', worker: 'Дмитрий К.', objId: 'obj-1', hours: 8, rate: 4500, date: '2026-11-04' }
 ];
 
-const CHECKLIST_VERSION = 'v1'; // <--- Меняй на 'v2', 'v3', когда добавляешь новые пункты в код!
+const CHECKLIST_VERSION = 'v1';
 
 const defaultChecklists = {
     strobe_inject: [
@@ -471,7 +471,6 @@ try {
     if (savedTools) { const parsed = JSON.parse(savedTools); if (Array.isArray(parsed)) db.tools = parsed; }
     if (savedShifts) { const parsed = JSON.parse(savedShifts); if (Array.isArray(parsed)) db.shifts = parsed; }
     
-    // Умная проверка версии чек-листа
     if (savedVersion !== CHECKLIST_VERSION) {
         db.checklists = defaultChecklists;
         localStorage.setItem('hydro_checklists_v3', JSON.stringify(db.checklists));
@@ -530,7 +529,6 @@ function importBackup(event) {
                 db.objects = imported.objects;
                 db.tools = imported.tools;
                 db.shifts = imported.shifts;
-                // Чек-лист не трогаем, он всегда обновляется по версии из кода
                 saveData();
                 alert('✅ Копия восстановлена!');
                 location.reload();
@@ -676,11 +674,11 @@ function openEditLogModal(objId, logIdx) {
 function saveWorkLog() {
     const objId = document.getElementById('log-obj-id').value;
     const editIdx = document.getElementById('log-edit-idx').value;
-    const type = document.getElementById('log-type-input').valueinj;
-    const valInput = document.getElementById('log-val-res-input').value.replace(',in', '.');
+    const type = document.getElementById('log-type-input').value;
+    const valInput = document.getElementById('log-val-input').value.replace(',', '.');
     const val = parseFloat(valInput);
-   -type const note = document.getElementById('log-n').ote-input').value.trim();
-    if (!valvalue || val <= 0) return alert('Введите корректное число');
+    const note = document.getElementById('log-note-input').value.trim();
+    if (!val || val <= 0) return alert('Введите корректное число');
     
     const obj = db.objects.find(o => String(o.id) === String(objId));
     if (obj) {
@@ -732,7 +730,7 @@ function calculateMaterials() {
             <div class="flex justify-between text-xs text-slate-300"><span>Грунтовка:</span><span>~${gruntKg} кг</span></div>`;
     } else if (type === 'inject') {
         const len = parseFloat(document.getElementById('inj-length').value) || 0;
-        const resinType = document.getElementById(';
+        const resinType = document.getElementById('inj-resin-type').value;
         const resinName = resinType === '1k' ? '1К' : '65';
         const packers = Math.ceil(len * 7 * margin);
         const resinKg = (len * 2.0 * margin).toFixed(1);
