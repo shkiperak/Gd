@@ -849,24 +849,63 @@ function showBindQrModal(code) {
     document.getElementById('modal-bind-qr').classList.remove('hidden');
 }
 
+function toggleNewBindingInputs() {
+    const objSelect = document.getElementById('bind-obj-select');
+    const toolSelect = document.getElementById('bind-tool-select');
+    const objFields = document.getElementById('bind-new-obj-fields');
+    const toolFields = document.getElementById('bind-new-tool-fields');
+
+    if (objSelect.value === 'new') {
+        objFields.classList.remove('hidden');
+        toolSelect.value = ''; // Сбрасываем другой
+        toolFields.classList.add('hidden');
+    } else if (toolSelect.value === 'new') {
+        toolFields.classList.remove('hidden');
+        objSelect.value = ''; // Сбрасываем другой
+        objFields.classList.add('hidden');
+    } else {
+        objFields.classList.add('hidden');
+        toolFields.classList.add('hidden');
+    }
+}
+
 function saveQrBinding() {
     const code = document.getElementById('bind-qr-code').value;
-    const objId = document.getElementById('bind-obj-select').value;
-    const toolId = document.getElementById('bind-tool-select').value;
-
-    if (!objId && !toolId) {
-        alert('Выберите объект или инструмент!');
-        return;
-    }
+    let objId = document.getElementById('bind-obj-select').value;
+    let toolId = document.getElementById('bind-tool-select').value;
 
     if (!db.qrLinks) db.qrLinks = {};
 
-    if (objId) {
+    // 1. Если нужно СОЗДАТЬ новый объект
+    if (objId === 'new') {
+        const name = document.getElementById('bind-new-obj-name').value.trim();
+        if (!name) return alert('Введите название нового объекта!');
+        const type = document.getElementById('bind-new-obj-type').value.trim();
+        objId = 'obj-' + Date.now();
+        db.objects.push({ id: objId, name: name, type: type || 'Не указан', logs: [] });
+    } 
+    // 2. Если нужно СОЗДАТЬ новый инструмент
+    else if (toolId === 'new') {
+        const name = document.getElementById('bind-new-tool-name').value.trim();
+        if (!name) return alert('Введите название нового инструмента!');
+        const sn = document.getElementById('bind-new-tool-sn').value.trim();
+        toolId = 't-' + Date.now();
+        db.tools.push({ id: toolId, name: name, sn: sn, status: 'sklad' }); // По умолчанию кладем на склад
+    }
+
+    // Проверка на пустой выбор
+    if (!objId && !toolId) {
+        alert('Выберите объект/инструмент или создайте новый!');
+        return;
+    }
+
+    // 3. Очищаем старые привязки для этого объекта/инструмента (если были)
+    if (objId && objId !== 'new') {
         for (let k in db.qrLinks) {
             if (db.qrLinks[k].type === 'obj' && db.qrLinks[k].id === objId) delete db.qrLinks[k];
         }
         db.qrLinks[code] = { type: 'obj', id: objId };
-    } else if (toolId) {
+    } else if (toolId && toolId !== 'new') {
         for (let k in db.qrLinks) {
             if (db.qrLinks[k].type === 'tool' && db.qrLinks[k].id === toolId) delete db.qrLinks[k];
         }
@@ -876,6 +915,10 @@ function saveQrBinding() {
     saveData();
     closeModal('modal-bind-qr');
     alert('✅ QR-код успешно привязан!');
+    
+    // Обновляем списки на экране, чтобы новые инструменты сразу появились
+    renderObjects(); 
+    renderTools();
 }
 
 // ===================================================
