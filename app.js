@@ -121,24 +121,12 @@ try {
     const savedObj = localStorage.getItem('hydro_objects');
     const savedTools = localStorage.getItem('hydro_tools');
     const savedShifts = localStorage.getItem('hydro_shifts');
-    const savedCl = localStorage.getItem('hydro_checklists_v3'); 
-    const savedVersion = localStorage.getItem('hydro_checklist_const savedQr = localStorage.getItem('hydro_qr_links');
-    
+    const savedCl = localStorage.getItem('hydro_checklists_v3');
+    const savedVersion = localStorage.getItem('hydro_checklist_version');
+    const savedQr = localStorage.getItem('hydro_qr_links');
+
     if (savedObj) { const parsed = JSON.parse(savedObj); if (Array.isArray(parsed)) db.objects = parsed; }
-    if (savedTools) { const parsed = JSON.parse(savedTools); if (Array.isArray(parsed)) db.tools = parsed; }
-    if (savedShifts) { const parsed = JSON.parse(savedShifts); if (Array.isArray(parsed)) db.shifts = parsed; }
-    
-    if (savedVersion !== CHECKLIST_VERSION) {
-        db.checklists = defaultChecklists;
-        localStorage.setItem('hydro_checklists_v3', JSON.stringify(db.checklists));
-        localStorage.setItem('hydro_checklist_version', CHECKLIST_VERSION);
-    } else if (savedCl) {
-        const parsed = JSON.parse(savedCl);
-        if (typeof parsed === 'object') db.checklists = parsed;
-    }
-} catch(e) { 
-    console.error('Ошибка чтения БД', e); 
-}
+    i...
 
 function saveData() {
     try {
