@@ -841,10 +841,17 @@ function showBindQrModal(code) {
     document.getElementById('bind-qr-text').innerText = code;
 
     const objSelect = document.getElementById('bind-obj-select');
-    objSelect.innerHTML = '<option value="">-- Выберите объект --</option>' + db.objects.map(o => `<option value="${o.id}">${o.name}</option>`).join('');
+    objSelect.innerHTML = '<option value="">-- Выберите объект --</option><option value="new">➕ Создать новый объект</option>' + db.objects.map(o => `<option value="${o.id}">${o.name}</option>`).join('');
 
     const toolSelect = document.getElementById('bind-tool-select');
-    toolSelect.innerHTML = '<option value="">-- Выберите инструмент --</option>' + db.tools.map(t => `<option value="${t.id}">${t.name}</option>`).join('');
+    toolSelect.innerHTML = '<option value="">-- Выберите инструмент --</option><option value="new">➕ Создать новый инструмент</option>' + db.tools.map(t => `<option value="${t.id}">${t.name}</option>`).join('');
+
+    document.getElementById('bind-new-obj-fields').classList.add('hidden');
+    document.getElementById('bind-new-tool-fields').classList.add('hidden');
+    document.getElementById('bind-new-obj-name').value = '';
+    document.getElementById('bind-new-tool-name').value = '';
+    objSelect.value = '';
+    toolSelect.value = '';
 
     document.getElementById('modal-bind-qr').classList.remove('hidden');
 }
