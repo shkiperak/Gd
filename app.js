@@ -122,7 +122,7 @@ try {
     const savedTools = localStorage.getItem('hydro_tools');
     const savedShifts = localStorage.getItem('hydro_shifts');
     const savedCl = localStorage.getItem('hydro_checklists_v3'); 
-    const savedVersion = localStorage.getItem('hydro_checklist_version');
+    const savedVersion = localStorage.getItem('hydro_checklist_const savedQr = localStorage.getItem('hydro_qr_links');
     
     if (savedObj) { const parsed = JSON.parse(savedObj); if (Array.isArray(parsed)) db.objects = parsed; }
     if (savedTools) { const parsed = JSON.parse(savedTools); if (Array.isArray(parsed)) db.tools = parsed; }
