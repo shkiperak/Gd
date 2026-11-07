@@ -115,7 +115,7 @@ const defaultChecklists = {
     ]
 };
 
-let db = { objects: initialObjects, tools: initialTools, shifts: initialShifts, checklists: defaultChecklists };
+let db = { objects: initialObjects, tools: initialTools, shifts: initialShifts, checklists: defaultChecklists, qrLinks: {} };
 
 try {
     const savedObj = localStorage.getItem('hydro_objects');
